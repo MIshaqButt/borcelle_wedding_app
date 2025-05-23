@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="primaryColor" type="material">#4B164C</color>
+    <color name="secondaryColor" type="material">#DD88CF</color>
+
+    <color name="white" type="material">#FFFFFF</color>
+    <color name="black" type="material">#000000</color>
+    <color name="textGray" type="material">#707070</color>
+
+    <color name="iconBackground" type="material">#F5F5F5</color>
+    <color name="otpBackground" type="material">#F8E7F6</color>
+    <color name="profileTileBackground" type="material">#F1EAF1</color>
+
+
+    <color name="lightGray" type="material">#D3D3D3</color>
+    <color name="darkGray" type="material">#808080</color>
+    <color name="red" type="material">#FF0000</color>
+    <color name="green" type="material">#00FF00</color>
+    
+
+</resources>
+
