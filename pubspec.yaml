@@ -1,0 +1,81 @@
+name: borcelle_wedding_app
+description: "A new Flutter project."
+
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # UI & Icons
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.1.0
+  font_awesome_flutter: ^10.8.0
+
+
+  # State Management & Utilities
+  flutter_bloc: ^9.1.1
+  equatable: ^2.0.7
+  intl: ^0.20.2
+  get_storage: ^2.1.1
+  dio: ^5.8.0+1
+  flutter_spinkit: ^5.2.1
+  delightful_toast: ^1.1.0
+  country_picker: ^2.0.27
+
+  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.15
+  flutter_gen_runner: ^5.10.0
+  launcher_name: ^1.0.2
+  flutter_launcher_icons: ^0.14.3
+
+
+flutter_gen:
+  integrations:
+    flutter_svg: true
+  colors:
+    enabled: true
+    inputs: 
+      - assets/colors/colors.xml
+  fonts:
+    enabled: true
+
+flutter:  
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/animations/
+    - assets/fonts/
+
+  fonts:
+    - family: BalooDa2
+      fonts:
+        - asset: assets/fonts/BalooDa2-Regular.ttf
+        - asset: assets/fonts/BalooDa2-Medium.ttf
+        - asset: assets/fonts/BalooDa2-SemiBold.ttf
+        - asset: assets/fonts/BalooDa2-Bold.ttf
+        - asset: assets/fonts/BalooDa2-ExtraBold.ttf
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/logo.png"
+
+
+launcher_name: 
+  default: "Borcella Wedding App"
+  android: "Borcella Wedding App"
+  ios: "Borcella Wedding App"
