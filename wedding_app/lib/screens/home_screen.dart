@@ -1,5 +1,7 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
+
 import '../models/wedding_model.dart';
 import '../services/api_service.dart';
 import '../theme/app_theme.dart';
@@ -18,7 +20,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedTabIndex = 1; // Default to Barat (Main Event)
-  WeddingDetails? _weddingDetails;
   List<WeddingEvent> _events = [];
   bool _isLoading = true;
 
@@ -58,11 +59,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _loadData() async {
-    final details = await ApiService.fetchWeddingDetails();
     final events = await ApiService.fetchEvents();
     if (mounted) {
       setState(() {
-        _weddingDetails = details;
         _events = events;
         _isLoading = false;
       });
@@ -74,20 +73,27 @@ class _HomeScreenState extends State<HomeScreen> {
     if (_isLoading) {
       return const Scaffold(
         backgroundColor: AppTheme.darkBg,
-        body: Center(
-          child: CircularProgressIndicator(color: AppTheme.gold),
-        ),
+        body: Center(child: CircularProgressIndicator(color: AppTheme.gold)),
       );
     }
 
-    final mehndiEvent = _events.firstWhere((e) => e.id == 'mehndi', orElse: () => _events[0]);
-    final baratEvent = _events.firstWhere((e) => e.id == 'barat', orElse: () => _events[0]);
-    final walimaEvent = _events.firstWhere((e) => e.id == 'walima', orElse: () => _events[0]);
+    final mehndiEvent = _events.firstWhere(
+      (e) => e.id == 'mehndi',
+      orElse: () => _events[0],
+    );
+    final baratEvent = _events.firstWhere(
+      (e) => e.id == 'barat',
+      orElse: () => _events[0],
+    );
+    final walimaEvent = _events.firstWhere(
+      (e) => e.id == 'walima',
+      orElse: () => _events[0],
+    );
 
     return Scaffold(
       backgroundColor: AppTheme.darkBg,
       appBar: AppBar(
-        backgroundColor: AppTheme.cardDark.withOpacity(0.95),
+        backgroundColor: AppTheme.cardDark.withValues(alpha: 0.95),
         elevation: 4,
         centerTitle: true,
         title: Row(
@@ -97,7 +103,10 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(width: 8),
             Text(
               'Muhammad Ishaq & Pimra Ahmad',
-              style: AppTheme.headingStyle(fontSize: 15, color: AppTheme.goldLight),
+              style: AppTheme.headingStyle(
+                fontSize: 15,
+                color: AppTheme.goldLight,
+              ),
             ),
           ],
         ),
@@ -137,7 +146,9 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         color: AppTheme.cardDark,
-        border: Border(bottom: BorderSide(color: AppTheme.gold.withOpacity(0.3))),
+        border: Border(
+          bottom: BorderSide(color: AppTheme.gold.withValues(alpha: 0.3)),
+        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -147,12 +158,20 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Text(
                 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
-                style: TextStyle(color: AppTheme.goldLight, fontSize: 13, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  color: AppTheme.goldLight,
+                  fontSize: 13,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 2),
               const Text(
                 'COUNTDOWN TO BARAT (21 NOV 2026)',
-                style: TextStyle(color: Colors.white54, fontSize: 10, letterSpacing: 1),
+                style: TextStyle(
+                  color: Colors.white54,
+                  fontSize: 10,
+                  letterSpacing: 1,
+                ),
               ),
             ],
           ),
@@ -161,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: BoxDecoration(
               color: Colors.black45,
               borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: AppTheme.gold.withOpacity(0.4)),
+              border: Border.all(color: AppTheme.gold.withValues(alpha: 0.4)),
             ),
             child: Text(
               '${days}d : ${hours}h : ${minutes}m : ${seconds}s',
@@ -180,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildEventTabs() {
     return Container(
-      color: Colors.black.withOpacity(0.6),
+      color: Colors.black.withValues(alpha: 0.6),
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: Row(
         children: [
@@ -193,7 +212,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildTabItem(int index, String title, String subtitle, Color activeAccent) {
+  Widget _buildTabItem(
+    int index,
+    String title,
+    String subtitle,
+    Color activeAccent,
+  ) {
     final isSelected = _selectedTabIndex == index;
     return Expanded(
       child: GestureDetector(
@@ -203,7 +227,9 @@ class _HomeScreenState extends State<HomeScreen> {
           margin: const EdgeInsets.symmetric(horizontal: 4),
           padding: const EdgeInsets.symmetric(vertical: 8),
           decoration: BoxDecoration(
-            color: isSelected ? activeAccent.withOpacity(0.25) : Colors.transparent,
+            color: isSelected
+                ? activeAccent.withValues(alpha: 0.25)
+                : Colors.transparent,
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
               color: isSelected ? activeAccent : Colors.white12,
