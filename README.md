@@ -12,6 +12,7 @@ A modern, animated wedding invitation application suite built with **Flutter** (
 ```
 ├── wedding_app/       # Flutter Mobile Application
 │   ├── lib/
+│   │   ├── config/    # ⭐️ wedding_config.dart (CENTRAL EVENT DATA FILE: Bride, Groom, Dates, Times, Venues)
 │   │   ├── models/    # Wedding, Event, and RSVP data models
 │   │   ├── screens/   # Home countdown, Mehndi, Barat, Walima, and RSVP screens
 │   │   ├── services/  # API service with full offline fallback
@@ -19,9 +20,32 @@ A modern, animated wedding invitation application suite built with **Flutter** (
 │   │   └── widgets/   # Interactive photo lightbox, audio player, animations
 │   └── assets/        # Bespoke high-resolution imagery and celebratory audio tracks
 └── backend/           # Node.js Express API Server
-    ├── server.js      # REST API endpoints (/api/wedding, /api/events, /api/rsvp, /api/wishes)
-    └── wedding_db.json# JSON database for RSVPs and guest wishes
+    ├── server.js            # REST API endpoints (/api/wedding, /api/events, /api/rsvp, /api/wishes)
+    ├── wedding_config.json  # ⭐️ Central backend event configuration (Groom, Bride, Dates, Venues, Timings)
+    └── wedding_db.json      # JSON database for RSVPs and guest wishes
 ```
+
+---
+
+## ⚙️ How to Change Wedding Data (Names, Dates, Locations, Times)
+
+You can easily change all event information in one single place:
+
+### In the Flutter Mobile App:
+Open **[`wedding_app/lib/config/wedding_config.dart`](file:///Users/apple/MY%20OWN/WeddingCard/wedding_app/lib/config/wedding_config.dart)**:
+- **Bride & Groom Names**: Change `groomName` and `brideName`.
+- **Countdown Target**: Change `countdownTarget = DateTime(YEAR, MONTH, DAY, HOUR, MINUTE)`.
+- **Mehndi / Barat / Walima**:
+  - `title`, `date`, `dayLabel`, `themeColor`, `musicTitle`, `description`, `dressCode`.
+  - `venueName`, `venueCity`, `mapUrl` (Google Maps URL).
+  - `schedule`: Times and descriptions (e.g. Arrival, Nikah, Lunch, Rukhsati, Reception Dinner).
+  - `gallery`: Photos, titles, and captions.
+
+### In the Backend:
+Open **[`backend/wedding_config.json`](file:///Users/apple/MY%20OWN/WeddingCard/backend/wedding_config.json)**:
+- Edit `wedding` object (groom, bride, dates, Quranic verses, RSVP contact).
+- Edit `events` array (Mehndi, Barat, Walima details, venue, Google Maps coordinates/URLs, and schedules).
+- Any edit takes effect immediately without needing to recompile!
 
 ---
 

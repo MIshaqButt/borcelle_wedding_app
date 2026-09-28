@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/wedding_model.dart';
 import '../services/api_service.dart';
 import '../theme/app_theme.dart';
+import '../config/wedding_config.dart';
 import 'mehndi_view.dart';
 import 'barat_view.dart';
 import 'walima_view.dart';
@@ -33,10 +34,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _initCountdown() {
-    final baratDate = DateTime(2026, 11, 21, 13, 0); // 21 Nov 2026, 1:00 PM
-    _updateTime(baratDate);
+    final targetDate = WeddingConfig.countdownTarget;
+    _updateTime(targetDate);
     _countdownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      _updateTime(baratDate);
+      _updateTime(targetDate);
     });
   }
 

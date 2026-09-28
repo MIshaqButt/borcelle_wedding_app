@@ -231,9 +231,9 @@ class BaratView extends StatelessWidget {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     ),
                     icon: const Icon(Icons.map_outlined, color: Colors.white),
-                    label: const Text(
-                      'Open Koh-e-Noor in Google Maps',
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
+                    label: Text(
+                      'Open ${event.venueName ?? "Venue"} in Google Maps',
+                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
                     ),
                     onPressed: () {
                       _openGoogleMaps(event.mapUrl ?? 'https://maps.app.goo.gl/Uty8hrCb7oQ5rmFr6');

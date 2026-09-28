@@ -14,116 +14,18 @@ app.use('/media', express.static(path.join(__dirname, '../wedding_app/assets')))
 
 // In-Memory Data Store (persisted to a local JSON file)
 const DB_FILE = path.join(__dirname, 'wedding_db.json');
+const CONFIG_FILE = path.join(__dirname, 'wedding_config.json');
 
-const defaultDb = {
-    wedding: {
-        id: "ishaq-pimra-2026",
-        groom: "Muhammad Ishaq",
-        bride: "Pimra Ahmad",
-        dates: "20 - 22 November 2026",
-        bismillahArabic: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
-        quranVerse: "And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy.",
-        surahRef: "Surah Ar-Rum [30:21]",
-        parentsBlessing: "With the grace of Almighty Allah & the blessings of our parents, we invite you to celebrate our wedding union."
-    },
-    events: [
-        {
-            id: "mehndi",
-            title: "Rasm-e-Mehndi & Sangeet",
-            dayLabel: "Day 1 • Festive Night",
-            date: "Friday, 20 November 2026",
-            themeColor: "#D97706", // Amber
-            musicTitle: "Festive Dholak & Traditional Tappe",
-            description: "An auspicious evening filled with fragrant henna, lively dholak rhythms, and cheerful celebrations.",
-            dressCode: "Marigold Yellow, Parrot Green & Festive Florals",
-            schedule: [
-                { time: "07:00 PM", title: "Rasm-e-Hina & Dholak Beats", desc: "Henna ritual and traditional wedding songs" },
-                { time: "08:30 PM", title: "Festive Dinner & Sangeet", desc: "Traditional food & musical performances" }
-            ],
-            gallery: [
-                { title: "Punjabi Dholak", asset: "assets/images/punjabi_dhol.jpg", caption: "Traditional dholak with marigold garlands" },
-                { title: "Bhangra & Giddha", asset: "assets/images/punjabi_dance.jpg", caption: "Joyful Punjabi dancers celebrating the night" }
-            ]
-        },
-        {
-            id: "barat",
-            title: "The Grand Royal Barat",
-            dayLabel: "Day 2 • The Main Ceremony",
-            date: "Saturday, 21 November 2026",
-            themeColor: "#881337", // Royal Crimson
-            musicTitle: "Royal Shehnai & Barat March",
-            description: "The sacred Nikah union, grand feast, and emotional Rukhsati of Muhammad Ishaq & Pimra Ahmad.",
-            venue: {
-                name: "Koh-e-Noor Marquee",
-                city: "Farooqabad, Punjab, Pakistan",
-                mapUrl: "https://maps.app.goo.gl/Uty8hrCb7oQ5rmFr6",
-                coordinates: { lat: 31.7483, lng: 73.8058 }
-            },
-            dressCode: "Royal Sherwanis, Crimson Lehengas & Formal Attire",
-            schedule: [
-                { time: "01:00 PM", title: "Barat Arrival & Welcome", desc: "Grand welcome of Groom Muhammad Ishaq with rose petal shower" },
-                { time: "01:30 PM", title: "Sacred Nikah Ceremony", desc: "Signing the marriage contract in presence of elders" },
-                { time: "02:00 PM", title: "Royal Lunch", desc: "Traditional lavish wedding banquet" },
-                { time: "04:00 PM", title: "Emotional Rukhsati", desc: "Farewell under the Holy Quran with heartfelt prayers" }
-            ],
-            gallery: [
-                { title: "Barat Welcome", asset: "assets/images/barat_welcome.jpg", caption: "Grand welcome of the groom with rose petal shower" },
-                { title: "Sacred Nikah Ceremony", asset: "assets/images/nikah.jpg", caption: "Groom & bride signing the Nikah Nama" },
-                { title: "Emotional Rukhsati", asset: "assets/images/rukhsati.jpg", caption: "Tears of joy & farewell under the Holy Quran" },
-                { title: "Bhangra Celebration", asset: "assets/images/punjabi_dance.jpg", caption: "Joyous celebrations during the Barat" },
-                { title: "Decorated Barat Car", asset: "assets/images/barat_car.jpg", caption: "Vintage wedding car decorated with fresh flowers" }
-            ]
-        },
-        {
-            id: "walima",
-            title: "Walima Banquet Reception",
-            dayLabel: "Day 3 • Blessed Feast",
-            date: "Sunday, 22 November 2026",
-            themeColor: "#4B5563", // Champagne / Pearl Gray
-            musicTitle: "Romantic Classical Flute & Sitar",
-            description: "Expressing gratitude to Almighty Allah and hosting guests for an elegant reception dinner.",
-            dressCode: "Pastel Champagne, Tuxedos & Elegant Maxi Formals",
-            schedule: [
-                { time: "07:30 PM", title: "Grand Couple Entry & Reception", desc: "Newlyweds enter the ballroom under lighted floral arches" },
-                { time: "08:30 PM", title: "Gourmet Banquet Dinner", desc: "Celebratory royal dinner" }
-            ],
-            gallery: [
-                { title: "Grand Couple Entry", asset: "assets/images/walima_entry.jpg", caption: "Groom & bride royal entry into the ballroom" },
-                { title: "Reception Banquet", asset: "assets/images/walima_reception.jpg", caption: "Lavish ballroom dinner with crystal chandeliers" }
-            ]
+function getWeddingConfig() {
+    if (fs.existsSync(CONFIG_FILE)) {
+        try {
+            return JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf8'));
+        } catch (e) {
+            console.error('Error reading wedding_config.json:', e);
         }
-    ],
-    wishes: [
-        {
-            id: 1,
-            author: "Farhan & Family",
-            relation: "Uncle & Aunt",
-            message: "Barakallahu lakuma wa baraka alaikuma! May Allah fill your lives with barakah, love, and laughter. Congratulations Ishaq & Pimra!",
-            timestamp: "2026-09-27T10:00:00Z"
-        },
-        {
-            id: 2,
-            author: "Usman Tariq",
-            relation: "Friend",
-            message: "Heartiest congratulations to my dear brother Muhammad Ishaq and bhabhi Pimra Ahmad! Counting down to the Barat lunch at Koh-e-Noor!",
-            timestamp: "2026-09-27T11:30:00Z"
-        }
-    ],
-    rsvps: [
-        {
-            id: 1,
-            name: "Dr. Zafar Iqbal & Family",
-            email: "zafar@example.com",
-            phone: "+92 300 1234567",
-            attendingMehndi: true,
-            attendingBarat: true,
-            attendingWalima: true,
-            guestCount: 4,
-            notes: "Looking forward to celebrating with both families!",
-            submittedAt: "2026-09-27T09:15:00Z"
-        }
-    ]
-};
+    }
+    return null;
+}
 
 // Initialize DB file
 function loadDb() {
@@ -134,8 +36,9 @@ function loadDb() {
             console.error('Error reading DB, using default:', e);
         }
     }
-    fs.writeFileSync(DB_FILE, JSON.stringify(defaultDb, null, 2), 'utf8');
-    return defaultDb;
+    const defaultData = { wishes: [], rsvps: [] };
+    fs.writeFileSync(DB_FILE, JSON.stringify(defaultData, null, 2), 'utf8');
+    return defaultData;
 }
 
 function saveDb(data) {
@@ -153,17 +56,27 @@ app.get('/api/health', (req, res) => {
 
 // Wedding Core Details
 app.get('/api/wedding', (req, res) => {
-    res.json(db.wedding);
+    const config = getWeddingConfig();
+    if (config && config.wedding) {
+        return res.json(config.wedding);
+    }
+    res.status(500).json({ error: 'Wedding details not configured' });
 });
 
 // All 3 Events (Mehndi, Barat, Walima)
 app.get('/api/events', (req, res) => {
-    res.json(db.events);
+    const config = getWeddingConfig();
+    if (config && config.events) {
+        return res.json(config.events);
+    }
+    res.status(500).json({ error: 'Events not configured' });
 });
 
 // Specific Event
 app.get('/api/events/:id', (req, res) => {
-    const event = db.events.find(e => e.id.toLowerCase() === req.params.id.toLowerCase());
+    const config = getWeddingConfig();
+    const events = (config && config.events) || [];
+    const event = events.find(e => e.id.toLowerCase() === req.params.id.toLowerCase());
     if (!event) {
         return res.status(404).json({ error: 'Event not found' });
     }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../models/wedding_model.dart';
 import '../theme/app_theme.dart';
 import '../widgets/photo_lightbox.dart';
@@ -7,6 +8,13 @@ class WalimaView extends StatelessWidget {
   final WeddingEvent event;
 
   const WalimaView({super.key, required this.event});
+
+  Future<void> _openGoogleMaps(String url) async {
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -160,6 +168,73 @@ class WalimaView extends StatelessWidget {
             }).toList(),
 
             const SizedBox(height: 16),
+
+            // Venue Location & Navigation Card
+            if (event.venueName != null) ...[
+              Container(
+                padding: const EdgeInsets.all(18),
+                decoration: BoxDecoration(
+                  color: AppTheme.cardDark,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: AppTheme.walimaGold.withOpacity(0.4)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppTheme.walimaGold.withOpacity(0.15),
+                      blurRadius: 15,
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const Row(
+                      children: [
+                        Text('🏛️', style: TextStyle(fontSize: 24)),
+                        SizedBox(width: 10),
+                        Text(
+                          'VENUE LOCATION',
+                          style: TextStyle(
+                            color: AppTheme.walimaGold,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 12,
+                            letterSpacing: 2,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      event.venueName!,
+                      style: AppTheme.headingStyle(fontSize: 22, color: Colors.white),
+                    ),
+                    if (event.venueCity != null) ...[
+                      const SizedBox(height: 4),
+                      Text(
+                        event.venueCity!,
+                        style: const TextStyle(color: Colors.white70, fontSize: 14),
+                      ),
+                    ],
+                    if (event.mapUrl != null) ...[
+                      const SizedBox(height: 16),
+                      ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF10B981),
+                          padding: const EdgeInsets.symmetric(vertical: 14),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        ),
+                        icon: const Icon(Icons.map_outlined, color: Colors.white),
+                        label: Text(
+                          'Open ${event.venueName} in Google Maps',
+                          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
+                        ),
+                        onPressed: () => _openGoogleMaps(event.mapUrl!),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+            ],
 
             // Dress Code Card
             Container(
