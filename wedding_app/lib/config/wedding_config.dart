@@ -40,8 +40,11 @@ class WeddingConfig {
   static final DateTime countdownTarget = DateTime(2026, 11, 21, 13, 0); // 21 Nov 2026, 1:00 PM
 
   // ---------------------------------------------------------------------------
-  // 3. RSVP CONTACT INFORMATION
+  // 3. WHATSAPP & RSVP CONTACT INFORMATION
+  // Duas, blessings, and RSVPs from the app are sent directly to this WhatsApp!
+  // Format: International format digits without '+' or spaces (e.g. '923001234567')
   // ---------------------------------------------------------------------------
+  static const String whatsappNumber = '923001234567'; // 👈 Enter your WhatsApp number here
   static const String rsvpContactName = 'Muhammad Ishaq';
   static const String rsvpPhone = '+92 300 1234567';
   static const String rsvpEmail = 'ishaq.info1@gmail.com';

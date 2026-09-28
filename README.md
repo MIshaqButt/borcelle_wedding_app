@@ -10,42 +10,41 @@ A modern, animated wedding invitation application suite built with **Flutter** (
 ## 📱 Repository Structure
 
 ```
-├── wedding_app/       # Flutter Mobile Application
-│   ├── lib/
-│   │   ├── config/    # ⭐️ wedding_config.dart (CENTRAL EVENT DATA FILE: Bride, Groom, Dates, Times, Venues)
-│   │   ├── models/    # Wedding, Event, and RSVP data models
-│   │   ├── screens/   # Home countdown, Mehndi, Barat, Walima, and RSVP screens
-│   │   ├── services/  # API service with full offline fallback
-│   │   ├── theme/     # Luxury theme palettes (Mehndi yellow, Barat crimson, Walima teal)
-│   │   └── widgets/   # Interactive photo lightbox, audio player, animations
-│   └── assets/        # Bespoke high-resolution imagery and celebratory audio tracks
-└── backend/           # Node.js Express API Server
-    ├── server.js            # REST API endpoints (/api/wedding, /api/events, /api/rsvp, /api/wishes)
-    ├── wedding_config.json  # ⭐️ Central backend event configuration (Groom, Bride, Dates, Venues, Timings)
-    └── wedding_db.json      # JSON database for RSVPs and guest wishes
+└── wedding_app/       # Complete Standalone Flutter Mobile App (Android APK & iOS)
+    ├── lib/
+    │   ├── config/    # ⭐️ wedding_config.dart (THE ONLY DATA FILE: Bride, Groom, WhatsApp #, Dates, Times, Venues)
+    │   ├── models/    # Wedding, Event, and RSVP data models
+    │   ├── screens/   # Home countdown, Mehndi, Barat, Walima, and RSVP/Dua screens
+    │   ├── services/  # Local instant data service
+    │   ├── theme/     # Luxury theme palettes (Mehndi amber, Barat crimson, Walima teal)
+    │   └── widgets/   # Interactive photo lightbox, audio player, animations
+    └── assets/        # Bespoke high-resolution imagery and celebratory audio tracks
 ```
 
 ---
 
-## ⚙️ How to Change Wedding Data (Names, Dates, Locations, Times)
+## ⚙️ The Single File to Change Everything
 
-You can easily change all event information in one single place:
+You only need to edit **one single file**:  
+👉 **[`wedding_app/lib/config/wedding_config.dart`](file:///Users/apple/MY%20OWN/WeddingCard/wedding_app/lib/config/wedding_config.dart)**
 
-### In the Flutter Mobile App:
-Open **[`wedding_app/lib/config/wedding_config.dart`](file:///Users/apple/MY%20OWN/WeddingCard/wedding_app/lib/config/wedding_config.dart)**:
-- **Bride & Groom Names**: Change `groomName` and `brideName`.
-- **Countdown Target**: Change `countdownTarget = DateTime(YEAR, MONTH, DAY, HOUR, MINUTE)`.
-- **Mehndi / Barat / Walima**:
-  - `title`, `date`, `dayLabel`, `themeColor`, `musicTitle`, `description`, `dressCode`.
-  - `venueName`, `venueCity`, `mapUrl` (Google Maps URL).
-  - `schedule`: Times and descriptions (e.g. Arrival, Nikah, Lunch, Rukhsati, Reception Dinner).
-  - `gallery`: Photos, titles, and captions.
+Inside this file, you can modify:
+1. **WhatsApp Number**: `whatsappNumber` (e.g. `'923001234567'`). All Duas and RSVP confirmations from guests are formatted and delivered directly into your WhatsApp!
+2. **Bride & Groom Names**: `groomName` and `brideName`.
+3. **Countdown Clock**: `countdownTarget = DateTime(YEAR, MONTH, DAY, HOUR, MINUTE)`.
+4. **Mehndi Event**: Date, timings, venue, dress code, schedule, music, photos.
+5. **Barat Event**: Date, timings (Arrival, Nikah, Lunch, Rukhsati), Koh-e-Noor venue, Google Maps link, photos.
+6. **Walima Event**: Date, reception & dinner timings, venue, Google Maps link, photos.
 
-### In the Backend:
-Open **[`backend/wedding_config.json`](file:///Users/apple/MY%20OWN/WeddingCard/backend/wedding_config.json)**:
-- Edit `wedding` object (groom, bride, dates, Quranic verses, RSVP contact).
-- Edit `events` array (Mehndi, Barat, Walima details, venue, Google Maps coordinates/URLs, and schedules).
-- Any edit takes effect immediately without needing to recompile!
+---
+
+## 📲 Building the Android APK
+```bash
+cd wedding_app
+flutter build apk --release
+# Output APK location: wedding_app/build/app/outputs/flutter-apk/app-release.apk
+```
+Send `app-release.apk` directly to family and friends over WhatsApp or Drive!
 
 ---
 

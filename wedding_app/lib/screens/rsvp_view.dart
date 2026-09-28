@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../models/wedding_model.dart';
 import '../services/api_service.dart';
 import '../theme/app_theme.dart';
+import '../config/wedding_config.dart';
 
 class RsvpView extends StatefulWidget {
   const RsvpView({super.key});
@@ -46,8 +48,35 @@ class _RsvpViewState extends State<RsvpView> {
     }
   }
 
+  Future<void> _launchWhatsApp(String messageText) async {
+    final cleanPhone = WeddingConfig.whatsappNumber.replaceAll(RegExp(r'[^0-9]'), '');
+    final encodedMsg = Uri.encodeComponent(messageText);
+    final urlString = 'https://wa.me/$cleanPhone?text=$encodedMsg';
+    final uri = Uri.parse(urlString);
+
+    try {
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      } else {
+        await launchUrl(
+          Uri.parse('https://api.whatsapp.com/send?phone=$cleanPhone&text=$encodedMsg'),
+          mode: LaunchMode.externalApplication,
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Could not open WhatsApp: $e')),
+        );
+      }
+    }
+  }
+
   Future<void> _handleRsvpSubmit() async {
     final name = _nameController.text.trim();
+    final phone = _phoneController.text.trim();
+    final notes = _notesController.text.trim();
+
     if (name.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please enter your name.')),
@@ -57,42 +86,40 @@ class _RsvpViewState extends State<RsvpView> {
 
     setState(() => _isSubmittingRsvp = true);
 
-    final success = await ApiService.submitRsvp(
-      name: name,
-      phone: _phoneController.text.trim(),
-      attendingMehndi: _attendingMehndi,
-      attendingBarat: _attendingBarat,
-      attendingWalima: _attendingWalima,
-      guestCount: _guestCount,
-      notes: _notesController.text.trim(),
-    );
+    // Format WhatsApp RSVP
+    final waRsvpText = "🎉 *Wedding RSVP Confirmation* 💍\n"
+        "Couple: *${WeddingConfig.groomName} & ${WeddingConfig.brideName}*\n\n"
+        "👤 *Guest Name:* $name\n"
+        "📞 *Contact:* ${phone.isNotEmpty ? phone : 'N/A'}\n"
+        "👥 *Total Guests Attending:* $_guestCount\n"
+        "📅 *Events:*\n"
+        "${_attendingMehndi ? '  ✅ Mehndi (20 Nov)\n' : ''}"
+        "${_attendingBarat ? '  ✅ Barat (21 Nov)\n' : ''}"
+        "${_attendingWalima ? '  ✅ Walima (22 Nov)\n' : ''}"
+        "${notes.isNotEmpty ? '\n📝 *Special Notes:* $notes\n' : ''}\n"
+        "✨ _Sent from the Royal Wedding App_";
+
+    await _launchWhatsApp(waRsvpText);
 
     if (mounted) {
       setState(() => _isSubmittingRsvp = false);
-      if (success) {
-        _nameController.clear();
-        _phoneController.clear();
-        _notesController.clear();
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            backgroundColor: Color(0xFF10B981),
-            content: Text('✨ JazakAllah! Your RSVP has been confirmed.'),
-          ),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            backgroundColor: Color(0xFF10B981),
-            content: Text('✨ RSVP saved locally with thanks!'),
-          ),
-        );
-      }
+      _nameController.clear();
+      _phoneController.clear();
+      _notesController.clear();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Color(0xFF10B981),
+          content: Text('💚 RSVP sent to WhatsApp! JazakAllah.'),
+        ),
+      );
     }
   }
 
   Future<void> _handleWishSubmit() async {
     final name = _wisherNameController.text.trim();
+    final relation = _wisherRelationController.text.trim();
     final msg = _wisherMsgController.text.trim();
+
     if (name.isEmpty || msg.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please fill out your name and Dua message.')),
@@ -102,16 +129,19 @@ class _RsvpViewState extends State<RsvpView> {
 
     setState(() => _isSubmittingWish = true);
 
-    await ApiService.postWish(
-      name,
-      _wisherRelationController.text.trim().isEmpty ? 'Family Friend' : _wisherRelationController.text.trim(),
-      msg,
-    );
+    // Format WhatsApp message
+    final waText = "🤲 *Wedding Dua & Blessings* 💍\n"
+        "Couple: *${WeddingConfig.groomName} & ${WeddingConfig.brideName}*\n\n"
+        "👤 *From:* $name ${relation.isNotEmpty ? '($relation)' : ''}\n"
+        "💌 *Dua & Blessings:*\n\"$msg\"\n\n"
+        "✨ _Sent from the Royal Wedding App_";
+
+    await _launchWhatsApp(waText);
 
     final newWish = GuestWish(
       id: DateTime.now().millisecondsSinceEpoch,
       author: name,
-      relation: _wisherRelationController.text.trim().isEmpty ? 'Family Friend' : _wisherRelationController.text.trim(),
+      relation: relation.isEmpty ? 'Well-wisher' : relation,
       message: msg,
       timestamp: DateTime.now().toIso8601String(),
     );
@@ -127,8 +157,8 @@ class _RsvpViewState extends State<RsvpView> {
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          backgroundColor: AppTheme.gold,
-          content: Text('💖 Your blessings have been sent to the couple!'),
+          backgroundColor: Color(0xFF10B981),
+          content: Text('💚 Dua sent to WhatsApp and added to blessings stream!'),
         ),
       );
     }
@@ -266,17 +296,20 @@ class _RsvpViewState extends State<RsvpView> {
                   _buildTextField(controller: _notesController, label: 'Special notes or dietary preference', icon: Icons.notes_outlined, maxLines: 2),
                   const SizedBox(height: 20),
 
-                  ElevatedButton(
+                  ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppTheme.gold,
-                      foregroundColor: Colors.black,
+                      backgroundColor: const Color(0xFF25D366),
+                      foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     ),
                     onPressed: _isSubmittingRsvp ? null : _handleRsvpSubmit,
-                    child: _isSubmittingRsvp
-                        ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.black))
-                        : const Text('Confirm RSVP', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                    icon: _isSubmittingRsvp
+                        ? const SizedBox.shrink()
+                        : const Icon(Icons.chat_outlined, color: Colors.white),
+                    label: _isSubmittingRsvp
+                        ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
+                        : const Text('Confirm RSVP on WhatsApp 💬', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
                   ),
                 ],
               ),
@@ -312,17 +345,20 @@ class _RsvpViewState extends State<RsvpView> {
                   _buildTextField(controller: _wisherMsgController, label: 'Write your Dua & congratulations...', icon: Icons.favorite_outline, maxLines: 3),
                   const SizedBox(height: 18),
 
-                  ElevatedButton(
+                  ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppTheme.baratCrimson,
-                      foregroundColor: AppTheme.goldLight,
+                      backgroundColor: const Color(0xFF25D366),
+                      foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     ),
                     onPressed: _isSubmittingWish ? null : _handleWishSubmit,
-                    child: _isSubmittingWish
+                    icon: _isSubmittingWish
+                        ? const SizedBox.shrink()
+                        : const Icon(Icons.send_rounded, color: Colors.white),
+                    label: _isSubmittingWish
                         ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
-                        : const Text('✨ Post Dua & Blessings', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                        : const Text('✨ Send Dua to WhatsApp', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
                   ),
                 ],
               ),
