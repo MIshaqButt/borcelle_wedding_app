@@ -20,12 +20,13 @@ class WeddingConfig {
   // ---------------------------------------------------------------------------
   // 1. COUPLE & FAMILY INFORMATION
   // ---------------------------------------------------------------------------
-  static const String groomName = 'Muhammad Ishaq';
-  static const String brideName = 'Pimra Ahmad';
-  static const String weddingDatesHeader = '20 - 22 November 2026';
+  static const String groomName = 'Danish Rafique';
+  static const String brideName = 'Mahnoor Khadim';
+  static const String weddingDatesHeader = '19 - 21 November 2026';
 
   // Islamic Blessings & Quranic Reference
-  static const String bismillahArabic = 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ';
+  static const String bismillahArabic =
+      'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ';
   static const String quranVerse =
       'And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy.';
   static const String surahReference = 'Surah Ar-Rum [30:21]';
@@ -37,16 +38,23 @@ class WeddingConfig {
   // Set the exact date & time for the countdown clock on the home screen.
   // Format: DateTime(YEAR, MONTH, DAY, HOUR_IN_24H, MINUTE)
   // ---------------------------------------------------------------------------
-  static final DateTime countdownTarget = DateTime(2026, 11, 21, 13, 0); // 21 Nov 2026, 1:00 PM
+  static final DateTime countdownTarget = DateTime(
+    2026,
+    11,
+    21,
+    13,
+    0,
+  ); // 21 Nov 2026, 1:00 PM
 
   // ---------------------------------------------------------------------------
   // 3. WHATSAPP & RSVP CONTACT INFORMATION
   // Duas, blessings, and RSVPs from the app are sent directly to this WhatsApp!
   // Format: International format digits without '+' or spaces (e.g. '923001234567')
   // ---------------------------------------------------------------------------
-  static const String whatsappNumber = '923001234567'; // 👈 Enter your WhatsApp number here
-  static const String rsvpContactName = 'Muhammad Ishaq';
-  static const String rsvpPhone = '+92 300 1234567';
+  static const String whatsappNumber =
+      '+923406206965'; // 👈 Enter your WhatsApp number here
+  static const String rsvpContactName = groomName;
+  static const String rsvpPhone = '+92 340 6206965';
   static const String rsvpEmail = 'ishaq.info1@gmail.com';
 
   // ---------------------------------------------------------------------------
@@ -59,10 +67,12 @@ class WeddingConfig {
   static const String mehndiMusicTitle = 'Festive Dholak & Traditional Tappe';
   static const String mehndiDescription =
       'An auspicious evening filled with fragrant henna, lively dholak rhythms, and cheerful celebrations.';
-  static const String mehndiDressCode = 'Marigold Yellow, Parrot Green & Festive Florals';
+  static const String mehndiDressCode =
+      'Marigold Yellow, Parrot Green & Festive Florals';
   static const String mehndiVenueName = 'Royal Palace Hall';
   static const String mehndiVenueCity = 'Farooqabad, Punjab';
-  static const String mehndiMapUrl = 'https://maps.app.goo.gl/Uty8hrCb7oQ5rmFr6';
+  static const String mehndiMapUrl =
+      'https://maps.app.goo.gl/Uty8hrCb7oQ5rmFr6';
 
   static final List<EventScheduleItem> mehndiSchedule = [
     EventScheduleItem(
@@ -99,8 +109,9 @@ class WeddingConfig {
   static const String baratThemeColor = '#881337'; // Royal Crimson
   static const String baratMusicTitle = 'Royal Shehnai & Barat March';
   static const String baratDescription =
-      'The sacred Nikah union, grand feast, and emotional Rukhsati of Muhammad Ishaq & Pimra Ahmad.';
-  static const String baratDressCode = 'Royal Sherwanis, Crimson Lehengas & Formal Attire';
+      'The sacred Nikah union, grand feast, and emotional Rukhsati of $groomName & $brideName.';
+  static const String baratDressCode =
+      'Royal Sherwanis, Crimson Lehengas & Formal Attire';
 
   // Venue & Google Maps Navigation
   static const String baratVenueName = 'Koh-e-Noor Marquee';
@@ -112,7 +123,7 @@ class WeddingConfig {
     EventScheduleItem(
       time: '01:00 PM',
       title: 'Barat Arrival & Welcome',
-      desc: 'Grand welcome of Groom Muhammad Ishaq with rose petal shower',
+      desc: 'Grand welcome of Groom $groomName with rose petal shower',
     ),
     EventScheduleItem(
       time: '01:30 PM',
@@ -127,7 +138,8 @@ class WeddingConfig {
     EventScheduleItem(
       time: '04:00 PM',
       title: 'Emotional Rukhsati',
-      desc: 'Farewell under the Holy Quran with heartfelt prayers and blessings',
+      desc:
+          'Farewell under the Holy Quran with heartfelt prayers and blessings',
     ),
   ];
 
@@ -169,19 +181,21 @@ class WeddingConfig {
   static const String walimaMusicTitle = 'Romantic Classical Flute & Sitar';
   static const String walimaDescription =
       'Expressing gratitude to Almighty Allah and hosting guests for an elegant reception dinner.';
-  static const String walimaDressCode = 'Pastel Champagne, Tuxedos & Elegant Maxi Formals';
+  static const String walimaDressCode =
+      'Pastel Champagne, Tuxedos & Elegant Maxi Formals';
 
   // Venue & Google Maps Navigation
   static const String walimaVenueName = 'Koh-e-Noor Marquee (Grand Ballroom)';
   static const String walimaVenueCity = 'Farooqabad, Punjab, Pakistan';
-  static const String walimaMapUrl = 'https://maps.app.goo.gl/Uty8hrCb7oQ5rmFr6';
+  static const String walimaMapUrl =
+      'https://maps.app.goo.gl/Uty8hrCb7oQ5rmFr6';
 
   // Detailed Timetable
   static final List<EventScheduleItem> walimaSchedule = [
     EventScheduleItem(
       time: '07:30 PM',
       title: 'Grand Couple Entry & Reception',
-      desc: 'Newlyweds Muhammad Ishaq & Pimra Ahmad enter under lighted floral arches',
+      desc: 'Newlyweds $groomName & $brideName enter under lighted floral arches',
     ),
     EventScheduleItem(
       time: '08:30 PM',
@@ -199,7 +213,8 @@ class WeddingConfig {
     GalleryPhoto(
       title: 'Reception Banquet Dinner',
       asset: 'assets/images/walima_reception.jpg',
-      caption: 'Lavish ballroom dinner with crystal chandeliers & floral arches',
+      caption:
+          'Lavish ballroom dinner with crystal chandeliers & floral arches',
     ),
   ];
 

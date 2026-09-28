@@ -41,3 +41,6 @@ wedding_app/android/app/release/
 wedding_app/ios/Flutter/.last_build_id
 wedding_app/ios/Flutter/Generated.xcconfig
 wedding_app/ios/Flutter/flutter_export_environment.sh
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
