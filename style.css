@@ -1116,72 +1116,268 @@ html, body {
 .crimson-shayari { color: #fecdd3; }
 .blue-shayari { color: #bae6fd; }
 
-/* 9. BARAT ANIMATIONS (ROLLS ROYCE WEDDING CAR) */
-.car-actor-stage {
-    position: relative;
+/* 9. BARAT FULL-PAGE MULTI-WIDGET SHOWCASE */
+.barat-overlay-content {
     width: 100%;
-    max-width: 320px;
-    height: 140px;
-    margin: 4px auto 10px auto;
-    overflow: hidden;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: clamp(12px, 2.5vh, 24px) clamp(16px, 3vw, 40px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
-.car-moving-box {
-    width: 230px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 8px;
+.barat-vignette {
+    background: radial-gradient(circle at center, rgba(15, 3, 6, 0.45) 0%, rgba(10, 2, 4, 0.85) 75%, rgba(0, 0, 0, 0.96) 100%);
+}
+
+.barat-decor {
+    filter: drop-shadow(0 0 15px rgba(225, 29, 72, 0.8));
+    animation: festiveLanternSway 3.2s infinite ease-in-out alternate;
+}
+
+@keyframes festiveLanternSway {
+    0% { transform: translateY(0) rotate(-6deg); }
+    100% { transform: translateY(6px) rotate(6deg); }
+}
+
+.crimson-wing {
+    background: linear-gradient(90deg, transparent, rgba(225, 29, 72, 0.9), transparent);
+}
+
+.crimson-pill {
+    background: rgba(225, 29, 72, 0.22);
+    border-color: rgba(225, 29, 72, 0.55);
+    color: #fecdd3;
+    text-shadow: 0 0 12px rgba(225, 29, 72, 0.8);
+}
+
+.crimson-glow {
+    text-shadow: 0 0 30px rgba(225, 29, 72, 0.9), 0 0 60px rgba(190, 18, 60, 0.6), 0 2px 10px #000;
+}
+
+.barat-arabic-sub {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+    color: #fecdd3;
+    letter-spacing: 2px;
+    direction: rtl;
+    text-shadow: 0 0 16px rgba(225, 29, 72, 0.8), 0 2px 10px #000;
+    margin-top: 2px;
+    margin-bottom: 6px;
+}
+
+.crimson-pill-border {
+    border-color: rgba(225, 29, 72, 0.5);
+    background: rgba(225, 29, 72, 0.15);
+    color: #ffe4e6;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(225, 29, 72, 0.2);
+}
+
+/* BARAT MULTI-WIDGET SHOWCASE ROW */
+.barat-multi-widgets-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: clamp(12px, 2.5vw, 36px);
+    width: 100%;
+    max-width: 1260px;
+    margin: 8px auto 14px auto;
+}
+
+.barat-widget-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.prop-groom-horse {
+    width: clamp(180px, 24vw, 290px);
+}
+
+.prop-car-nikah {
+    width: clamp(190px, 24vw, 300px);
+}
+
+.stacked-barat-props {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.barat-car-box, .barat-nikah-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.halo-crimson {
+    background: radial-gradient(ellipse at center, rgba(225, 29, 72, 0.65) 0%, transparent 75%);
+}
+
+.halo-gold {
+    background: radial-gradient(ellipse at center, rgba(250, 204, 21, 0.65) 0%, transparent 75%);
+}
+
+.barat-prop-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 20px rgba(225, 29, 72, 0.45));
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.barat-car-box .barat-prop-img {
+    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 16px rgba(250, 204, 21, 0.4));
+}
+
+.barat-nikah-box .barat-prop-img {
+    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 18px rgba(251, 191, 36, 0.5));
+}
+
+.horse-float-anim {
+    animation: horseGallopFloat 4s infinite ease-in-out alternate;
+}
+
+@keyframes horseGallopFloat {
+    0% { transform: translateY(0px) rotate(-1deg); }
+    50% { transform: translateY(-7px) rotate(1deg); }
+    100% { transform: translateY(-3px) rotate(-0.5deg); }
 }
 
 .car-bounce-anim {
-    animation: carSuspension 0.8s infinite ease-in-out alternate;
+    animation: carSuspension 1.2s infinite ease-in-out alternate;
 }
 
 @keyframes carSuspension {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-4px) rotate(0.6deg); }
+    0% { transform: translateY(0) scale(0.99); }
+    100% { transform: translateY(-5px) scale(1.01); }
 }
 
-.exhaust-burst .eh {
-    position: absolute;
-    font-size: 1.1rem;
-    animation: exhaustPuff 2s infinite ease-out;
-    opacity: 0;
+.nikah-glow-anim {
+    animation: nikahSacredGlow 3s infinite ease-in-out alternate;
 }
 
-.eh1 { right: -5px; bottom: 15px; animation-delay: 0.1s; }
-.eh2 { right: -15px; bottom: 25px; animation-delay: 0.8s; }
-.eh3 { right: -25px; bottom: 35px; animation-delay: 1.5s; }
-
-@keyframes exhaustPuff {
-    0% { transform: translate(0, 0) scale(0.6); opacity: 0; }
-    40% { opacity: 0.9; }
-    100% { transform: translate(25px, -20px) scale(1.2); opacity: 0; }
+@keyframes nikahSacredGlow {
+    0% { transform: scale(0.97); filter: drop-shadow(0 10px 25px rgba(0,0,0,0.95)) drop-shadow(0 0 12px rgba(250, 204, 21, 0.4)); }
+    100% { transform: scale(1.03); filter: drop-shadow(0 15px 35px rgba(0,0,0,0.98)) drop-shadow(0 0 26px rgba(250, 204, 21, 0.75)); }
 }
 
-.road-gold-line {
-    position: absolute;
-    bottom: 6px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(225, 29, 72, 0.8), transparent);
+.barat-widget-badge {
+    margin-top: 6px;
+    font-size: clamp(0.7rem, 1.2vw, 0.82rem);
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(225, 29, 72, 0.35);
+    border: 1px solid rgba(225, 29, 72, 0.65);
+    color: #fff;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7), 0 0 12px rgba(225, 29, 72, 0.4);
+    position: relative;
+    z-index: 3;
+}
+
+.gold-badge {
+    background: rgba(217, 119, 6, 0.35);
+    border-color: rgba(250, 204, 21, 0.7);
+    color: #fef08a;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7), 0 0 12px rgba(250, 204, 21, 0.4);
+}
+
+.barat-widget-item:hover {
+    transform: translateY(-6px) scale(1.03);
+}
+
+/* CENTER COLUMN: COUPLE ARTWORK & COUNTDOWN */
+.barat-center-widget-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 580px;
+    position: relative;
+    z-index: 3;
 }
 
 .couple-portrait-oval {
-    max-width: 210px;
-    margin: 8px auto 12px auto;
-    border-radius: 20px;
+    max-width: clamp(170px, 20vw, 220px);
+    margin: 0 auto 10px auto;
+    border-radius: 24px;
     overflow: hidden;
-    border: 2px solid rgba(225, 29, 72, 0.6);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), 0 0 30px rgba(225, 29, 72, 0.5);
+    position: relative;
+    border: 2px solid rgba(225, 29, 72, 0.75);
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.95), 0 0 35px rgba(225, 29, 72, 0.55);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.couple-portrait-oval:hover {
+    transform: scale(1.04);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.98), 0 0 45px rgba(225, 29, 72, 0.8);
 }
 
 .portrait-oval-img {
     width: 100%;
     height: auto;
     display: block;
+}
+
+.portrait-tag {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(15, 3, 6, 0.92) 80%);
+    color: #fecdd3;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-align: center;
+    padding: 10px 6px 4px 6px;
+    text-shadow: 0 1px 4px #000;
+}
+
+.crimson-countdown {
+    background: radial-gradient(circle at center, rgba(30, 4, 10, 0.88) 0%, rgba(15, 2, 5, 0.95) 100%);
+    border: 1px solid rgba(225, 29, 72, 0.5);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.85), 0 0 24px rgba(225, 29, 72, 0.35);
+    margin: 4px auto 0 auto;
+    width: 100%;
+    max-width: 460px;
+}
+
+@media (max-width: 900px) {
+    .barat-multi-widgets-row {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .prop-groom-horse, .prop-car-nikah {
+        width: clamp(160px, 50vw, 240px);
+    }
+    .stacked-barat-props {
+        flex-direction: row;
+        justify-content: center;
+        gap: 14px;
+    }
+    .barat-car-box, .barat-nikah-box {
+        width: 140px;
+    }
 }
 
 /* 10. WALIMA COUPLE BESPOKE ARTWORK */
