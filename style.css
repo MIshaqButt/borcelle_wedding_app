@@ -1,0 +1,1545 @@
+/* ==========================================================================
+   PURE FULL-SCREEN EDGE-TO-EDGE STORY STYLESHEET
+   Themes: Hero (Royal Gold), Mehndi (Yellow), Barat (Crimson), Walima (Sapphire)
+   100% Full-bleed background imagery, ZERO restrictive box cards,
+   smooth viewport snap-scrolling, floating music toggle, keyframe animations.
+   ========================================================================== */
+
+/* 1. ROOT VARIABLES & THEMES */
+:root {
+    --gold: #d4af37;
+    --gold-bright: #ffd700;
+    --gold-light: #fae19c;
+    --gold-glow: rgba(212, 175, 55, 0.6);
+
+    --font-heading: 'Rozha One', 'Cinzel Decorative', serif;
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Poppins', sans-serif;
+    --font-script: 'Alex Brush', cursive;
+    --font-arabic: 'Amiri', serif;
+
+    --theme-accent: #d4af37;
+    --theme-accent-light: #fae19c;
+    --theme-glow: rgba(212, 175, 55, 0.4);
+}
+
+body[data-active-theme="hero"] {
+    --theme-accent: #d4af37;
+    --theme-accent-light: #fae19c;
+    --theme-glow: rgba(212, 175, 55, 0.45);
+}
+
+body[data-active-theme="mehndi"] {
+    --theme-accent: #eab308;
+    --theme-accent-light: #fef08a;
+    --theme-glow: rgba(234, 179, 8, 0.5);
+}
+
+body[data-active-theme="barat"] {
+    --theme-accent: #e11d48;
+    --theme-accent-light: #fecdd3;
+    --theme-glow: rgba(225, 29, 72, 0.5);
+}
+
+body[data-active-theme="walima"] {
+    --theme-accent: #38bdf8;
+    --theme-accent-light: #bae6fd;
+    --theme-glow: rgba(56, 189, 248, 0.5);
+}
+
+/* 2. BASE & RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #050406;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    position: relative;
+    line-height: 1.5;
+}
+
+/* Floating Particles Canvas */
+#ambientCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 30;
+}
+
+/* 3. MINIMAL FLOATING MUSIC TOGGLE */
+.floating-music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    background: rgba(15, 12, 20, 0.75);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--theme-accent);
+    color: var(--theme-accent-light);
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px var(--theme-glow);
+    transition: all 0.3s ease;
+}
+
+.floating-music-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.9), 0 0 25px var(--theme-glow);
+}
+
+.equalizer-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 2.5px;
+    height: 12px;
+}
+
+.equalizer-bars span {
+    width: 2.5px;
+    height: 3px;
+    background-color: var(--theme-accent);
+    border-radius: 1px;
+}
+
+.floating-music-btn.playing .equalizer-bars span {
+    animation: barPulse 0.8s infinite alternate ease-in-out;
+}
+
+.floating-music-btn.playing .equalizer-bars span:nth-child(1) { animation-delay: 0.1s; }
+.floating-music-btn.playing .equalizer-bars span:nth-child(2) { animation-delay: 0.3s; }
+.floating-music-btn.playing .equalizer-bars span:nth-child(3) { animation-delay: 0.2s; }
+.floating-music-btn.playing .equalizer-bars span:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes barPulse {
+    0% { height: 3px; }
+    100% { height: 12px; }
+}
+
+/* 4. ENVELOPE MODAL OVERLAY */
+.royal-envelope-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at 50% 35%, rgba(28, 20, 36, 0.98), #050406 95%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 16px;
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), visibility 1s;
+}
+
+.royal-envelope-overlay.opened {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.envelope-modal-card {
+    background: linear-gradient(145deg, rgba(32, 24, 40, 0.96), rgba(12, 9, 16, 0.96));
+    border: 2px solid var(--gold);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 40px var(--gold-glow);
+    border-radius: 24px;
+    padding: 38px 24px;
+    text-align: center;
+    max-width: 440px;
+    width: 100%;
+    position: relative;
+    backdrop-filter: blur(14px);
+    animation: modalPop 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPop {
+    0% { transform: scale(0.9) translateY(30px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.bismillah-gold-arabic {
+    font-family: var(--font-arabic);
+    font-size: 1.8rem;
+    color: var(--gold-light);
+    margin-bottom: 4px;
+    text-shadow: 0 0 14px rgba(250, 225, 156, 0.5);
+}
+
+.sub-royal {
+    font-size: 0.72rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.wax-seal-wrapper {
+    margin: 26px auto 18px auto;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+}
+
+.wax-seal-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 2px solid var(--gold-light);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 30px var(--gold-glow);
+    transition: transform 0.4s ease;
+}
+
+.wax-seal-wrapper:hover .wax-seal-img {
+    transform: scale(1.08) rotate(4deg);
+}
+
+.pulse-glow {
+    animation: sealHeartbeat 2.2s infinite ease-in-out;
+}
+
+@keyframes sealHeartbeat {
+    0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(212, 175, 55, 0.4); }
+    50% { transform: scale(1.06); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), 0 0 35px rgba(212, 175, 55, 0.8); }
+}
+
+.seal-hint {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-weight: 600;
+}
+
+.envelope-names h1 {
+    font-family: var(--font-heading);
+    font-size: 1.7rem;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.envelope-names .and-script {
+    font-family: var(--font-script);
+    font-size: 2.2rem;
+    color: var(--gold-bright);
+    margin: -4px 0;
+}
+
+.envelope-dates {
+    margin-top: 16px;
+    display: inline-block;
+    padding: 6px 18px;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 30px;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--gold-light);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.envelope-subtext {
+    margin-top: 14px;
+    font-size: 0.7rem;
+    color: #94a3b8;
+}
+
+/* ======================================================== */
+/* 5. FULLSCREEN EDGE-TO-EDGE STORY CONTAINER */
+/* ======================================================== */
+.fullscreen-story-container {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    position: relative;
+    z-index: 10;
+}
+
+.story-slide {
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: clamp(12px, 2.5vh, 28px) clamp(16px, 3vw, 36px);
+}
+
+/* BACKGROUND IMAGE LAYER THAT FILLS 100% OF THE SCREEN */
+.slide-background-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.slide-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transform: scale(1.04);
+    animation: gentleDrift 20s infinite alternate ease-in-out;
+}
+
+@keyframes gentleDrift {
+    0% { transform: scale(1.03) translate(0, 0); }
+    100% { transform: scale(1.08) translate(-1%, -1%); }
+}
+
+/* CINEMATIC FULLSCREEN VIGNETTES & GRADIENTS */
+.slide-vignette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-vignette {
+    background: radial-gradient(circle at 50% 50%, rgba(10, 8, 14, 0.45) 0%, rgba(5, 4, 8, 0.88) 90%);
+}
+
+.mehndi-vignette {
+    background: radial-gradient(circle at 50% 45%, rgba(6, 44, 28, 0.35) 0%, rgba(3, 20, 13, 0.82) 70%, rgba(2, 12, 8, 0.94) 100%);
+}
+
+.barat-vignette {
+    background: radial-gradient(circle at 50% 50%, rgba(45, 8, 16, 0.45) 0%, rgba(15, 3, 7, 0.9) 90%);
+}
+
+.walima-vignette {
+    background: radial-gradient(circle at 50% 50%, rgba(8, 20, 45, 0.45) 0%, rgba(3, 7, 18, 0.9) 90%);
+}
+
+.slide-overlay-content {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    width: 94%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(16px, 3vh, 32px) clamp(16px, 3vw, 36px);
+}
+
+.hero-overlay-content {
+    max-width: 1280px;
+    width: 96%;
+    padding-top: clamp(25px, 5vh, 45px);
+    padding-bottom: clamp(20px, 4vh, 40px);
+}
+
+.mehndi-overlay-content {
+    max-width: 1200px;
+    width: 96%;
+    padding: 8px 16px;
+    justify-content: center;
+}
+
+/* TEXT ANIMATIONS & ENTRANCE EFFECTS */
+.animated-fade-down {
+    animation: fadeDownIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animated-fade-up {
+    animation: fadeUpIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animated-zoom-in {
+    animation: zoomInScale 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.65s; }
+.delay-4 { animation-delay: 0.9s; }
+.delay-5 { animation-delay: 1.15s; }
+
+@keyframes fadeDownIn {
+    0% { opacity: 0; transform: translateY(-24px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUpIn {
+    0% { opacity: 0; transform: translateY(24px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomInScale {
+    0% { opacity: 0; transform: scale(0.92); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Royal Flourish Emblem */
+.royal-flourish-emblem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 10px auto 14px auto;
+}
+
+.flourish-line {
+    width: clamp(60px, 12vw, 140px);
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    box-shadow: 0 0 8px var(--gold);
+}
+
+.flourish-symbol {
+    font-size: 1.1rem;
+    color: var(--gold-bright);
+    letter-spacing: 4px;
+    text-shadow: 0 0 14px rgba(255, 215, 0, 0.8);
+    animation: starPulse 2.8s ease-in-out infinite alternate;
+}
+
+/* Floating Arch Lanterns on Screen Edges */
+.hero-hanging-lantern {
+    position: absolute;
+    top: 2%;
+    font-size: 2.2rem;
+    filter: drop-shadow(0 0 16px rgba(250, 204, 21, 0.9));
+    animation: lanternSwing 3.5s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.lantern-left {
+    left: 4%;
+    transform-origin: top center;
+}
+
+.lantern-right {
+    right: 4%;
+    transform-origin: top center;
+    animation-delay: -1.8s;
+}
+
+@keyframes lanternSwing {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
+}
+
+/* Hero Header Badge with Golden Wings */
+.hero-header-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.badge-wing {
+    width: 45px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+    box-shadow: 0 0 8px var(--gold);
+}
+
+.badge-wing.right-wing {
+    background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.royal-pill-badge {
+    display: inline-block;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 6px 22px;
+    border-radius: 30px;
+    background: rgba(10, 8, 14, 0.75);
+    backdrop-filter: blur(10px);
+    color: var(--gold-light);
+    border: 1px solid var(--gold);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+.yellow-pill { border-color: #eab308; color: #fef08a; }
+.crimson-pill { border-color: #e11d48; color: #fecdd3; }
+.blue-pill { border-color: #38bdf8; color: #bae6fd; }
+
+.slide-event-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    letter-spacing: 2px;
+    color: #fff;
+    margin-bottom: 4px;
+    line-height: 1.1;
+    text-shadow: 0 4px 25px rgba(0, 0, 0, 0.95);
+}
+
+.yellow-glow { text-shadow: 0 0 35px rgba(234, 179, 8, 0.9), 0 4px 25px #000; color: #fef08a; }
+.crimson-glow { text-shadow: 0 0 35px rgba(225, 29, 72, 0.9), 0 4px 25px #000; color: #fecdd3; }
+.blue-glow { text-shadow: 0 0 35px rgba(56, 189, 248, 0.9), 0 4px 25px #000; color: #bae6fd; }
+
+.event-date-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: clamp(0.88rem, 1.8vw, 1.05rem);
+    font-weight: 600;
+    padding: 8px 26px;
+    border-radius: 30px;
+    margin-bottom: 12px;
+    background: rgba(5, 5, 10, 0.72);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+}
+
+.yellow-pill-border { border-color: #eab308; color: #fef08a; }
+.crimson-pill-border { border-color: #e11d48; color: #fecdd3; }
+.blue-pill-border { border-color: #38bdf8; color: #bae6fd; }
+
+/* 7. HERO SLIDE DETAILS & ANIMATED WALKING COUPLE */
+.bismillah-gold {
+    font-family: var(--font-arabic);
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+    color: var(--gold-light);
+    margin-bottom: 4px;
+    text-shadow: 0 0 20px rgba(250, 225, 156, 0.75), 0 2px 10px #000;
+    letter-spacing: 1px;
+}
+
+.names-block {
+    margin: 6px 0 10px 0;
+    width: 100%;
+}
+
+.groom-title, .bride-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5.5vw, 4.6rem);
+    color: #ffffff;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    text-shadow: 0 4px 25px rgba(0, 0, 0, 0.95), 0 0 35px var(--gold-glow);
+}
+
+/* Shimmer Golden Metallic Text Effect */
+.shimmer-text {
+    background: linear-gradient(135deg, #ffffff 0%, #fae19c 35%, #ffd700 65%, #ffffff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: goldShimmer 6s linear infinite;
+}
+
+@keyframes goldShimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+.weds-script-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin: -2px 0;
+}
+
+.gold-line {
+    width: 60px;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    box-shadow: 0 0 8px var(--gold);
+}
+
+.flex-line {
+    width: clamp(60px, 15vw, 180px);
+}
+
+.royal-crest-icon {
+    color: var(--gold-bright);
+    font-size: 1.1rem;
+    filter: drop-shadow(0 0 8px var(--gold));
+    animation: starPulse 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes starPulse {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    100% { transform: scale(1.2); opacity: 1; }
+}
+
+.weds-txt {
+    font-family: 'Great Vibes', var(--font-script);
+    font-size: clamp(2.6rem, 5vw, 3.8rem);
+    color: var(--gold-bright);
+    text-shadow: 0 0 16px rgba(255, 215, 0, 0.75);
+    padding: 0 8px;
+}
+
+.welcome-lead-text {
+    font-family: 'Cormorant Garamond', var(--font-serif);
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    color: #f1f5f9;
+    line-height: 1.7;
+    max-width: 820px;
+    margin: 8px auto 14px auto;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
+}
+
+/* Animated Walking Couple (Clean Alpha Transparent PNG) */
+.animated-actor-stage {
+    position: relative;
+    max-width: 320px;
+    width: 100%;
+    margin: 6px auto 14px auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.actor-spotlight {
+    position: absolute;
+    bottom: -8px;
+    width: 260px;
+    height: 55px;
+    background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.7) 0%, rgba(212, 175, 55, 0.3) 50%, transparent 75%);
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 35px rgba(255, 215, 0, 0.5);
+}
+
+.actor-box {
+    width: clamp(200px, 30vw, 260px);
+    z-index: 2;
+    filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 25px rgba(250, 225, 156, 0.5));
+}
+
+.actor-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.walk-anim {
+    animation: walkCycle 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes walkCycle {
+    0% { transform: translateY(0px) rotate(-1deg); }
+    50% { transform: translateY(-8px) rotate(1deg); }
+    100% { transform: translateY(-2px) rotate(-0.5deg); }
+}
+
+.floating-hearts .fh {
+    position: absolute;
+    font-size: 1.4rem;
+    opacity: 0;
+    animation: floatUp 3.2s infinite ease-out;
+}
+
+.fh.h1 { left: 4%; top: 40%; animation-delay: 0.2s; }
+.fh.h2 { right: 8%; top: 30%; animation-delay: 1.1s; }
+.fh.h3 { left: 75%; top: 15%; animation-delay: 2s; }
+.fh.h4 { right: 25%; top: 50%; animation-delay: 2.7s; }
+.fh.h5 { left: 20%; top: 60%; animation-delay: 1.6s; }
+.fh.h6 { right: 60%; top: 20%; animation-delay: 0.7s; }
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(0.6); opacity: 0; }
+    50% { opacity: 0.95; transform: translateY(-25px) scale(1.15) rotate(10deg); }
+    100% { transform: translateY(-60px) scale(1.3) rotate(-15deg); opacity: 0; }
+}
+
+/* ROYAL FRAMED QURAN QUOTE PILL (FULL WIDTH ELEGANCE) */
+.quran-quote-pill {
+    position: relative;
+    background: radial-gradient(circle at 50% 50%, rgba(18, 14, 26, 0.85) 0%, rgba(8, 6, 12, 0.92) 100%);
+    backdrop-filter: blur(16px);
+    border: 1.5px solid var(--gold);
+    border-radius: 24px;
+    padding: 16px 32px;
+    max-width: 860px;
+    width: 94%;
+    margin: 8px auto 16px auto;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.9), 0 0 30px rgba(212, 175, 55, 0.35);
+}
+
+/* Royal Corner Accents */
+.card-corner {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--gold-bright);
+    pointer-events: none;
+}
+
+.corner-tl { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+.corner-tr { top: 6px; right: 6px; border-left: none; border-bottom: none; }
+.corner-bl { bottom: 6px; left: 6px; border-right: none; border-top: none; }
+.corner-br { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+
+.quran-arabic-text {
+    font-family: var(--font-arabic);
+    font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+    color: var(--gold-light);
+    margin-bottom: 8px;
+    line-height: 1.7;
+    direction: rtl;
+    text-shadow: 0 0 18px rgba(250, 225, 156, 0.75), 0 2px 8px #000;
+}
+
+.ayah-txt {
+    font-family: 'Cormorant Garamond', var(--font-serif);
+    font-style: italic;
+    font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+    color: #f8fafc;
+    line-height: 1.65;
+    max-width: 740px;
+    margin: 0 auto;
+}
+
+.ayah-ref {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--gold-bright);
+    margin-top: 6px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* 8. MEHNDI ANIMATIONS & CALLIGRAPHY (INSPIRED DIRECTLY BY mehdi.mp4) */
+.festive-hanging-decor {
+    position: absolute;
+    top: 3%;
+    font-size: 2.2rem;
+    filter: drop-shadow(0 0 16px rgba(234, 179, 8, 0.9));
+    animation: lanternSwing 3.5s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.decor-left { left: 4%; transform-origin: top center; }
+.decor-right { right: 4%; transform-origin: top center; animation-delay: -1.7s; }
+
+.mehndi-top-badge-row {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.green-wing {
+    background: linear-gradient(90deg, transparent, #10b981) !important;
+    box-shadow: 0 0 8px #10b981 !important;
+}
+
+.green-wing.right-wing {
+    background: linear-gradient(90deg, #10b981, transparent) !important;
+}
+
+.mehndi-pill { 
+    border-color: #10b981; 
+    color: #a7f3d0; 
+    background: rgba(4, 30, 20, 0.85);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.mehndi-pill-border { 
+    border-color: #10b981; 
+    color: #a7f3d0; 
+    background: rgba(3, 20, 13, 0.85);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.35);
+}
+
+.mehndi-shayari { 
+    color: #fef08a; 
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+    font-style: italic;
+    margin: 6px auto 14px auto;
+    max-width: 680px;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
+}
+
+.mehndi-calligraphy-container {
+    position: relative;
+    width: clamp(340px, 52vw, 560px);
+    height: 190px;
+    margin: 8px auto 14px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.calligraphy-halo {
+    position: absolute;
+    width: clamp(280px, 40vw, 420px);
+    height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.45) 0%, rgba(234, 179, 8, 0.25) 50%, transparent 75%);
+    filter: blur(14px);
+    pointer-events: none;
+    animation: haloPulse 4s infinite alternate ease-in-out;
+}
+
+@keyframes haloPulse {
+    0% { transform: scale(0.9); opacity: 0.6; }
+    100% { transform: scale(1.15); opacity: 1; }
+}
+
+.sparkle-orbit-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.sparkle-orbit-ring.ring-1 {
+    width: clamp(320px, 46vw, 480px);
+    height: 160px;
+    border: 2px dashed rgba(250, 204, 21, 0.85);
+    box-shadow: 0 0 35px rgba(234, 179, 8, 0.5), inset 0 0 25px rgba(16, 185, 129, 0.3);
+    animation: ringOrbit 12s linear infinite;
+}
+
+.sparkle-orbit-ring.ring-2 {
+    width: clamp(350px, 50vw, 520px);
+    height: 175px;
+    border: 1.5px dotted rgba(52, 211, 153, 0.9);
+    animation: ringOrbitReverse 16s linear infinite;
+}
+
+.sparkle-orbit-ring.ring-3 {
+    width: clamp(380px, 54vw, 550px);
+    height: 190px;
+    border: 1px solid rgba(254, 240, 138, 0.45);
+    animation: ringOrbit 24s linear infinite reverse;
+}
+
+@keyframes ringOrbit {
+    0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+    50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.04); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+}
+
+@keyframes ringOrbitReverse {
+    0% { transform: translate(-50%, -50%) rotate(360deg); }
+    100% { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+.mehndi-arabic-title {
+    font-family: var(--font-arabic);
+    font-size: clamp(3.6rem, 6.2vw, 5.2rem);
+    line-height: 1.1;
+    direction: rtl;
+    white-space: nowrap;
+    padding: 0 20px;
+    color: #ffd700;
+    text-shadow: 
+        0 0 1px #000,
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000,
+        0 4px 15px rgba(0, 0, 0, 0.95),
+        0 0 25px rgba(255, 215, 0, 0.9),
+        0 0 45px rgba(250, 204, 21, 0.7);
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.9));
+    animation: calligraphyGlow 3s ease-in-out infinite alternate;
+    z-index: 5;
+    position: relative;
+}
+
+.mehndi-sub-english {
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+    letter-spacing: 6px;
+    white-space: nowrap;
+    padding: 0 10px;
+    text-transform: uppercase;
+    color: #a7f3d0;
+    text-shadow: 0 0 18px rgba(52, 211, 153, 0.9), 0 2px 8px #000;
+    margin-top: 6px;
+    z-index: 2;
+}
+
+.mehndi-urdu-sub {
+    font-family: var(--font-arabic);
+    font-size: 1.15rem;
+    color: #fef08a;
+    text-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
+    margin-top: 2px;
+    z-index: 2;
+}
+
+@keyframes calligraphyGlow {
+    0% {
+        filter: drop-shadow(0 0 16px rgba(250, 204, 21, 0.75)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.9));
+        transform: scale(0.98);
+    }
+    100% {
+        filter: drop-shadow(0 0 32px rgba(250, 204, 21, 1)) drop-shadow(0 0 50px rgba(16, 185, 129, 0.8));
+        transform: scale(1.03);
+    }
+}
+
+/* MEHNDI BILINGUAL POETRY BLOCK */
+.mehndi-bilingual-block {
+    margin: 6px auto 10px auto;
+    max-width: 800px;
+    width: 94%;
+    text-align: center;
+}
+
+.urdu-poetry-txt {
+    font-family: var(--font-arabic);
+    font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+    line-height: 1.8;
+    color: #fef08a;
+    direction: rtl;
+    text-shadow: 0 0 16px rgba(250, 204, 21, 0.8), 0 2px 10px rgba(0, 0, 0, 0.95);
+    margin-bottom: 4px;
+}
+
+/* MEHNDI STAGE PROPS ROW (DHOLAK ON LEFT, WIDGETS IN CENTER, CYCLE ON RIGHT) */
+.mehndi-stage-props-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: clamp(12px, 2.5vw, 32px);
+    margin: 6px auto 12px auto;
+    width: 98%;
+    max-width: 1200px;
+}
+
+.mehndi-center-feature-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 620px;
+}
+
+.m-prop-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.prop-cycle {
+    width: clamp(170px, 22vw, 270px);
+}
+
+.prop-dhol-thaal {
+    width: clamp(160px, 20vw, 250px);
+}
+
+.prop-halo {
+    position: absolute;
+    bottom: 10px;
+    width: 90%;
+    height: 50px;
+    border-radius: 50%;
+    filter: blur(20px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.halo-amber {
+    background: radial-gradient(ellipse at center, rgba(234, 179, 8, 0.65) 0%, transparent 75%);
+}
+
+.halo-emerald {
+    background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.65) 0%, transparent 75%);
+}
+
+.prop-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 18px rgba(234, 179, 8, 0.45));
+    transition: transform 0.3s ease;
+}
+
+.float-prop-anim {
+    animation: propFloat 4s infinite ease-in-out alternate;
+}
+
+.pulse-prop-anim {
+    animation: propPulse 3.5s infinite ease-in-out alternate;
+}
+
+@keyframes propFloat {
+    0% { transform: translateY(0px) rotate(-1deg); }
+    100% { transform: translateY(-8px) rotate(1deg); }
+}
+
+@keyframes propPulse {
+    0% { transform: translateY(0px) scale(0.98); }
+    100% { transform: translateY(-6px) scale(1.02); }
+}
+
+.m-prop-item:hover {
+    transform: translateY(-8px) scale(1.04);
+}
+
+/* MEHNDI FEATURE MULTI-WIDGET ROW */
+.mehndi-feature-widgets {
+    display: flex;
+    justify-content: center;
+    gap: clamp(8px, 2vw, 16px);
+    margin: 8px auto 14px auto;
+    width: 94%;
+    max-width: 680px;
+}
+
+.m-card-widget {
+    background: radial-gradient(circle at center, rgba(6, 44, 28, 0.85) 0%, rgba(3, 20, 13, 0.92) 100%);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(16, 185, 129, 0.45);
+    border-radius: 14px;
+    padding: 10px 14px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8), inset 0 0 12px rgba(16, 185, 129, 0.15);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.m-card-widget:hover {
+    transform: translateY(-3px) scale(1.02);
+    border-color: #facc15;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 0 0 20px rgba(250, 204, 21, 0.35);
+}
+
+.m-card-widget .w-icon {
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.m-card-widget .w-info {
+    text-align: left;
+}
+
+.m-card-widget .w-info strong {
+    display: block;
+    font-size: clamp(0.78rem, 1.4vw, 0.9rem);
+    color: #fef08a;
+    font-family: var(--font-sans);
+    font-weight: 700;
+}
+
+.m-card-widget .w-info small {
+    display: block;
+    font-size: 0.68rem;
+    color: #a7f3d0;
+}
+
+.beat-anim {
+    animation: gentleSway 2.5s infinite ease-in-out alternate;
+}
+
+@keyframes gentleSway {
+    0% { transform: rotate(-8deg); }
+    100% { transform: rotate(8deg); }
+}
+
+.drum-pulse {
+    animation: drumBeat 1s infinite alternate ease-in-out;
+}
+
+@keyframes drumBeat {
+    0% { transform: scale(0.95); }
+    100% { transform: scale(1.15) rotate(5deg); }
+}
+
+.glow-diya {
+    animation: diyaFlicker 1.8s infinite alternate ease-in-out;
+}
+
+@keyframes diyaFlicker {
+    0% { filter: drop-shadow(0 0 4px #eab308); }
+    100% { filter: drop-shadow(0 0 14px #facc15); transform: scale(1.08); }
+}
+
+.shayari-txt {
+    font-style: italic;
+    font-size: 0.9rem;
+    margin: 4px 0 12px 0;
+    text-shadow: 0 2px 10px #000;
+}
+
+.yellow-shayari { color: #fef08a; }
+.crimson-shayari { color: #fecdd3; }
+.blue-shayari { color: #bae6fd; }
+
+/* 9. BARAT ANIMATIONS (ROLLS ROYCE WEDDING CAR) */
+.car-actor-stage {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    height: 140px;
+    margin: 4px auto 10px auto;
+    overflow: hidden;
+}
+
+.car-moving-box {
+    width: 230px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 8px;
+}
+
+.car-bounce-anim {
+    animation: carSuspension 0.8s infinite ease-in-out alternate;
+}
+
+@keyframes carSuspension {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-4px) rotate(0.6deg); }
+}
+
+.exhaust-burst .eh {
+    position: absolute;
+    font-size: 1.1rem;
+    animation: exhaustPuff 2s infinite ease-out;
+    opacity: 0;
+}
+
+.eh1 { right: -5px; bottom: 15px; animation-delay: 0.1s; }
+.eh2 { right: -15px; bottom: 25px; animation-delay: 0.8s; }
+.eh3 { right: -25px; bottom: 35px; animation-delay: 1.5s; }
+
+@keyframes exhaustPuff {
+    0% { transform: translate(0, 0) scale(0.6); opacity: 0; }
+    40% { opacity: 0.9; }
+    100% { transform: translate(25px, -20px) scale(1.2); opacity: 0; }
+}
+
+.road-gold-line {
+    position: absolute;
+    bottom: 6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(225, 29, 72, 0.8), transparent);
+}
+
+.couple-portrait-oval {
+    max-width: 210px;
+    margin: 8px auto 12px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgba(225, 29, 72, 0.6);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9), 0 0 30px rgba(225, 29, 72, 0.5);
+}
+
+.portrait-oval-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 10. WALIMA COUPLE BESPOKE ARTWORK */
+.walima-art-frame {
+    max-width: 260px;
+    margin: 6px auto 12px auto;
+}
+
+.art-frame-glow {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgba(56, 189, 248, 0.6);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.9), 0 0 35px rgba(56, 189, 248, 0.5);
+    background: #ffffff;
+}
+
+.walima-couple-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.art-caption-pill {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.72rem;
+    color: #bae6fd;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    padding: 3px 14px;
+    border-radius: 20px;
+}
+
+/* 11. FULLPAGE COUNTDOWN WIDGETS (WIDE ROYAL GLASS TILES) */
+.slide-countdown-box {
+    background: radial-gradient(circle at 50% 50%, rgba(15, 12, 22, 0.85) 0%, rgba(6, 5, 10, 0.94) 100%);
+    backdrop-filter: blur(14px);
+    border: 1.5px solid var(--theme-accent);
+    border-radius: 20px;
+    padding: 12px 24px;
+    margin: 10px auto;
+    max-width: 600px;
+    width: 92%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85), 0 0 20px var(--theme-glow);
+}
+
+.emerald-countdown {
+    border-color: #10b981;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85), 0 0 25px rgba(16, 185, 129, 0.4);
+}
+
+.cd-label {
+    display: block;
+    font-size: clamp(0.75rem, 1.4vw, 0.88rem);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--theme-accent-light);
+    margin-bottom: 8px;
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--theme-glow);
+}
+
+.cd-flex {
+    display: flex;
+    justify-content: center;
+    gap: clamp(8px, 2vw, 16px);
+}
+
+.cd-unit {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 8px 14px;
+    min-width: clamp(58px, 12vw, 76px);
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.03);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.cd-unit:hover {
+    transform: translateY(-2px);
+    border-color: var(--theme-accent-light);
+}
+
+.cd-unit .val {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.1;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+.cd-unit .lbl {
+    font-size: clamp(0.6rem, 1.2vw, 0.72rem);
+    text-transform: uppercase;
+    color: var(--theme-accent-light);
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+/* 12. SCHEDULE & TIMING STRIPS (WIDE GLASS TILES) */
+.event-timing-strip {
+    display: flex;
+    justify-content: center;
+    gap: clamp(8px, 2vw, 16px);
+    margin: 10px auto;
+    width: 94%;
+    max-width: 720px;
+}
+
+.time-item {
+    background: rgba(8, 6, 14, 0.72);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 14px;
+    padding: 10px 14px;
+    flex: 1;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.75);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.time-item:hover {
+    transform: translateY(-3px);
+    border-color: var(--theme-accent);
+}
+
+.t-icon {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 2px;
+}
+
+.t-hour {
+    display: block;
+    font-size: clamp(0.82rem, 1.6vw, 1rem);
+    font-weight: 700;
+    color: var(--theme-accent-light);
+    letter-spacing: 0.5px;
+}
+
+.t-name {
+    display: block;
+    font-size: clamp(0.72rem, 1.4vw, 0.85rem);
+    color: #e2e8f0;
+    font-weight: 500;
+}
+
+/* Venue Strip Card */
+.venue-strip-card {
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(225, 29, 72, 0.6);
+    border-radius: 14px;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 10px 0;
+    text-align: left;
+    width: 100%;
+    max-width: 440px;
+}
+
+.v-crest {
+    font-size: 1.5rem;
+}
+
+.v-text {
+    flex: 1;
+}
+
+.v-text strong {
+    display: block;
+    font-size: 0.95rem;
+    color: #fff;
+}
+
+.v-text span {
+    display: block;
+    font-size: 0.76rem;
+    color: #cbd5e1;
+}
+
+.v-map-btn {
+    background: #e11d48;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.76rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+}
+
+/* Dress Code Tags */
+.dress-code-tag {
+    background: rgba(0, 0, 0, 0.55);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 0.76rem;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.yellow-tag { color: #fef08a; border-color: rgba(234, 179, 8, 0.5); }
+.crimson-tag { color: #fecdd3; border-color: rgba(225, 29, 72, 0.5); }
+.blue-tag { color: #bae6fd; border-color: rgba(56, 189, 248, 0.5); }
+
+/* Buttons */
+.slide-action-row {
+    margin-top: 10px;
+}
+
+.royal-btn {
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease;
+}
+
+.royal-btn:hover {
+    transform: translateY(-2px);
+}
+
+.yellow-btn { background: linear-gradient(135deg, #eab308, #ca8a04); color: #000; border: 1px solid #fef08a; }
+.gold-btn { background: linear-gradient(135deg, #d4af37, #996515); color: #000; border: 1px solid #fae19c; }
+.blue-btn { background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; border: 1px solid #38bdf8; }
+
+/* 13. CALENDAR SLIDE */
+.calendar-card-table {
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--gold);
+    border-radius: 18px;
+    padding: 16px;
+    max-width: 400px;
+    width: 100%;
+    margin: 12px auto;
+}
+
+.cal-month-name {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.calendar-grid-cells {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.c-head {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+}
+
+.c-day {
+    padding: 6px 2px;
+    font-size: 0.78rem;
+    color: #94a3b8;
+    border-radius: 4px;
+}
+
+.highlight-yellow { background: #eab308; color: #000; font-weight: 700; cursor: pointer; }
+.highlight-red { background: #e11d48; color: #fff; font-weight: 700; cursor: pointer; }
+.highlight-blue { background: #0284c7; color: #fff; font-weight: 700; cursor: pointer; }
+
+.highlight-yellow small, .highlight-red small, .highlight-blue small {
+    display: block;
+    font-size: 0.5rem;
+    text-transform: uppercase;
+}
+
+.story-footer {
+    margin-top: 14px;
+}
+
+.footer-seal-art {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 20px var(--gold-glow);
+    margin-bottom: 6px;
+}
+
+.footer-title {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.footer-compliments {
+    font-size: 0.78rem;
+    color: var(--gold-light);
+}
+
+.footer-names {
+    font-size: 0.68rem;
+    color: #94a3b8;
+    margin-top: 2px;
+}
+
+.scroll-down-hint {
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-top: 10px;
+    text-shadow: 0 2px 8px #000;
+}
+
+.bounce-arrow {
+    font-size: 1.1rem;
+    animation: bounceDown 1.8s infinite;
+}
+
+@keyframes bounceDown {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(6px); }
+    60% { transform: translateY(3px); }
+}
+
+/* 14. RESPONSIVE FOR MOBILE VIEWPORTS */
+@media (max-width: 768px) {
+    .slide-event-title {
+        font-size: 2.2rem;
+    }
+    .groom-title, .bride-title {
+        font-size: 2rem;
+    }
+    .event-timing-strip {
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+    }
+    .time-item {
+        max-width: 260px;
+        width: 100%;
+        padding: 6px 12px;
+    }
+}
