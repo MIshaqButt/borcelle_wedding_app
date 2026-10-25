@@ -90,13 +90,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // 4. OBSERVE ACTIVE SLIDES FOR THEME COLOR SHIFTS
+    // 4. OBSERVE ACTIVE SLIDES FOR THEME COLOR SHIFTS & BARAT STORY SEQUENCE
     const slideObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const activeTheme = entry.target.getAttribute('data-theme');
                 if (activeTheme) {
                     body.setAttribute('data-active-theme', activeTheme);
+                }
+
+                // If Barat section is entered, re-trigger the sequential pop animations
+                if (entry.target.id === 'baratSection') {
+                    const popElements = entry.target.querySelectorAll('.pop-anim');
+                    popElements.forEach(el => {
+                        el.style.animation = 'none';
+                        // Force DOM reflow to restart animations cleanly
+                        void el.offsetWidth;
+                        el.style.animation = '';
+                    });
                 }
             }
         });
