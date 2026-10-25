@@ -1119,9 +1119,9 @@ html, body {
 /* 9. BARAT FULL-PAGE MULTI-WIDGET SHOWCASE */
 .barat-overlay-content {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1440px;
     margin: 0 auto;
-    padding: clamp(12px, 2.5vh, 24px) clamp(16px, 3vw, 40px);
+    padding: clamp(24px, 4.5vh, 48px) clamp(20px, 4vw, 56px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1182,10 +1182,10 @@ html, body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: clamp(12px, 2.5vw, 36px);
+    gap: clamp(16px, 3vw, 42px);
     width: 100%;
-    max-width: 1260px;
-    margin: 8px auto 14px auto;
+    max-width: 1300px;
+    margin: 14px auto 20px auto;
 }
 
 .barat-widget-item {
@@ -1210,7 +1210,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
     width: 100%;
 }
 
@@ -1276,35 +1276,11 @@ html, body {
     100% { transform: scale(1.03); filter: drop-shadow(0 15px 35px rgba(0,0,0,0.98)) drop-shadow(0 0 26px rgba(250, 204, 21, 0.75)); }
 }
 
-.barat-widget-badge {
-    margin-top: 6px;
-    font-size: clamp(0.7rem, 1.2vw, 0.82rem);
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    border-radius: 20px;
-    background: rgba(225, 29, 72, 0.35);
-    border: 1px solid rgba(225, 29, 72, 0.65);
-    color: #fff;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7), 0 0 12px rgba(225, 29, 72, 0.4);
-    position: relative;
-    z-index: 3;
-}
-
-.gold-badge {
-    background: rgba(217, 119, 6, 0.35);
-    border-color: rgba(250, 204, 21, 0.7);
-    color: #fef08a;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7), 0 0 12px rgba(250, 204, 21, 0.4);
-}
-
 .barat-widget-item:hover {
     transform: translateY(-6px) scale(1.03);
 }
 
-/* CENTER COLUMN: COUPLE ARTWORK & COUNTDOWN */
+/* CENTER COLUMN: TRANSPARENT CUTOUT COUPLE & COUNTDOWN */
 .barat-center-widget-col {
     flex: 1;
     display: flex;
@@ -1316,50 +1292,50 @@ html, body {
     z-index: 3;
 }
 
-.couple-portrait-oval {
-    max-width: clamp(170px, 20vw, 220px);
-    margin: 0 auto 10px auto;
-    border-radius: 24px;
-    overflow: hidden;
+.couple-portrait-cutout-wrap {
     position: relative;
-    border: 2px solid rgba(225, 29, 72, 0.75);
-    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.95), 0 0 35px rgba(225, 29, 72, 0.55);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    max-width: clamp(190px, 23vw, 260px);
+    margin: 0 auto 12px auto;
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 25px rgba(225, 29, 72, 0.55));
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
 }
 
-.couple-portrait-oval:hover {
+.couple-portrait-cutout-wrap:hover {
     transform: scale(1.04);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.98), 0 0 45px rgba(225, 29, 72, 0.8);
+    filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.98)) drop-shadow(0 0 35px rgba(225, 29, 72, 0.8));
 }
 
-.portrait-oval-img {
+.portrait-cutout-img {
     width: 100%;
     height: auto;
     display: block;
-}
-
-.portrait-tag {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(180deg, transparent 0%, rgba(15, 3, 6, 0.92) 80%);
-    color: #fecdd3;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-align: center;
-    padding: 10px 6px 4px 6px;
-    text-shadow: 0 1px 4px #000;
+    background: transparent !important;
 }
 
 .crimson-countdown {
     background: radial-gradient(circle at center, rgba(30, 4, 10, 0.88) 0%, rgba(15, 2, 5, 0.95) 100%);
     border: 1px solid rgba(225, 29, 72, 0.5);
     box-shadow: 0 12px 36px rgba(0, 0, 0, 0.85), 0 0 24px rgba(225, 29, 72, 0.35);
-    margin: 4px auto 0 auto;
+    margin: 6px auto 0 auto;
     width: 100%;
-    max-width: 460px;
+    max-width: 480px;
+}
+
+/* GROOM WEDDING TIMELINE STRIP */
+.groom-timing-strip {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 16px auto 14px auto;
+    max-width: 1050px;
+    width: 100%;
+}
+
+.groom-timing-strip .time-item {
+    flex: 1 1 calc(16.66% - 10px);
+    min-width: 135px;
+    padding: 10px 12px;
 }
 
 @media (max-width: 900px) {
@@ -1377,6 +1353,10 @@ html, body {
     }
     .barat-car-box, .barat-nikah-box {
         width: 140px;
+    }
+    .groom-timing-strip .time-item {
+        flex: 1 1 calc(33.33% - 10px);
+        min-width: 120px;
     }
 }
 
