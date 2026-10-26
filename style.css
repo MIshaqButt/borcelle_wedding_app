@@ -1354,6 +1354,110 @@ html, body {
     max-width: clamp(150px, 19vw, 230px);
 }
 
+/* BARAT TIMING STRIP & UNIFIED ACTION BUTTONS */
+.barat-timing-strip {
+    display: flex;
+    justify-content: center;
+    gap: clamp(6px, 1.2vw, 12px);
+    margin: 8px auto 12px auto;
+    width: 98%;
+    max-width: 980px;
+    flex-wrap: wrap;
+}
+
+.barat-time-item {
+    background: rgba(25, 4, 10, 0.78);
+    border: 1px solid rgba(225, 29, 72, 0.45);
+    border-radius: 12px;
+    padding: 8px 10px;
+    min-width: 110px;
+    flex: 1 1 calc(16.66% - 10px);
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.barat-time-item:hover {
+    transform: translateY(-3px) scale(1.02);
+    border-color: #f43f5e;
+    box-shadow: 0 8px 24px rgba(225, 29, 72, 0.4);
+}
+
+.barat-time-item .t-icon {
+    font-size: 1.15rem;
+    margin-bottom: 2px;
+}
+
+.barat-time-item .t-hour {
+    font-size: clamp(0.78rem, 1.4vw, 0.92rem);
+    font-weight: 700;
+    color: #fecdd3;
+    letter-spacing: 0.5px;
+}
+
+.barat-time-item .t-name {
+    font-size: clamp(0.68rem, 1.2vw, 0.78rem);
+    color: #ffd700;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+.barat-actions-unified-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(10px, 2vw, 20px);
+    margin: 8px auto 14px auto;
+    width: 94%;
+    max-width: 680px;
+    flex-wrap: wrap;
+}
+
+.barat-location-btn {
+    background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+    border: 1px solid #fecdd3;
+    color: #ffffff !important;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: clamp(0.82rem, 1.5vw, 0.95rem);
+    font-weight: 700;
+    box-shadow: 0 6px 20px rgba(225, 29, 72, 0.55), 0 0 15px rgba(225, 29, 72, 0.35);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.barat-location-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 10px 26px rgba(225, 29, 72, 0.75), 0 0 25px rgba(251, 191, 36, 0.5);
+    border-color: #ffd700;
+}
+
+.barat-cal-btn {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    border: 1px solid #fef08a;
+    color: #ffffff !important;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: clamp(0.82rem, 1.5vw, 0.95rem);
+    font-weight: 700;
+    box-shadow: 0 6px 20px rgba(217, 119, 6, 0.55), 0 0 15px rgba(250, 204, 21, 0.35);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.barat-cal-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 10px 26px rgba(217, 119, 6, 0.75), 0 0 25px rgba(254, 240, 138, 0.5);
+    border-color: #ffffff;
+}
+
 .story-panel-visual {
     position: relative;
     width: clamp(180px, 25vw, 270px);

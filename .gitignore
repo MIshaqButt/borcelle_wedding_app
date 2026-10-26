@@ -10,14 +10,12 @@ wedding_invitation_video.mp4
 test_chrome.png
 build_wedding_video.js
 capture_scenes.js
-index.html
 theme-1-royal-mughal/
 theme-2-midnight-gold/
 theme-3-journey/
 theme-animated-reel/
 video_frames/
 videos/
-/assets/
 
 # Root Node Modules (if any)
 node_modules/

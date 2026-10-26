@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Muhammad Ishaq & Pimra Ahmad | Wedding Invitation</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Poppins:wght@300;400;500;600;700;800&family=Rozha+One&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-active-theme="hero">
+
+    <!-- Background Ambient Music Audio -->
+    <audio id="weddingBgAudio" loop preload="auto">
+        <source src="./assets/media/wedding_music.mp4" type="audio/mp4">
+    </audio>
+
+    <!-- Floating Top Minimal Audio Toggle -->
+    <button class="floating-music-btn" id="musicToggle" title="Toggle Wedding Music">
+        <div class="equalizer-bars">
+            <span></span><span></span><span></span><span></span>
+        </div>
+        <span id="musicLabel">Music</span>
+    </button>
+
+    <!-- Floating Canvas Particles (Sparkles & Rose Petals) -->
+    <canvas id="ambientCanvas"></canvas>
+
+    <!-- ROYAL ENVELOPE WAX SEAL MODAL -->
+    <div class="royal-envelope-overlay" id="envelopeOverlay">
+        <div class="envelope-modal-card">
+            <div class="envelope-header">
+                <div class="bismillah-gold-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+                <div class="sub-royal">ROYAL WEDDING INVITATION</div>
+            </div>
+
+            <!-- Interactive Wax Seal -->
+            <div class="wax-seal-wrapper" id="openEnvelopeBtn">
+                <div class="seal-glow-halo"></div>
+                <img src="./assets/images/seal.jpg" alt="I & P Gold Monogram Wax Seal" class="wax-seal-img pulse-glow">
+                <span class="seal-hint">Tap Wax Seal to Open</span>
+            </div>
+
+            <div class="envelope-names">
+                <h1>Muhammad Ishaq</h1>
+                <div class="and-script">&</div>
+                <h1>Pimra Ahmad</h1>
+            </div>
+
+            <div class="envelope-dates">
+                <span>20 • 21 • 22 NOVEMBER 2026</span>
+            </div>
+            <p class="envelope-subtext">Tap the wax seal above or scroll down to open</p>
+        </div>
+    </div>
+
+    <!-- PURE FULLSCREEN SLIDES CONTAINER (SNAP SCROLLING LIKE REEL / STORY) -->
+    <main class="fullscreen-story-container" id="weddingCard">
+
+        <!-- ======================================================== -->
+        <!-- SLIDE 1: ROYAL HERO & MEET THE COUPLE (FULL BLEED) -->
+        <!-- ======================================================== -->
+        <section class="story-slide hero-slide" id="heroSection" data-theme="hero">
+            <!-- Fullscreen Edge-to-Edge Background Artwork (Ultra HD Royal Palace) -->
+            <div class="slide-background-wrap">
+                <img src="./assets/images/mughal_palace_hd.jpg" alt="Royal Mughal Palace Dusk Courtyard" class="slide-bg-img">
+                <div class="slide-vignette hero-vignette"></div>
+            </div>
+
+            <div class="slide-overlay-content hero-overlay-content">
+                <!-- Floating Arch Lanterns -->
+                <div class="hero-hanging-lantern lantern-left">🏮</div>
+                <div class="hero-hanging-lantern lantern-right">🏮</div>
+
+                <div class="bismillah-gold animated-fade-down">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+                
+                <div class="hero-header-badge animated-fade-down delay-1">
+                    <span class="badge-wing left-wing"></span>
+                    <span class="royal-pill-badge">A UNION BLESSED IN HEAVEN</span>
+                    <span class="badge-wing right-wing"></span>
+                </div>
+
+                <!-- Names Block with Royal Gold Gradients & Sparkle Accent -->
+                <div class="names-block hero-names-block animated-zoom-in delay-2">
+                    <h1 class="groom-title shimmer-text">Muhammad Ishaq</h1>
+                    <div class="weds-script-row">
+                        <span class="gold-line flex-line"></span>
+                        <span class="royal-crest-icon">✦</span>
+                        <span class="weds-txt">weds</span>
+                        <span class="royal-crest-icon">✦</span>
+                        <span class="gold-line flex-line"></span>
+                    </div>
+                    <h1 class="bride-title shimmer-text">Pimra Ahmad</h1>
+                </div>
+
+                <!-- Welcome Greeting & Parent Blessings -->
+                <p class="welcome-lead-text animated-fade-up delay-3">
+                    With the grace of Almighty Allah & the cherished blessings of our parents,<br>
+                    we cordially invite you to celebrate the blessed wedding union of
+                </p>
+
+                <!-- Complete Quran Ayat in Arabic & Translation (Royal Framed Card) -->
+                <div class="quran-quote-pill royal-framed-card animated-fade-up delay-4">
+                    <div class="card-corner corner-tl"></div>
+                    <div class="card-corner corner-tr"></div>
+                    <div class="card-corner corner-bl"></div>
+                    <div class="card-corner corner-br"></div>
+                    <p class="quran-arabic-text">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
+                    <p class="ayah-txt">“And among His signs is that He created for you mates from among yourselves, that you may find tranquility in them; and He placed between you affection and mercy.”</p>
+                    <span class="ayah-ref">— Surah Ar-Rum (30:21)</span>
+                </div>
+
+                <!-- Royal Decorative Flourish Emblem -->
+                <div class="royal-flourish-emblem animated-pulse delay-5">
+                    <span class="flourish-line"></span>
+                    <span class="flourish-symbol">❦ ✦ ❦</span>
+                    <span class="flourish-line"></span>
+                </div>
+
+                <div class="scroll-down-hint" onclick="goToSlide('#mehndiSection')">
+                    <span class="hint-text">Swipe Down to Begin Celebrations</span>
+                    <div class="bounce-arrow">↓</div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ======================================================== -->
+        <!-- SLIDE 2: RASM-E-MEHNDI (FULLSCREEN YELLOW / AMBER THEME) -->
+        <!-- ======================================================== -->
+        <section class="story-slide mehndi-slide" id="mehndiSection" data-theme="mehndi">
+            <!-- Fullscreen Edge-to-Edge Mehndi Background Artwork (Ultra HD 4K Stage) -->
+            <div class="slide-background-wrap">
+                <img src="./assets/images/mehndi_stage_hd.jpg" alt="Royal Emerald & Gold Mehndi Stage 4K" class="slide-bg-img">
+                <div class="slide-vignette mehndi-vignette"></div>
+            </div>
+
+            <div class="slide-overlay-content mehndi-overlay-content">
+                <!-- Floating Hanging Festive Lanterns & Garlands -->
+                <div class="festive-hanging-decor decor-left">🪔</div>
+                <div class="festive-hanging-decor decor-right">🪔</div>
+
+                <div class="mehndi-top-badge-row animated-fade-down">
+                    <span class="badge-wing left-wing green-wing"></span>
+                    <span class="royal-pill-badge mehndi-pill">DAY 1 • CELEBRATION OF HINA</span>
+                    <span class="badge-wing right-wing green-wing"></span>
+                </div>
+                
+                <!-- Glowing Golden Arabic Calligraphy with Triple Orbit Sparkles & Floral Halo -->
+                <div class="mehndi-calligraphy-container animated-zoom-in delay-1">
+                    <div class="sparkle-orbit-ring ring-1"></div>
+                    <div class="sparkle-orbit-ring ring-reverse ring-2"></div>
+                    <div class="sparkle-orbit-ring ring-pulsar ring-3"></div>
+                    <div class="calligraphy-halo"></div>
+                    <div class="mehndi-arabic-title">رسمِ حنا</div>
+                    <div class="mehndi-sub-english">Rasm-e-Mehndi</div>
+                </div>
+                
+                <div class="event-date-pill mehndi-pill-border animated-fade-up delay-2">
+                    <span>🗓️ Friday, 20th November 2026 • 07:00 PM</span>
+                </div>
+
+                <!-- English Mehndi Welcome Poetry -->
+                <div class="mehndi-bilingual-block animated-fade-up delay-3">
+                    <p class="shayari-txt mehndi-shayari">
+                        “Golden lanterns, fragrant henna & festive melodies await your gracious presence.”
+                    </p>
+                </div>
+
+                <!-- Side-by-Side Props Stage: Dholak on Left & Cycle on Right flanking Content -->
+                <div class="mehndi-stage-props-row animated-fade-up delay-4">
+                    <!-- Left Prop: Decorated Dhol Drum & Golden Henna Thaal Tray (No Title Tag) -->
+                    <div class="m-prop-item prop-dhol-thaal">
+                        <div class="prop-halo halo-emerald"></div>
+                        <img src="./assets/images/mehndi_dhol_thaal_transparent.png" alt="Mehndi Dholak & Henna Thaal" class="prop-img pulse-prop-anim">
+                    </div>
+
+                    <!-- Center Countdown Widget -->
+                    <div class="mehndi-center-feature-col">
+                        <!-- Live Countdown Widget with Royal Emerald & Gold Filigree -->
+                        <div class="slide-countdown-box emerald-countdown" data-event-time="2026-11-20T19:00:00">
+                            <span class="cd-label">✨ COUNTDOWN TO RASM-E-HINA ✨</span>
+                            <div class="cd-flex">
+                                <div class="cd-unit"><span class="val days">00</span><span class="lbl">Days</span></div>
+                                <div class="cd-unit"><span class="val hours">00</span><span class="lbl">Hours</span></div>
+                                <div class="cd-unit"><span class="val mins">00</span><span class="lbl">Mins</span></div>
+                                <div class="cd-unit"><span class="val secs">00</span><span class="lbl">Secs</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Prop: Vintage Decorated Yellow Cycle with Candles & Fairy Lights (No Title Tag) -->
+                    <div class="m-prop-item prop-cycle">
+                        <div class="prop-halo halo-amber"></div>
+                        <img src="./assets/images/mehndi_cycle_transparent.png" alt="Mehndi Festive Cycle with Candles" class="prop-img float-prop-anim">
+                    </div>
+                </div>
+
+                <!-- Event Details & Timing Strip with Glassmorphism and Icons -->
+                <div class="event-timing-strip animated-fade-up delay-5">
+                    <div class="time-item">
+                        <span class="t-icon">🌿</span>
+                        <span class="t-hour">07:00 PM</span>
+                        <span class="t-name">Rasm-e-Hina</span>
+                    </div>
+                    <div class="time-item">
+                        <span class="t-icon">🪘</span>
+                        <span class="t-hour">08:30 PM</span>
+                        <span class="t-name">Dholak Beats</span>
+                    </div>
+                    <div class="time-item">
+                        <span class="t-icon">🍛</span>
+                        <span class="t-hour">09:30 PM</span>
+                        <span class="t-name">Royal Dinner</span>
+                    </div>
+                </div>
+
+
+
+                <div class="slide-action-row animated-fade-up delay-5">
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mehndi+Celebration+-+Muhammad+Ishaq+%26+Pimra+Ahmad&dates=20261120T140000Z/20261120T180000Z&details=Mehndi+Ceremony+%26+Rasm-e-Hina+Celebration&location=Farooqabad,+Punjab" target="_blank" rel="noopener noreferrer" class="royal-btn yellow-btn">
+                        📅 Add Mehndi to Calendar
+                    </a>
+                </div>
+
+                <div class="scroll-down-hint" onclick="goToSlide('#baratSection')">
+                    <span class="hint-text">Next: The Royal Barat</span>
+                    <div class="bounce-arrow">↓</div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ======================================================== -->
+        <!-- SLIDE 3: THE ROYAL BARAT (FULLSCREEN CRIMSON RED THEME) -->
+        <!-- ======================================================== -->
+        <section class="story-slide barat-slide" id="baratSection" data-theme="barat">
+            <!-- Fullscreen Edge-to-Edge Grand Crimson & Gold Palace Ballroom (Ultra HD 4K) -->
+            <div class="slide-background-wrap">
+                <img src="./assets/images/barat_stage_hd.jpg" alt="Royal Crimson Palace Barat Hall 4K" class="slide-bg-img">
+                <div class="slide-vignette barat-vignette"></div>
+            </div>
+
+            <div class="slide-overlay-content barat-overlay-content">
+                <!-- Floating Hanging Festive Crimson Lanterns -->
+                <div class="festive-hanging-decor decor-left barat-decor">🏮</div>
+                <div class="festive-hanging-decor decor-right barat-decor">🏮</div>
+
+                <div class="barat-top-badge-row animated-fade-down">
+                    <span class="badge-wing left-wing crimson-wing"></span>
+                    <span class="royal-pill-badge crimson-pill">DAY 2 • THE MAIN CEREMONY</span>
+                    <span class="badge-wing right-wing crimson-wing"></span>
+                </div>
+
+                <!-- Glowing Royal Crimson & Gold Arabic Calligraphy with Triple Orbit Sparkles & Halo -->
+                <div class="barat-calligraphy-container animated-zoom-in delay-1">
+                    <div class="sparkle-orbit-ring crimson-ring-1"></div>
+                    <div class="sparkle-orbit-ring ring-reverse crimson-ring-2"></div>
+                    <div class="sparkle-orbit-ring ring-pulsar crimson-ring-3"></div>
+                    <div class="calligraphy-halo barat-calligraphy-halo"></div>
+                    <div class="barat-arabic-title">بَارَات</div>
+                    <div class="barat-sub-english">Barat Ceremony</div>
+                </div>
+                
+                <!-- Event Date Pill Matching Mehndi Page Style -->
+                <div class="event-date-pill barat-pill-border animated-fade-up delay-2">
+                    <span>🗓️ Saturday, 21st November 2026 • 01:00 PM</span>
+                </div>
+
+                <!-- Side-by-Side Props Stage Flanking Centerpiece -->
+                <div class="barat-stage-props-row animated-fade-up delay-3">
+                    <!-- Left Prop: Groom on Majestic Decorated White Horse with micro flair -->
+                    <div class="b-prop-item prop-groom-flank">
+                        <div class="prop-halo halo-crimson"></div>
+                        <div class="scene-micro-flair">
+                            <span class="micro-sparkle sp1">✨</span>
+                            <span class="micro-sparkle sp2">⭐</span>
+                            <span class="micro-drum-pulse">🥁</span>
+                        </div>
+                        <img src="./assets/images/groom_horse_transparent.png" alt="Groom on Decorated White Horse with Barat" class="prop-img horse-march-anim">
+                    </div>
+
+                    <!-- Center Feature: Couple Portrait & Live Countdown -->
+                    <div class="barat-center-feature-col">
+                        <!-- Royal Couple Cutout with Transparent Background & Floating Hearts -->
+                        <div class="couple-portrait-cutout-wrap">
+                            <img src="./assets/images/couple_isolated_transparent.png" alt="Muhammad Ishaq & Pimra Ahmad Wedding Portrait" class="portrait-cutout-img couple-breathing-anim">
+                            <div class="couple-floating-hearts">
+                                <span class="f-heart fh1">💖</span>
+                                <span class="f-heart fh2">✨</span>
+                            </div>
+                        </div>
+
+                        <!-- Live Countdown Widget with Royal Crimson & Gold Glow -->
+                        <div class="slide-countdown-box crimson-countdown" data-event-time="2026-11-21T13:00:00">
+                            <span class="cd-label">✨ COUNTDOWN TO THE BARAT ✨</span>
+                            <div class="cd-flex">
+                                <div class="cd-unit"><span class="val days">00</span><span class="lbl">Days</span></div>
+                                <div class="cd-unit"><span class="val hours">00</span><span class="lbl">Hours</span></div>
+                                <div class="cd-unit"><span class="val mins">00</span><span class="lbl">Mins</span></div>
+                                <div class="cd-unit"><span class="val secs">00</span><span class="lbl">Secs</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Prop: Sacred Nikah Quran & Decorated Wedding Car with micro flairs -->
+                    <div class="b-prop-item prop-ceremony-flank">
+                        <div class="prop-halo halo-gold"></div>
+                        <div class="stacked-barat-props-side">
+                            <!-- Nikah Quran Ceremony -->
+                            <div class="b-sub-prop nikah-sub-box">
+                                <div class="scene-micro-flair">
+                                    <span class="micro-sparkle sp1">✨</span>
+                                    <span class="micro-sparkle sp3">🕊️</span>
+                                </div>
+                                <img src="./assets/images/nikah_quran_transparent.png" alt="Sacred Nikah Ceremony Holy Quran & Quill" class="prop-img nikah-glow-anim">
+                            </div>
+                            <!-- Rukhsati Wedding Car -->
+                            <div class="b-sub-prop car-sub-box">
+                                <div class="car-exhaust-flair">
+                                    <span class="exhaust-puff ep1">💨</span>
+                                    <span class="car-petal cp1">🌸</span>
+                                </div>
+                                <img src="./assets/images/barat_car_transparent.png" alt="Decorated Rolls-Royce Wedding Car in Motion" class="prop-img car-drive-fast-anim">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Details & Timing Strip (Matching Mehndi Style, Compact & Elegant) -->
+                <div class="event-timing-strip barat-timing-strip animated-fade-up delay-4">
+                    <div class="time-item barat-time-item">
+                        <span class="t-icon">👑</span>
+                        <span class="t-hour">11:30 AM</span>
+                        <span class="t-name">Sehra Bandi</span>
+                    </div>
+                    <div class="time-item barat-time-item">
+                        <span class="t-icon">🚗</span>
+                        <span class="t-hour">12:00 PM</span>
+                        <span class="t-name">Departure</span>
+                    </div>
+                    <div class="time-item barat-time-item">
+                        <span class="t-icon">🐎</span>
+                        <span class="t-hour">01:00 PM</span>
+                        <span class="t-name">Barat Arrival</span>
+                    </div>
+                    <div class="time-item barat-time-item">
+                        <span class="t-icon">📜</span>
+                        <span class="t-hour">01:30 PM</span>
+                        <span class="t-name">Nikah Ceremony</span>
+                    </div>
+                    <div class="time-item barat-time-item">
+                        <span class="t-icon">🍛</span>
+                        <span class="t-hour">02:30 PM</span>
+                        <span class="t-name">Royal Banquet</span>
+                    </div>
+                    <div class="time-item barat-time-item">
+                        <span class="t-icon">🌸</span>
+                        <span class="t-hour">04:30 PM</span>
+                        <span class="t-name">Rukhsati</span>
+                    </div>
+                </div>
+
+                <!-- Unified Action Widgets Row: Location & Calendar Side-by-Side -->
+                <div class="barat-actions-unified-row animated-fade-up delay-5">
+                    <a href="https://maps.google.com/?q=Koh-e-Noor+Marquee+Farooqabad" target="_blank" rel="noopener noreferrer" class="royal-btn barat-location-btn">
+                        📍 Koh-e-Noor Hall Location
+                    </a>
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+Barat+of+Muhammad+Ishaq+%26+Pimra+Ahmad&dates=20261121T080000Z/20261121T120000Z&details=Barat+Arrival:+1:00+PM%0ALunch:+2:30+PM%0ARukhsati:+4:30+PM%0AKoh-e-Noor+Marquee,+Farooqabad&location=Koh-e-Noor+Marquee,+Farooqabad" target="_blank" rel="noopener noreferrer" class="royal-btn barat-cal-btn">
+                        📅 Add Barat to Calendar
+                    </a>
+                </div>
+
+                <div class="scroll-down-hint" onclick="goToSlide('#walimaSection')">
+                    <span class="hint-text">Next: The Walima Reception</span>
+                    <div class="bounce-arrow">↓</div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ======================================================== -->
+        <!-- SLIDE 4: THE WALIMA RECEPTION (FULLSCREEN SAPPHIRE BLUE THEME) -->
+        <!-- ======================================================== -->
+        <section class="story-slide walima-slide" id="walimaSection" data-theme="walima">
+            <!-- Fullscreen Edge-to-Edge Grand Chandelier Ballroom -->
+            <div class="slide-background-wrap">
+                <img src="./assets/images/walima_bg.jpg" alt="Luxury Grand Banquet Ballroom" class="slide-bg-img">
+                <div class="slide-vignette walima-vignette"></div>
+            </div>
+
+            <div class="slide-overlay-content">
+                <span class="royal-pill-badge blue-pill">DAY 3 • SUNNAH BANQUET</span>
+                <h2 class="slide-event-title blue-glow">The Walima Reception</h2>
+                
+                <div class="event-date-pill blue-pill-border">
+                    <span>🗓️ Sunday, 22nd November 2026 • 07:30 PM</span>
+                </div>
+
+                <!-- Authentic Couple Walima Artwork: walima.jpeg -->
+                <div class="walima-art-frame">
+                    <div class="art-frame-glow">
+                        <img src="./assets/images/walima.jpeg" alt="Muhammad Ishaq & Pimra Ahmad Walima Illustration" class="walima-couple-img">
+                    </div>
+                    <span class="art-caption-pill">Muhammad Ishaq & Pimra Ahmad • Evening Elegance</span>
+                </div>
+
+                <p class="shayari-txt blue-shayari">
+                    “Expressing heartfelt gratitude to Almighty Allah as we celebrate new beginnings.”
+                </p>
+
+                <!-- Live Countdown Widget -->
+                <div class="slide-countdown-box blue-countdown" data-event-time="2026-11-22T19:30:00">
+                    <span class="cd-label">Countdown to Walima:</span>
+                    <div class="cd-flex">
+                        <div class="cd-unit"><span class="val days">00</span><span class="lbl">Days</span></div>
+                        <div class="cd-unit"><span class="val hours">00</span><span class="lbl">Hours</span></div>
+                        <div class="cd-unit"><span class="val mins">00</span><span class="lbl">Mins</span></div>
+                        <div class="cd-unit"><span class="val secs">00</span><span class="lbl">Secs</span></div>
+                    </div>
+                </div>
+
+                <!-- Walima Schedule Strip -->
+                <div class="event-timing-strip">
+                    <div class="time-item">
+                        <span class="t-hour">07:30 PM</span>
+                        <span class="t-name">Guest Reception</span>
+                    </div>
+                    <div class="time-item">
+                        <span class="t-hour">08:30 PM</span>
+                        <span class="t-name">Gourmet Dinner</span>
+                    </div>
+                    <div class="time-item">
+                        <span class="t-hour">10:00 PM</span>
+                        <span class="t-name">Closing Duas</span>
+                    </div>
+                </div>
+
+                <div class="dress-code-tag blue-tag">
+                    <span>💎 <strong>Dress Code:</strong> Midnight Blue, Slate Grey, Champagne Gold & Soft Pastels</span>
+                </div>
+
+                <div class="slide-action-row">
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Walima+Reception+-+Muhammad+Ishaq+%26+Pimra+Ahmad&dates=20261122T143000Z/20261122T183000Z&details=Walima+Banquet+%26+Reception+Celebration&location=Farooqabad,+Punjab" target="_blank" rel="noopener noreferrer" class="royal-btn blue-btn">
+                        📅 Add Walima to Calendar
+                    </a>
+                </div>
+
+                <div class="scroll-down-hint" onclick="goToSlide('#calendarSection')">
+                    <span>View Save The Dates</span>
+                    <div class="bounce-arrow">↓</div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ======================================================== -->
+        <!-- SLIDE 5: SAVE THE DATES & ROYAL BLESSINGS (FULLSCREEN) -->
+        <!-- ======================================================== -->
+        <section class="story-slide dates-slide" id="calendarSection" data-theme="hero">
+            <!-- Fullscreen Midnight Gold Background Artwork -->
+            <div class="slide-background-wrap">
+                <img src="./assets/images/midnight_bg.jpg" alt="Midnight Gold Royal Background" class="slide-bg-img">
+                <div class="slide-vignette hero-vignette"></div>
+            </div>
+
+            <div class="slide-overlay-content">
+                <span class="royal-pill-badge">SAVE THE DATES</span>
+                <h2 class="slide-event-title">Join Our Celebrations</h2>
+
+                <!-- November 2026 Calendar -->
+                <div class="calendar-card-table">
+                    <div class="cal-month-name">NOVEMBER 2026</div>
+                    <div class="calendar-grid-cells">
+                        <span class="c-head">Sun</span><span class="c-head">Mon</span><span class="c-head">Tue</span>
+                        <span class="c-head">Wed</span><span class="c-head">Thu</span><span class="c-head">Fri</span><span class="c-head">Sat</span>
+                        
+                        <span class="c-day">1</span><span class="c-day">2</span><span class="c-day">3</span>
+                        <span class="c-day">4</span><span class="c-day">5</span><span class="c-day">6</span><span class="c-day">7</span>
+                        <span class="c-day">8</span><span class="c-day">9</span><span class="c-day">10</span>
+                        <span class="c-day">11</span><span class="c-day">12</span><span class="c-day">13</span><span class="c-day">14</span>
+                        <span class="c-day">15</span><span class="c-day">16</span><span class="c-day">17</span>
+                        <span class="c-day">18</span><span class="c-day">19</span>
+                        
+                        <span class="c-day highlight-yellow" onclick="goToSlide('#mehndiSection')">
+                            <strong>20</strong>
+                            <small>Mehndi</small>
+                        </span>
+                        <span class="c-day highlight-red" onclick="goToSlide('#baratSection')">
+                            <strong>21</strong>
+                            <small>Barat</small>
+                        </span>
+                        <span class="c-day highlight-blue" onclick="goToSlide('#walimaSection')">
+                            <strong>22</strong>
+                            <small>Walima</small>
+                        </span>
+
+                        <span class="c-day">23</span><span class="c-day">24</span><span class="c-day">25</span>
+                        <span class="c-day">26</span><span class="c-day">27</span><span class="c-day">28</span><span class="c-day">29</span>
+                        <span class="c-day">30</span>
+                    </div>
+                </div>
+
+                <!-- Footer With Closing Warm Wishes -->
+                <footer class="story-footer">
+                    <div class="footer-seal-ring">
+                        <img src="./assets/images/seal.jpg" alt="I & P Monogram" class="footer-seal-art">
+                    </div>
+                    <h3 class="footer-title">Awaiting Your Gracious Presence</h3>
+                    <p class="footer-compliments">With Best Compliments & Heartfelt Prayers from the Families</p>
+                    <p class="footer-names">Muhammad Ishaq & Pimra Ahmad • November 2026</p>
+                </footer>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- App JavaScript -->
+    <script src="main.js"></script>
+</body>
+</html>
