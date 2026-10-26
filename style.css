@@ -2000,42 +2000,24 @@ html, body {
     margin: 2px auto 4px auto;
 }
 
-.walima-art-frame {
-    max-width: clamp(140px, 16vw, 190px);
+.walima-couple-cutout-wrap {
+    position: relative;
+    max-width: clamp(140px, 16vw, 195px);
     margin: 0 auto 4px auto;
-    text-align: center;
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 25px rgba(56, 189, 248, 0.55));
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
 }
 
-.art-frame-glow {
-    border-radius: 18px;
-    overflow: hidden;
-    border: 2px solid rgba(56, 189, 248, 0.65);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.9), 0 0 25px rgba(56, 189, 248, 0.5);
-    background: #ffffff;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-}
-
-.art-frame-glow:hover {
+.walima-couple-cutout-wrap:hover {
     transform: scale(1.04);
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.95), 0 0 35px rgba(56, 189, 248, 0.8);
+    filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.98)) drop-shadow(0 0 35px rgba(56, 189, 248, 0.8));
 }
 
-.walima-couple-img {
+.walima-couple-cutout-img {
     width: 100%;
     height: auto;
     display: block;
-}
-
-.art-caption-pill {
-    display: inline-block;
-    margin-top: 4px;
-    font-size: 0.68rem;
-    color: #bae6fd;
-    background: rgba(0, 0, 0, 0.65);
-    border: 1px solid rgba(56, 189, 248, 0.4);
-    padding: 2px 12px;
-    border-radius: 20px;
-    letter-spacing: 0.5px;
+    background: transparent !important;
 }
 
 .sapphire-countdown {
