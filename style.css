@@ -1298,26 +1298,14 @@ html, body {
     max-width: 760px;
 }
 
-/* BARAT STAGE PROPS ROW (GROOM ON LEFT, COUPLE & COUNTDOWN IN CENTER, NIKAH & CAR ON RIGHT) */
-.barat-stage-props-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: clamp(8px, 1.8vw, 24px);
-    margin: 2px auto 4px auto;
-    width: 98%;
-    max-width: 1100px;
-    position: relative;
-    z-index: 4;
-}
-
 .barat-center-feature-col {
-    flex: 1;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width: 480px;
+    max-width: 540px;
+    margin: 4px auto 6px auto;
 }
 
 .b-prop-item {
