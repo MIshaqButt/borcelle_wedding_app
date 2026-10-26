@@ -736,6 +736,33 @@ html, body {
 }
 
 /* 8. MEHNDI ANIMATIONS & CALLIGRAPHY (INSPIRED DIRECTLY BY mehdi.mp4) */
+.story-slide.mehndi-slide {
+    overflow: hidden !important;
+    padding: clamp(8px, 1.4vh, 16px) clamp(12px, 2vw, 28px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    max-height: 100vh;
+    box-sizing: border-box;
+}
+
+.mehndi-overlay-content {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
+    max-height: 98vh;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+}
+
 .festive-hanging-decor {
     position: absolute;
     top: 3%;
@@ -754,7 +781,8 @@ html, body {
     align-items: center;
     justify-content: center;
     gap: 12px;
-    margin-bottom: 8px;
+    margin-bottom: 0px;
+    transform: scale(0.92);
 }
 
 .green-wing {
@@ -780,23 +808,17 @@ html, body {
     color: #a7f3d0; 
     background: rgba(3, 20, 13, 0.85);
     backdrop-filter: blur(14px);
-    box-shadow: 0 0 25px rgba(16, 185, 129, 0.35);
-}
-
-.mehndi-shayari { 
-    color: #fef08a; 
-    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
-    font-style: italic;
-    margin: 6px auto 14px auto;
-    max-width: 680px;
-    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7), 0 0 12px rgba(16, 185, 129, 0.35);
+    padding: 4px 18px !important;
+    font-size: clamp(0.75rem, 1.3vw, 0.88rem) !important;
+    margin-bottom: 4px !important;
 }
 
 .mehndi-calligraphy-container {
     position: relative;
-    width: clamp(340px, 52vw, 560px);
-    height: 190px;
-    margin: 8px auto 14px auto;
+    width: clamp(280px, 42vw, 440px);
+    height: 125px;
+    margin: 2px auto 4px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -805,11 +827,11 @@ html, body {
 
 .calligraphy-halo {
     position: absolute;
-    width: clamp(280px, 40vw, 420px);
-    height: 160px;
+    width: clamp(220px, 34vw, 340px);
+    height: 110px;
     border-radius: 50%;
     background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.45) 0%, rgba(234, 179, 8, 0.25) 50%, transparent 75%);
-    filter: blur(14px);
+    filter: blur(12px);
     pointer-events: none;
     animation: haloPulse 4s infinite alternate ease-in-out;
 }
@@ -828,23 +850,23 @@ html, body {
 }
 
 .sparkle-orbit-ring.ring-1 {
-    width: clamp(320px, 46vw, 480px);
-    height: 160px;
+    width: clamp(260px, 38vw, 380px);
+    height: 110px;
     border: 2px dashed rgba(250, 204, 21, 0.85);
-    box-shadow: 0 0 35px rgba(234, 179, 8, 0.5), inset 0 0 25px rgba(16, 185, 129, 0.3);
+    box-shadow: 0 0 25px rgba(234, 179, 8, 0.5), inset 0 0 15px rgba(16, 185, 129, 0.3);
     animation: ringOrbit 12s linear infinite;
 }
 
 .sparkle-orbit-ring.ring-2 {
-    width: clamp(350px, 50vw, 520px);
-    height: 175px;
+    width: clamp(280px, 40vw, 400px);
+    height: 120px;
     border: 1.5px dotted rgba(52, 211, 153, 0.9);
     animation: ringOrbitReverse 16s linear infinite;
 }
 
 .sparkle-orbit-ring.ring-3 {
-    width: clamp(380px, 54vw, 550px);
-    height: 190px;
+    width: clamp(300px, 44vw, 420px);
+    height: 130px;
     border: 1px solid rgba(254, 240, 138, 0.45);
     animation: ringOrbit 24s linear infinite reverse;
 }
@@ -862,11 +884,11 @@ html, body {
 
 .mehndi-arabic-title {
     font-family: var(--font-arabic);
-    font-size: clamp(3.6rem, 6.2vw, 5.2rem);
-    line-height: 1.1;
+    font-size: clamp(2.6rem, 4.2vw, 3.8rem);
+    line-height: 1;
     direction: rtl;
     white-space: nowrap;
-    padding: 0 20px;
+    padding: 0 16px;
     color: #ffd700;
     text-shadow: 
         0 0 1px #000,
@@ -875,8 +897,8 @@ html, body {
         -1px 1px 0 #000,
         1px 1px 0 #000,
         0 4px 15px rgba(0, 0, 0, 0.95),
-        0 0 25px rgba(255, 215, 0, 0.9),
-        0 0 45px rgba(250, 204, 21, 0.7);
+        0 0 25px rgba(250, 204, 21, 0.9),
+        0 0 45px rgba(16, 185, 129, 0.7);
     filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.9));
     animation: calligraphyGlow 3s ease-in-out infinite alternate;
     z-index: 5;
@@ -885,22 +907,13 @@ html, body {
 
 .mehndi-sub-english {
     font-family: var(--font-heading);
-    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
-    letter-spacing: 6px;
+    font-size: clamp(0.95rem, 1.6vw, 1.3rem);
+    letter-spacing: 5px;
     white-space: nowrap;
     padding: 0 10px;
     text-transform: uppercase;
     color: #a7f3d0;
-    text-shadow: 0 0 18px rgba(52, 211, 153, 0.9), 0 2px 8px #000;
-    margin-top: 6px;
-    z-index: 2;
-}
-
-.mehndi-urdu-sub {
-    font-family: var(--font-arabic);
-    font-size: 1.15rem;
-    color: #fef08a;
-    text-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
+    text-shadow: 0 0 14px rgba(16, 185, 129, 0.9), 0 2px 6px #000;
     margin-top: 2px;
     z-index: 2;
 }
@@ -916,56 +929,127 @@ html, body {
     }
 }
 
-/* MEHNDI BILINGUAL POETRY BLOCK */
-.mehndi-bilingual-block {
-    margin: 6px auto 10px auto;
-    max-width: 800px;
-    width: 94%;
-    text-align: center;
-}
-
-.urdu-poetry-txt {
-    font-family: var(--font-arabic);
-    font-size: clamp(1.2rem, 2.4vw, 1.7rem);
-    line-height: 1.8;
-    color: #fef08a;
-    direction: rtl;
-    text-shadow: 0 0 16px rgba(250, 204, 21, 0.8), 0 2px 10px rgba(0, 0, 0, 0.95);
-    margin-bottom: 4px;
-}
-
-/* MEHNDI STAGE PROPS ROW (DHOLAK ON LEFT, WIDGETS IN CENTER, CYCLE ON RIGHT) */
-.mehndi-stage-props-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: clamp(12px, 2.5vw, 32px);
-    margin: 6px auto 12px auto;
-    width: 98%;
-    max-width: 1200px;
-}
-
+/* MEHNDI CENTER FEATURE (ARTWORK & COUNTDOWN - UNIFIED THEME) */
 .mehndi-center-feature-col {
-    flex: 1;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width: 620px;
+    max-width: 520px;
+    margin: 2px auto 4px auto;
 }
 
-.m-prop-item {
+.mehndi-artwork-cutout-wrap {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    max-width: clamp(140px, 16vw, 195px);
+    margin: 0 auto 4px auto;
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 25px rgba(16, 185, 129, 0.55));
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
 }
 
-.prop-cycle {
-    width: clamp(170px, 22vw, 270px);
+.mehndi-artwork-cutout-wrap:hover {
+    transform: scale(1.04);
+    filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.98)) drop-shadow(0 0 35px rgba(250, 204, 21, 0.8));
+}
+
+.mehndi-cutout-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: transparent !important;
+}
+
+.emerald-countdown {
+    background: radial-gradient(circle at center, rgba(6, 44, 28, 0.88) 0%, rgba(3, 20, 13, 0.96) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.55);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.85), 0 0 20px rgba(16, 185, 129, 0.35);
+    margin: 4px auto 0 auto;
+    padding: 6px 14px;
+    width: 100%;
+    max-width: 420px;
+}
+
+.emerald-countdown .cd-label {
+    font-size: clamp(0.65rem, 1vw, 0.75rem);
+    margin-bottom: 4px;
+    color: #a7f3d0;
+}
+
+.emerald-countdown .cd-unit {
+    padding: 3px 8px;
+    min-width: 48px;
+}
+
+.emerald-countdown .cd-unit .val {
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    color: #ffd700;
+}
+
+.emerald-countdown .cd-unit .lbl {
+    font-size: 0.58rem;
+    color: #a7f3d0;
+}
+
+/* MEHNDI TIMING STRIP & BUTTONS (UNIFIED) */
+.mehndi-timing-strip {
+    display: flex;
+    justify-content: center;
+    gap: clamp(12px, 2vw, 24px);
+    margin: 4px auto 6px auto;
+    width: 90%;
+    max-width: 480px;
+}
+
+.mehndi-time-item {
+    background: rgba(4, 30, 20, 0.82);
+    border: 1px solid rgba(16, 185, 129, 0.45);
+    border-radius: 14px;
+    padding: 8px 18px;
+    flex: 1;
+    min-width: 140px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mehndi-time-item:hover {
+    transform: translateY(-2px) scale(1.02);
+    border-color: #34d399;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+}
+
+.mehndi-time-item .t-icon {
+    font-size: 0.95rem;
+    margin-bottom: 1px;
+}
+
+.mehndi-time-item .t-hour {
+    font-size: clamp(0.72rem, 1.2vw, 0.85rem);
+    font-weight: 700;
+    color: #a7f3d0;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.mehndi-time-item .t-name {
+    font-size: clamp(0.62rem, 1vw, 0.74rem);
+    color: #ffd700;
+    font-weight: 600;
+    margin-top: 1px;
+    white-space: nowrap;
+}
+
+.mehndi-actions-unified-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(8px, 1.5vw, 16px);
+    margin: 4px auto 2px auto;
+    width: 94%;
+    max-width: 620px;
+    flex-wrap: nowrap;
 }
 
 .prop-dhol-thaal {
