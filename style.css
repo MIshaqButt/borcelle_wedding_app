@@ -1117,17 +1117,40 @@ html, body {
 .blue-shayari { color: #bae6fd; }
 
 /* 9. BARAT FULL-PAGE MULTI-WIDGET SHOWCASE */
+.story-slide.barat-slide {
+    overflow-y: auto !important;
+    padding: clamp(10px, 1.8vh, 20px) clamp(14px, 2.5vw, 32px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
 .barat-overlay-content {
     width: 100%;
-    max-width: 1440px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: clamp(24px, 4.5vh, 48px) clamp(20px, 4vw, 56px);
+    padding: clamp(8px, 1.5vh, 18px) clamp(12px, 2vw, 28px);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+    justify-content: flex-start;
+    min-height: auto;
     box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+}
+
+.barat-top-badge-row {
+    margin-bottom: 2px;
+}
+
+.barat-header-block {
+    margin-bottom: 4px;
+}
+
+.slide-event-title.crimson-glow {
+    font-size: clamp(2rem, 3.8vw, 3.2rem);
+    margin: 0 0 2px 0;
 }
 
 .barat-vignette {
@@ -1153,6 +1176,8 @@ html, body {
     border-color: rgba(225, 29, 72, 0.55);
     color: #fecdd3;
     text-shadow: 0 0 12px rgba(225, 29, 72, 0.8);
+    font-size: 0.72rem;
+    padding: 3px 14px;
 }
 
 .crimson-glow {
@@ -1161,20 +1186,24 @@ html, body {
 
 .barat-arabic-sub {
     font-family: 'Amiri', serif;
-    font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+    font-size: clamp(1rem, 2vw, 1.4rem);
     color: #fecdd3;
     letter-spacing: 2px;
     direction: rtl;
     text-shadow: 0 0 16px rgba(225, 29, 72, 0.8), 0 2px 10px #000;
-    margin-top: 2px;
-    margin-bottom: 6px;
+    margin-top: 1px;
+    margin-bottom: 4px;
 }
 
 .crimson-pill-border {
-    border-color: rgba(225, 29, 72, 0.5);
-    background: rgba(225, 29, 72, 0.15);
-    color: #ffe4e6;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(225, 29, 72, 0.2);
+    border-color: rgba(225, 29, 72, 0.6);
+    background: rgba(225, 29, 72, 0.22);
+    color: #ffffff;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), 0 0 14px rgba(225, 29, 72, 0.4);
+    font-size: clamp(0.78rem, 1.4vw, 0.92rem);
+    font-weight: 700;
+    padding: 6px 18px;
+    margin: 4px auto 6px auto;
 }
 
 /* BARAT SEQUENTIAL STORYTELLING & POP ANIMATIONS */
