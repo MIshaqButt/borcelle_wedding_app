@@ -1846,18 +1846,178 @@ html, body {
     }
 }
 
-/* 10. WALIMA COUPLE BESPOKE ARTWORK */
+/* 10. WALIMA COUPLE BESPOKE ARTWORK & FULLPAGE SHOWCASE */
+.story-slide.walima-slide {
+    overflow: hidden !important;
+    padding: clamp(8px, 1.4vh, 16px) clamp(12px, 2vw, 28px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    max-height: 100vh;
+    box-sizing: border-box;
+}
+
+.walima-overlay-content {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
+    max-height: 98vh;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+}
+
+.walima-decor {
+    filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.8));
+    animation: festiveLanternSway 3.5s infinite ease-in-out alternate;
+}
+
+.walima-top-badge-row {
+    margin-bottom: 0px;
+    transform: scale(0.92);
+}
+
+.blue-wing {
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.9), transparent);
+}
+
+/* WALIMA CALLIGRAPHY & SAPPHIRE ORBIT RINGS */
+.walima-calligraphy-container {
+    position: relative;
+    width: clamp(280px, 42vw, 440px);
+    height: 125px;
+    margin: 2px auto 4px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.walima-calligraphy-halo {
+    position: absolute;
+    width: clamp(220px, 34vw, 340px);
+    height: 110px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.45) 0%, rgba(251, 191, 36, 0.25) 50%, transparent 75%);
+    filter: blur(12px);
+    pointer-events: none;
+    animation: haloPulse 4s infinite alternate ease-in-out;
+}
+
+.sapphire-ring-1 {
+    width: clamp(260px, 38vw, 380px);
+    height: 110px;
+    border: 2px dashed rgba(56, 189, 248, 0.85);
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.5), inset 0 0 15px rgba(251, 191, 36, 0.3);
+    animation: ringOrbit 12s linear infinite;
+}
+
+.sapphire-ring-2 {
+    width: clamp(280px, 40vw, 400px);
+    height: 120px;
+    border: 1.5px dotted rgba(251, 191, 36, 0.9);
+    animation: ringOrbitReverse 16s linear infinite;
+}
+
+.sapphire-ring-3 {
+    width: clamp(300px, 44vw, 420px);
+    height: 130px;
+    border: 1px solid rgba(186, 230, 253, 0.45);
+    animation: ringOrbit 24s linear infinite reverse;
+}
+
+.walima-arabic-title {
+    font-family: var(--font-arabic);
+    font-size: clamp(2.6rem, 4.2vw, 3.8rem);
+    line-height: 1;
+    direction: rtl;
+    white-space: nowrap;
+    padding: 0 16px;
+    color: #ffd700;
+    text-shadow: 
+        0 0 1px #000,
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000,
+        0 4px 15px rgba(0, 0, 0, 0.95),
+        0 0 25px rgba(56, 189, 248, 0.9),
+        0 0 45px rgba(251, 191, 36, 0.7);
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.9));
+    animation: calligraphyGlowWalima 3s ease-in-out infinite alternate;
+    z-index: 5;
+    position: relative;
+}
+
+@keyframes calligraphyGlowWalima {
+    0% {
+        filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.75)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.9));
+        transform: scale(0.98);
+    }
+    100% {
+        filter: drop-shadow(0 0 32px rgba(56, 189, 248, 1)) drop-shadow(0 0 50px rgba(251, 191, 36, 0.8));
+        transform: scale(1.03);
+    }
+}
+
+.walima-sub-english {
+    font-family: var(--font-heading);
+    font-size: clamp(0.95rem, 1.6vw, 1.3rem);
+    letter-spacing: 5px;
+    white-space: nowrap;
+    padding: 0 10px;
+    text-transform: uppercase;
+    color: #bae6fd;
+    text-shadow: 0 0 14px rgba(56, 189, 248, 0.9), 0 2px 6px #000;
+    margin-top: 2px;
+    z-index: 2;
+}
+
+.walima-pill-border {
+    border-color: rgba(56, 189, 248, 0.7);
+    color: #bae6fd;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7), 0 0 12px rgba(56, 189, 248, 0.4);
+    padding: 4px 18px !important;
+    font-size: clamp(0.75rem, 1.3vw, 0.88rem) !important;
+    margin-bottom: 4px !important;
+}
+
+/* WALIMA CENTER FEATURE (ART FRAME & COUNTDOWN) */
+.walima-center-feature-col {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 520px;
+    margin: 2px auto 4px auto;
+}
+
 .walima-art-frame {
-    max-width: 260px;
-    margin: 6px auto 12px auto;
+    max-width: clamp(140px, 16vw, 190px);
+    margin: 0 auto 4px auto;
+    text-align: center;
 }
 
 .art-frame-glow {
-    border-radius: 20px;
+    border-radius: 18px;
     overflow: hidden;
-    border: 2px solid rgba(56, 189, 248, 0.6);
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.9), 0 0 35px rgba(56, 189, 248, 0.5);
+    border: 2px solid rgba(56, 189, 248, 0.65);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.9), 0 0 25px rgba(56, 189, 248, 0.5);
     background: #ffffff;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.art-frame-glow:hover {
+    transform: scale(1.04);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.95), 0 0 35px rgba(56, 189, 248, 0.8);
 }
 
 .walima-couple-img {
@@ -1868,13 +2028,153 @@ html, body {
 
 .art-caption-pill {
     display: inline-block;
-    margin-top: 8px;
-    font-size: 0.72rem;
+    margin-top: 4px;
+    font-size: 0.68rem;
     color: #bae6fd;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.65);
     border: 1px solid rgba(56, 189, 248, 0.4);
-    padding: 3px 14px;
+    padding: 2px 12px;
     border-radius: 20px;
+    letter-spacing: 0.5px;
+}
+
+.sapphire-countdown {
+    background: radial-gradient(circle at center, rgba(3, 18, 38, 0.9) 0%, rgba(2, 9, 20, 0.96) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.55);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.85), 0 0 20px rgba(56, 189, 248, 0.35);
+    margin: 4px auto 0 auto;
+    padding: 6px 14px;
+    width: 100%;
+    max-width: 420px;
+}
+
+.sapphire-countdown .cd-label {
+    font-size: clamp(0.65rem, 1vw, 0.75rem);
+    margin-bottom: 4px;
+    color: #bae6fd;
+}
+
+.sapphire-countdown .cd-unit {
+    padding: 3px 8px;
+    min-width: 48px;
+}
+
+.sapphire-countdown .cd-unit .val {
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    color: #bae6fd;
+}
+
+.sapphire-countdown .cd-unit .lbl {
+    font-size: 0.58rem;
+    color: #7dd3fc;
+}
+
+/* WALIMA TIMING STRIP */
+.walima-timing-strip {
+    display: flex;
+    justify-content: center;
+    gap: clamp(8px, 1.5vw, 16px);
+    margin: 4px auto 4px auto;
+    width: 90%;
+    max-width: 600px;
+}
+
+.walima-time-item {
+    background: rgba(2, 14, 30, 0.82);
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    border-radius: 12px;
+    padding: 6px 12px;
+    flex: 1;
+    min-width: 110px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.walima-time-item:hover {
+    transform: translateY(-2px) scale(1.02);
+    border-color: #38bdf8;
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.45);
+}
+
+.walima-time-item .t-icon {
+    font-size: 0.95rem;
+    margin-bottom: 1px;
+}
+
+.walima-time-item .t-hour {
+    font-size: clamp(0.72rem, 1.2vw, 0.85rem);
+    font-weight: 700;
+    color: #bae6fd;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.walima-time-item .t-name {
+    font-size: clamp(0.62rem, 1vw, 0.74rem);
+    color: #ffd700;
+    font-weight: 600;
+    margin-top: 1px;
+    white-space: nowrap;
+}
+
+/* WALIMA ACTION BUTTONS */
+.walima-actions-unified-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(8px, 1.5vw, 16px);
+    margin: 4px auto 2px auto;
+    width: 94%;
+    max-width: 620px;
+    flex-wrap: nowrap;
+}
+
+.walima-location-btn {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    border: 1px solid #bae6fd;
+    color: #ffffff !important;
+    padding: 7px 18px;
+    border-radius: 25px;
+    font-size: clamp(0.75rem, 1.2vw, 0.85rem);
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(2, 132, 199, 0.55), 0 0 12px rgba(56, 189, 248, 0.35);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.walima-location-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 22px rgba(2, 132, 199, 0.75), 0 0 20px rgba(251, 191, 36, 0.5);
+    border-color: #ffd700;
+}
+
+.walima-cal-btn {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    border: 1px solid #fef08a;
+    color: #ffffff !important;
+    padding: 7px 18px;
+    border-radius: 25px;
+    font-size: clamp(0.75rem, 1.2vw, 0.85rem);
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(217, 119, 6, 0.55), 0 0 12px rgba(250, 204, 21, 0.35);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.walima-cal-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 22px rgba(217, 119, 6, 0.75), 0 0 20px rgba(254, 240, 138, 0.5);
+    border-color: #ffffff;
 }
 
 /* 11. FULLPAGE COUNTDOWN WIDGETS (WIDE ROYAL GLASS TILES) */
