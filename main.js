@@ -82,13 +82,60 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. JUMP TO SLIDE
+    // 3. JUMP TO SLIDE & BARAT STEP CONTROLLER
     window.goToSlide = function(selector) {
         const target = document.querySelector(selector);
         if (target) {
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     };
+
+    let currentBaratStep = 1;
+    let baratAutoAdvanceTimer = null;
+
+    window.switchBaratStep = function(stepNum) {
+        currentBaratStep = stepNum;
+        
+        // Update tabs
+        document.querySelectorAll('.story-tab-btn').forEach(btn => {
+            if (parseInt(btn.getAttribute('data-step')) === stepNum) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        // Update dots
+        document.querySelectorAll('.step-dot').forEach((dot, idx) => {
+            if (idx + 1 === stepNum) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+
+        // Update stage panels with transition
+        document.querySelectorAll('.story-phase-panel').forEach((panel, idx) => {
+            if (idx + 1 === stepNum) {
+                panel.classList.add('active');
+                // Re-trigger panel animation
+                panel.style.animation = 'none';
+                void panel.offsetWidth;
+                panel.style.animation = '';
+            } else {
+                panel.classList.remove('active');
+            }
+        });
+    };
+
+    function startBaratStoryCycle() {
+        if (baratAutoAdvanceTimer) clearInterval(baratAutoAdvanceTimer);
+        baratAutoAdvanceTimer = setInterval(() => {
+            let nextStep = currentBaratStep + 1;
+            if (nextStep > 3) nextStep = 1;
+            switchBaratStep(nextStep);
+        }, 4500); // Transitions automatically every 4.5 seconds
+    }
 
     // 4. OBSERVE ACTIVE SLIDES FOR THEME COLOR SHIFTS & BARAT STORY SEQUENCE
     const slideObserver = new IntersectionObserver((entries) => {
@@ -99,21 +146,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     body.setAttribute('data-active-theme', activeTheme);
                 }
 
-                // If Barat section is entered, re-trigger the sequential pop animations
+                // If Barat section is entered, start step-by-step auto story transitions
                 if (entry.target.id === 'baratSection') {
-                    const popElements = entry.target.querySelectorAll('.pop-anim');
-                    popElements.forEach(el => {
-                        el.style.animation = 'none';
-                        // Force DOM reflow to restart animations cleanly
-                        void el.offsetWidth;
-                        el.style.animation = '';
-                    });
+                    switchBaratStep(1);
+                    startBaratStoryCycle();
+                } else if (baratAutoAdvanceTimer) {
+                    clearInterval(baratAutoAdvanceTimer);
                 }
             }
         });
     }, {
         root: container,
-        threshold: 0.5
+        threshold: 0.3
     });
 
     storySlides.forEach(slide => slideObserver.observe(slide));
