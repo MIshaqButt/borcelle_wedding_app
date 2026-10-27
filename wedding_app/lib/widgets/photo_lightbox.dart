@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../theme/app_theme.dart';
 
 class PhotoLightbox extends StatelessWidget {
@@ -13,7 +14,8 @@ class PhotoLightbox extends StatelessWidget {
     required this.caption,
   });
 
-  static void show(BuildContext context, {
+  static void show(
+    BuildContext context, {
     required String imageAsset,
     required String title,
     required String caption,
@@ -37,7 +39,7 @@ class PhotoLightbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black.withOpacity(0.95),
+      backgroundColor: Colors.black.withValues(alpha: 0.95),
       body: SafeArea(
         child: Stack(
           children: [
@@ -48,10 +50,7 @@ class PhotoLightbox extends StatelessWidget {
                 maxScale: 3.5,
                 child: Hero(
                   tag: imageAsset,
-                  child: Image.asset(
-                    imageAsset,
-                    fit: BoxFit.contain,
-                  ),
+                  child: Image.asset(imageAsset, fit: BoxFit.contain),
                 ),
               ),
             ),
@@ -72,14 +71,19 @@ class PhotoLightbox extends StatelessWidget {
               left: 20,
               right: 20,
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 14,
+                ),
                 decoration: BoxDecoration(
-                  color: AppTheme.cardDark.withOpacity(0.85),
+                  color: AppTheme.cardDark.withValues(alpha: 0.85),
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: AppTheme.gold.withOpacity(0.4)),
+                  border: Border.all(
+                    color: AppTheme.gold.withValues(alpha: 0.4),
+                  ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.6),
+                      color: Colors.black.withValues(alpha: 0.6),
                       blurRadius: 20,
                     ),
                   ],
@@ -95,7 +99,10 @@ class PhotoLightbox extends StatelessWidget {
                     const SizedBox(height: 6),
                     Text(
                       caption,
-                      style: AppTheme.bodyStyle(fontSize: 13, color: Colors.white70),
+                      style: AppTheme.bodyStyle(
+                        fontSize: 13,
+                        color: Colors.white70,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../models/wedding_model.dart';
 import '../theme/app_theme.dart';
 import '../widgets/photo_lightbox.dart';
@@ -12,7 +13,8 @@ class MehndiView extends StatefulWidget {
   State<MehndiView> createState() => _MehndiViewState();
 }
 
-class _MehndiViewState extends State<MehndiView> with SingleTickerProviderStateMixin {
+class _MehndiViewState extends State<MehndiView>
+    with SingleTickerProviderStateMixin {
   late AnimationController _pulseController;
   bool _isMusicPlaying = true;
 
@@ -34,9 +36,7 @@ class _MehndiViewState extends State<MehndiView> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: AppTheme.mehndiDarkBg,
-      ),
+      decoration: const BoxDecoration(color: AppTheme.mehndiDarkBg),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
         child: Column(
@@ -45,11 +45,16 @@ class _MehndiViewState extends State<MehndiView> with SingleTickerProviderStateM
             // Header Badge
             Center(
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
-                  color: AppTheme.mehndiAmber.withOpacity(0.2),
+                  color: AppTheme.mehndiAmber.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: AppTheme.mehndiAmber.withOpacity(0.6)),
+                  border: Border.all(
+                    color: AppTheme.mehndiAmber.withValues(alpha: 0.6),
+                  ),
                 ),
                 child: Text(
                   widget.event.dayLabel.toUpperCase(),
@@ -77,10 +82,7 @@ class _MehndiViewState extends State<MehndiView> with SingleTickerProviderStateM
             Text(
               widget.event.date,
               textAlign: TextAlign.center,
-              style: AppTheme.bodyStyle(
-                color: Colors.white70,
-                fontSize: 15,
-              ),
+              style: AppTheme.bodyStyle(color: Colors.white70, fontSize: 15),
             ),
             const SizedBox(height: 20),
 
@@ -90,17 +92,19 @@ class _MehndiViewState extends State<MehndiView> with SingleTickerProviderStateM
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    AppTheme.mehndiAmber.withOpacity(0.25),
-                    Colors.black.withOpacity(0.4),
+                    AppTheme.mehndiAmber.withValues(alpha: 0.25),
+                    Colors.black.withValues(alpha: 0.4),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: AppTheme.mehndiYellow.withOpacity(0.4)),
+                border: Border.all(
+                  color: AppTheme.mehndiYellow.withValues(alpha: 0.4),
+                ),
                 boxShadow: [
                   BoxShadow(
-                    color: AppTheme.mehndiAmber.withOpacity(0.2),
+                    color: AppTheme.mehndiAmber.withValues(alpha: 0.2),
                     blurRadius: 15,
                   ),
                 ],
@@ -112,15 +116,22 @@ class _MehndiViewState extends State<MehndiView> with SingleTickerProviderStateM
                     animation: _pulseController,
                     builder: (context, child) {
                       return Transform.scale(
-                        scale: _isMusicPlaying ? 1.0 + (_pulseController.value * 0.08) : 1.0,
+                        scale: _isMusicPlaying
+                            ? 1.0 + (_pulseController.value * 0.08)
+                            : 1.0,
                         child: Container(
                           width: 55,
                           height: 55,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            border: Border.all(color: AppTheme.mehndiYellow, width: 2),
+                            border: Border.all(
+                              color: AppTheme.mehndiYellow,
+                              width: 2,
+                            ),
                             image: const DecorationImage(
-                              image: AssetImage('assets/images/punjabi_dhol.jpg'),
+                              image: AssetImage(
+                                'assets/images/punjabi_dhol.jpg',
+                              ),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -156,7 +167,9 @@ class _MehndiViewState extends State<MehndiView> with SingleTickerProviderStateM
                   ),
                   IconButton(
                     icon: Icon(
-                      _isMusicPlaying ? Icons.pause_circle_filled : Icons.play_circle_filled,
+                      _isMusicPlaying
+                          ? Icons.pause_circle_filled
+                          : Icons.play_circle_filled,
                       color: AppTheme.mehndiYellow,
                       size: 38,
                     ),
@@ -198,7 +211,8 @@ class _MehndiViewState extends State<MehndiView> with SingleTickerProviderStateM
                   context,
                   imageAsset: 'assets/images/punjabi_dance.jpg',
                   title: 'Bhangra & Giddha Celebrations',
-                  caption: 'Joyous Punjabi dancers celebrating the Mehndi night',
+                  caption:
+                      'Joyous Punjabi dancers celebrating the Mehndi night',
                 );
               },
               child: ClipRRect(
@@ -216,7 +230,10 @@ class _MehndiViewState extends State<MehndiView> with SingleTickerProviderStateM
                       height: 80,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [Colors.transparent, Colors.black.withOpacity(0.85)],
+                          colors: [
+                            Colors.transparent,
+                            Colors.black.withValues(alpha: 0.85),
+                          ],
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                         ),
@@ -237,7 +254,10 @@ class _MehndiViewState extends State<MehndiView> with SingleTickerProviderStateM
                           ),
                           Text(
                             'Tap to view in full resolution',
-                            style: TextStyle(color: AppTheme.mehndiYellow, fontSize: 11),
+                            style: TextStyle(
+                              color: AppTheme.mehndiYellow,
+                              fontSize: 11,
+                            ),
                           ),
                         ],
                       ),
@@ -255,7 +275,8 @@ class _MehndiViewState extends State<MehndiView> with SingleTickerProviderStateM
                   context,
                   imageAsset: 'assets/images/punjabi_dhol.jpg',
                   title: 'Traditional Wedding Dholak',
-                  caption: 'Adorned with fresh marigolds and colorful silk tassels',
+                  caption:
+                      'Adorned with fresh marigolds and colorful silk tassels',
                 );
               },
               child: ClipRRect(
@@ -273,7 +294,10 @@ class _MehndiViewState extends State<MehndiView> with SingleTickerProviderStateM
                       height: 70,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [Colors.transparent, Colors.black.withOpacity(0.85)],
+                          colors: [
+                            Colors.transparent,
+                            Colors.black.withValues(alpha: 0.85),
+                          ],
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                         ),
@@ -315,16 +339,23 @@ class _MehndiViewState extends State<MehndiView> with SingleTickerProviderStateM
                 decoration: BoxDecoration(
                   color: AppTheme.cardDark,
                   borderRadius: BorderRadius.circular(14),
-                  border: Border.all(color: AppTheme.mehndiAmber.withOpacity(0.3)),
+                  border: Border.all(
+                    color: AppTheme.mehndiAmber.withValues(alpha: 0.3),
+                  ),
                 ),
                 child: Row(
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 6,
+                      ),
                       decoration: BoxDecoration(
-                        color: AppTheme.mehndiAmber.withOpacity(0.2),
+                        color: AppTheme.mehndiAmber.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: AppTheme.mehndiYellow.withOpacity(0.4)),
+                        border: Border.all(
+                          color: AppTheme.mehndiYellow.withValues(alpha: 0.4),
+                        ),
                       ),
                       child: Text(
                         item.time,
@@ -362,7 +393,7 @@ class _MehndiViewState extends State<MehndiView> with SingleTickerProviderStateM
                   ],
                 ),
               );
-            }).toList(),
+            }),
 
             const SizedBox(height: 16),
 
@@ -370,9 +401,11 @@ class _MehndiViewState extends State<MehndiView> with SingleTickerProviderStateM
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: AppTheme.mehndiAmber.withOpacity(0.12),
+                color: AppTheme.mehndiAmber.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: AppTheme.mehndiAmber.withOpacity(0.4)),
+                border: Border.all(
+                  color: AppTheme.mehndiAmber.withValues(alpha: 0.4),
+                ),
               ),
               child: Row(
                 children: [
@@ -394,7 +427,10 @@ class _MehndiViewState extends State<MehndiView> with SingleTickerProviderStateM
                         const SizedBox(height: 2),
                         Text(
                           widget.event.dressCode,
-                          style: const TextStyle(color: Colors.white, fontSize: 13),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 13,
+                          ),
                         ),
                       ],
                     ),

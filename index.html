@@ -33,26 +33,38 @@
         <div class="envelope-modal-card">
             <div class="envelope-header">
                 <div class="bismillah-gold-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-                <div class="sub-royal">ROYAL WEDDING INVITATION</div>
+                <div class="sub-royal">✦ ROYAL WEDDING INVITATION ✦</div>
+                <div class="envelope-divider">
+                    <span class="div-line"></span>
+                    <span class="div-gem">✦ ❖ ✦</span>
+                    <span class="div-line"></span>
+                </div>
             </div>
 
-            <!-- Interactive Wax Seal -->
+            <!-- Interactive Wax Seal with Orbit Ring -->
             <div class="wax-seal-wrapper" id="openEnvelopeBtn">
-                <div class="seal-glow-halo"></div>
-                <img src="./assets/images/seal.jpg" alt="I & P Gold Monogram Wax Seal" class="wax-seal-img pulse-glow">
-                <span class="seal-hint">Tap Wax Seal to Open</span>
+                <div class="seal-disc-wrap">
+                    <div class="seal-ring-orbit"></div>
+                    <img src="./assets/images/seal.jpg" alt="Muhammad & Pimra Gold Monogram Wax Seal (M & P)" class="wax-seal-img pulse-glow">
+                </div>
+                <span class="seal-hint">Tap Seal or Wait</span>
             </div>
 
             <div class="envelope-names">
-                <h1>Muhammad Ishaq</h1>
+                <h1 class="shimmer-text">Muhammad Ishaq</h1>
                 <div class="and-script">&</div>
-                <h1>Pimra Ahmad</h1>
+                <h1 class="shimmer-text">Pimra Ahmad</h1>
             </div>
 
             <div class="envelope-dates">
-                <span>20 • 21 • 22 NOVEMBER 2026</span>
+                <span>✦ 20 • 21 • 22 NOVEMBER 2026 ✦</span>
             </div>
-            <p class="envelope-subtext">Tap the wax seal above or scroll down to open</p>
+
+            <!-- Auto-Advance 2-Second Visual Progress Indicator -->
+            <div class="auto-advance-bar-wrapper">
+                <div class="auto-advance-bar" id="autoAdvanceBar"></div>
+            </div>
+            <p class="envelope-subtext">Opening celebration in 2s • Tap anywhere to enter</p>
         </div>
     </div>
 
@@ -65,25 +77,23 @@
         <section class="story-slide hero-slide" id="heroSection" data-theme="hero">
             <!-- Fullscreen Edge-to-Edge Background Artwork (Ultra HD Royal Palace) -->
             <div class="slide-background-wrap">
-                <img src="./assets/images/mughal_palace_hd.jpg" alt="Royal Mughal Palace Dusk Courtyard" class="slide-bg-img">
+                <img src="./assets/images/royal_hero_palace_bg.jpg" alt="Royal Mughal Palace Dusk Courtyard" class="slide-bg-img">
                 <div class="slide-vignette hero-vignette"></div>
             </div>
 
             <div class="slide-overlay-content hero-overlay-content">
-                <!-- Floating Arch Lanterns -->
-                <div class="hero-hanging-lantern lantern-left">🏮</div>
-                <div class="hero-hanging-lantern lantern-right">🏮</div>
-
+                <!-- Royal Bismillah Calligraphy -->
                 <div class="bismillah-gold animated-fade-down">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
                 
+                <!-- Royal Union Pill Badge -->
                 <div class="hero-header-badge animated-fade-down delay-1">
                     <span class="badge-wing left-wing"></span>
-                    <span class="royal-pill-badge">A UNION BLESSED IN HEAVEN</span>
+                    <span class="royal-pill-badge hero-pill">✦ A UNION BLESSED IN HEAVEN ✦</span>
                     <span class="badge-wing right-wing"></span>
                 </div>
 
                 <!-- Names Block with Royal Gold Gradients & Sparkle Accent -->
-                <div class="names-block hero-names-block animated-zoom-in delay-2">
+                <div class="names-block hero-names-block">
                     <h1 class="groom-title shimmer-text">Muhammad Ishaq</h1>
                     <div class="weds-script-row">
                         <span class="gold-line flex-line"></span>
@@ -96,24 +106,20 @@
                 </div>
 
                 <!-- Welcome Greeting & Parent Blessings -->
-                <p class="welcome-lead-text animated-fade-up delay-3">
+                <p class="welcome-lead-text">
                     With the grace of Almighty Allah & the cherished blessings of our parents,<br>
                     we cordially invite you to celebrate the blessed wedding union of
                 </p>
 
-                <!-- Complete Quran Ayat in Arabic & Translation (Royal Framed Card) -->
-                <div class="quran-quote-pill royal-framed-card animated-fade-up delay-4">
-                    <div class="card-corner corner-tl"></div>
-                    <div class="card-corner corner-tr"></div>
-                    <div class="card-corner corner-bl"></div>
-                    <div class="card-corner corner-br"></div>
+                <!-- Complete Quran Ayat in Arabic & Translation (Royal Glassmorphism Card) -->
+                <div class="quran-quote-pill royal-framed-card">
                     <p class="quran-arabic-text">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
                     <p class="ayah-txt">“And among His signs is that He created for you mates from among yourselves, that you may find tranquility in them; and He placed between you affection and mercy.”</p>
                     <span class="ayah-ref">— Surah Ar-Rum (30:21)</span>
                 </div>
 
                 <!-- Royal Decorative Flourish Emblem -->
-                <div class="royal-flourish-emblem animated-pulse delay-5">
+                <div class="royal-flourish-emblem">
                     <span class="flourish-line"></span>
                     <span class="flourish-symbol">❦ ✦ ❦</span>
                     <span class="flourish-line"></span>
@@ -398,57 +404,146 @@
         <!-- SLIDE 5: SAVE THE DATES & ROYAL BLESSINGS (FULLSCREEN) -->
         <!-- ======================================================== -->
         <section class="story-slide dates-slide" id="calendarSection" data-theme="hero">
-            <!-- Fullscreen Midnight Gold Background Artwork -->
+            <!-- Fullscreen Ultra-HD Royal Palace Celebration Background Artwork -->
             <div class="slide-background-wrap">
-                <img src="./assets/images/midnight_bg.jpg" alt="Midnight Gold Royal Background" class="slide-bg-img">
-                <div class="slide-vignette hero-vignette"></div>
+                <img src="./assets/images/royal_celebration_bg.jpg" alt="Royal Celebration Palace Terrace" class="slide-bg-img">
+                <div class="slide-vignette dates-vignette"></div>
             </div>
 
-            <div class="slide-overlay-content">
-                <span class="royal-pill-badge">SAVE THE DATES</span>
-                <h2 class="slide-event-title">Join Our Celebrations</h2>
+            <div class="slide-overlay-content dates-overlay-content">
+                <!-- Top Royal Badge Row -->
+                <div class="dates-top-badge-row animated-fade-down">
+                    <span class="badge-wing left-wing"></span>
+                    <span class="royal-pill-badge dates-pill">✦ SAVE THE DATES ✦</span>
+                    <span class="badge-wing right-wing"></span>
+                </div>
 
-                <!-- November 2026 Calendar -->
-                <div class="calendar-card-table">
-                    <div class="cal-month-name">NOVEMBER 2026</div>
-                    <div class="calendar-grid-cells">
+                <!-- Main Celebration Title -->
+                <h2 class="slide-event-title dates-main-title shimmer-text animated-fade-down delay-1">Join Our Celebrations</h2>
+                <p class="dates-lead-subtitle animated-fade-down delay-1">Three Blessed Days of Love, Tradition & Festivity • In Sha Allah</p>
+
+                <!-- Master Royal Calendar Card -->
+                <div class="royal-calendar-master-card">
+                    <!-- Calendar Card Header -->
+                    <div class="cal-card-header">
+                        <span class="cal-hijri-date">JUMADA AL-AWWAL 1448 AH</span>
+                        <h3 class="cal-month-title">NOVEMBER 2026</h3>
+                        <div class="cal-ornament-line">
+                            <span class="line-part"></span>
+                            <span class="gem-symbol">❦ ✦ ❦</span>
+                            <span class="line-part"></span>
+                        </div>
+                    </div>
+
+                    <!-- 7-Column Days Grid -->
+                    <div class="cal-grid-table">
                         <span class="c-head">Sun</span><span class="c-head">Mon</span><span class="c-head">Tue</span>
                         <span class="c-head">Wed</span><span class="c-head">Thu</span><span class="c-head">Fri</span><span class="c-head">Sat</span>
-                        
-                        <span class="c-day">1</span><span class="c-day">2</span><span class="c-day">3</span>
-                        <span class="c-day">4</span><span class="c-day">5</span><span class="c-day">6</span><span class="c-day">7</span>
-                        <span class="c-day">8</span><span class="c-day">9</span><span class="c-day">10</span>
-                        <span class="c-day">11</span><span class="c-day">12</span><span class="c-day">13</span><span class="c-day">14</span>
-                        <span class="c-day">15</span><span class="c-day">16</span><span class="c-day">17</span>
-                        <span class="c-day">18</span><span class="c-day">19</span>
-                        
-                        <span class="c-day highlight-yellow" onclick="goToSlide('#mehndiSection')">
-                            <strong>20</strong>
-                            <small>Mehndi</small>
-                        </span>
-                        <span class="c-day highlight-red" onclick="goToSlide('#baratSection')">
-                            <strong>21</strong>
-                            <small>Barat</small>
-                        </span>
-                        <span class="c-day highlight-blue" onclick="goToSlide('#walimaSection')">
-                            <strong>22</strong>
-                            <small>Walima</small>
-                        </span>
 
-                        <span class="c-day">23</span><span class="c-day">24</span><span class="c-day">25</span>
-                        <span class="c-day">26</span><span class="c-day">27</span><span class="c-day">28</span><span class="c-day">29</span>
-                        <span class="c-day">30</span>
+                        <!-- Week 1 -->
+                        <span class="c-day"><span class="cell-num">1</span></span>
+                        <span class="c-day"><span class="cell-num">2</span></span>
+                        <span class="c-day"><span class="cell-num">3</span></span>
+                        <span class="c-day"><span class="cell-num">4</span></span>
+                        <span class="c-day"><span class="cell-num">5</span></span>
+                        <span class="c-day"><span class="cell-num">6</span></span>
+                        <span class="c-day"><span class="cell-num">7</span></span>
+
+                        <!-- Week 2 -->
+                        <span class="c-day"><span class="cell-num">8</span></span>
+                        <span class="c-day"><span class="cell-num">9</span></span>
+                        <span class="c-day"><span class="cell-num">10</span></span>
+                        <span class="c-day"><span class="cell-num">11</span></span>
+                        <span class="c-day"><span class="cell-num">12</span></span>
+                        <span class="c-day"><span class="cell-num">13</span></span>
+                        <span class="c-day"><span class="cell-num">14</span></span>
+
+                        <!-- Week 3 -->
+                        <span class="c-day"><span class="cell-num">15</span></span>
+                        <span class="c-day"><span class="cell-num">16</span></span>
+                        <span class="c-day"><span class="cell-num">17</span></span>
+                        <span class="c-day"><span class="cell-num">18</span></span>
+                        <span class="c-day"><span class="cell-num">19</span></span>
+                        
+                        <!-- Event 1: Mehndi (Nov 20 - Friday) -->
+                        <div class="c-day event-day event-mehndi" onclick="goToSlide('#mehndiSection')" title="Rasm-e-Mehndi • Friday 20 Nov (07:00 PM)">
+                            <span class="cell-num">20</span>
+                            <span class="cell-tag">🪔 Mehndi</span>
+                        </div>
+
+                        <!-- Event 2: Barat (Nov 21 - Saturday) -->
+                        <div class="c-day event-day event-barat" onclick="goToSlide('#baratSection')" title="Royal Barat • Saturday 21 Nov (01:00 PM)">
+                            <span class="cell-num">21</span>
+                            <span class="cell-tag">👑 Barat</span>
+                        </div>
+
+                        <!-- Week 4: Event 3: Walima (Nov 22 - Sunday) -->
+                        <div class="c-day event-day event-walima" onclick="goToSlide('#walimaSection')" title="Walima Reception • Sunday 22 Nov (12:30 PM)">
+                            <span class="cell-num">22</span>
+                            <span class="cell-tag">✨ Walima</span>
+                        </div>
+
+                        <span class="c-day"><span class="cell-num">23</span></span>
+                        <span class="c-day"><span class="cell-num">24</span></span>
+                        <span class="c-day"><span class="cell-num">25</span></span>
+                        <span class="c-day"><span class="cell-num">26</span></span>
+                        <span class="c-day"><span class="cell-num">27</span></span>
+                        <span class="c-day"><span class="cell-num">28</span></span>
+
+                        <!-- Week 5 -->
+                        <span class="c-day"><span class="cell-num">29</span></span>
+                        <span class="c-day"><span class="cell-num">30</span></span>
+                    </div>
+
+                    <!-- 3 Mini Event Quick Navigator Cards -->
+                    <div class="cal-events-preview-row">
+                        <div class="cal-event-mini-card mehndi-mini" onclick="goToSlide('#mehndiSection')" title="View Mehndi Scene">
+                            <div class="mini-icon-circle amber">🪔</div>
+                            <div class="mini-card-text">
+                                <span class="mini-event-title">Rasm-e-Mehndi</span>
+                                <span class="mini-event-sub">Fri, 20 Nov • 07:00 PM</span>
+                            </div>
+                            <span class="mini-card-arrow">→</span>
+                        </div>
+
+                        <div class="cal-event-mini-card barat-mini" onclick="goToSlide('#baratSection')" title="View Barat Scene">
+                            <div class="mini-icon-circle crimson">👑</div>
+                            <div class="mini-card-text">
+                                <span class="mini-event-title">Royal Barat</span>
+                                <span class="mini-event-sub">Sat, 21 Nov • 01:00 PM</span>
+                            </div>
+                            <span class="mini-card-arrow">→</span>
+                        </div>
+
+                        <div class="cal-event-mini-card walima-mini" onclick="goToSlide('#walimaSection')" title="View Walima Scene">
+                            <div class="mini-icon-circle sapphire">✨</div>
+                            <div class="mini-card-text">
+                                <span class="mini-event-title">Walima Reception</span>
+                                <span class="mini-event-sub">Sun, 22 Nov • 12:30 PM</span>
+                            </div>
+                            <span class="mini-card-arrow">→</span>
+                        </div>
+                    </div>
+
+                    <!-- Add All Events to Calendar Action Bar Inside Master Card -->
+                    <div class="cal-card-bottom-actions">
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+Celebrations+-+Muhammad+Ishaq+%26+Pimra+Ahmad&dates=20261120T140000Z/20261122T170000Z&details=Three+Days+of+Royal+Celebrations%3A%0A%E2%80%A2+Nov+20%3A+Rasm-e-Mehndi+(07%3A00+PM)%0A%E2%80%A2+Nov+21%3A+Royal+Barat+(01%3A00+PM)%0A%E2%80%A2+Nov+22%3A+Walima+Reception+(12%3A30+PM)&location=Farooqabad%2C+Punjab" target="_blank" rel="noopener noreferrer" class="royal-btn gold-btn add-all-cal-btn">
+                            📅 Add All Celebrations to Google Calendar
+                        </a>
                     </div>
                 </div>
 
-                <!-- Footer With Closing Warm Wishes -->
-                <footer class="story-footer">
+                <!-- Footer With Closing Warm Wishes & Return To Top -->
+                <footer class="story-footer royal-dates-footer">
                     <div class="footer-seal-ring">
                         <img src="./assets/images/seal.jpg" alt="I & P Monogram" class="footer-seal-art">
                     </div>
                     <h3 class="footer-title">Awaiting Your Gracious Presence</h3>
                     <p class="footer-compliments">With Best Compliments & Heartfelt Prayers from the Families</p>
                     <p class="footer-names">Muhammad Ishaq & Pimra Ahmad • November 2026</p>
+                    <div class="back-to-top-link" onclick="goToSlide('#heroSection')">
+                        <span>▲ Return to Top</span>
+                    </div>
                 </footer>
             </div>
         </section>

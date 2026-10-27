@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../models/wedding_model.dart';
 import '../services/api_service.dart';
 import '../theme/app_theme.dart';
@@ -49,7 +50,10 @@ class _RsvpViewState extends State<RsvpView> {
   }
 
   Future<void> _launchWhatsApp(String messageText) async {
-    final cleanPhone = WeddingConfig.whatsappNumber.replaceAll(RegExp(r'[^0-9]'), '');
+    final cleanPhone = WeddingConfig.whatsappNumber.replaceAll(
+      RegExp(r'[^0-9]'),
+      '',
+    );
     final encodedMsg = Uri.encodeComponent(messageText);
     final urlString = 'https://wa.me/$cleanPhone?text=$encodedMsg';
     final uri = Uri.parse(urlString);
@@ -59,15 +63,17 @@ class _RsvpViewState extends State<RsvpView> {
         await launchUrl(uri, mode: LaunchMode.externalApplication);
       } else {
         await launchUrl(
-          Uri.parse('https://api.whatsapp.com/send?phone=$cleanPhone&text=$encodedMsg'),
+          Uri.parse(
+            'https://api.whatsapp.com/send?phone=$cleanPhone&text=$encodedMsg',
+          ),
           mode: LaunchMode.externalApplication,
         );
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Could not open WhatsApp: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Could not open WhatsApp: $e')));
       }
     }
   }
@@ -78,16 +84,17 @@ class _RsvpViewState extends State<RsvpView> {
     final notes = _notesController.text.trim();
 
     if (name.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter your name.')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Please enter your name.')));
       return;
     }
 
     setState(() => _isSubmittingRsvp = true);
 
     // Format WhatsApp RSVP
-    final waRsvpText = "🎉 *Wedding RSVP Confirmation* 💍\n"
+    final waRsvpText =
+        "🎉 *Wedding RSVP Confirmation* 💍\n"
         "Couple: *${WeddingConfig.groomName} & ${WeddingConfig.brideName}*\n\n"
         "👤 *Guest Name:* $name\n"
         "📞 *Contact:* ${phone.isNotEmpty ? phone : 'N/A'}\n"
@@ -122,7 +129,9 @@ class _RsvpViewState extends State<RsvpView> {
 
     if (name.isEmpty || msg.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please fill out your name and Dua message.')),
+        const SnackBar(
+          content: Text('Please fill out your name and Dua message.'),
+        ),
       );
       return;
     }
@@ -130,7 +139,8 @@ class _RsvpViewState extends State<RsvpView> {
     setState(() => _isSubmittingWish = true);
 
     // Format WhatsApp message
-    final waText = "🤲 *Wedding Dua & Blessings* 💍\n"
+    final waText =
+        "🤲 *Wedding Dua & Blessings* 💍\n"
         "Couple: *${WeddingConfig.groomName} & ${WeddingConfig.brideName}*\n\n"
         "👤 *From:* $name ${relation.isNotEmpty ? '($relation)' : ''}\n"
         "💌 *Dua & Blessings:*\n\"$msg\"\n\n"
@@ -158,7 +168,9 @@ class _RsvpViewState extends State<RsvpView> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           backgroundColor: Color(0xFF10B981),
-          content: Text('💚 Dua sent to WhatsApp and added to blessings stream!'),
+          content: Text(
+            '💚 Dua sent to WhatsApp and added to blessings stream!',
+          ),
         ),
       );
     }
@@ -176,9 +188,12 @@ class _RsvpViewState extends State<RsvpView> {
             // Header
             Center(
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
-                  color: AppTheme.gold.withOpacity(0.2),
+                  color: AppTheme.gold.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(color: AppTheme.gold),
                 ),
@@ -197,7 +212,10 @@ class _RsvpViewState extends State<RsvpView> {
             Text(
               'Digital RSVP & Wishes Wall',
               textAlign: TextAlign.center,
-              style: AppTheme.headingStyle(fontSize: 26, color: AppTheme.goldLight),
+              style: AppTheme.headingStyle(
+                fontSize: 26,
+                color: AppTheme.goldLight,
+              ),
             ),
             const SizedBox(height: 24),
 
@@ -207,7 +225,7 @@ class _RsvpViewState extends State<RsvpView> {
               decoration: BoxDecoration(
                 color: AppTheme.cardDark,
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: AppTheme.gold.withOpacity(0.4)),
+                border: Border.all(color: AppTheme.gold.withValues(alpha: 0.4)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -223,14 +241,27 @@ class _RsvpViewState extends State<RsvpView> {
                   ),
                   const SizedBox(height: 16),
 
-                  _buildTextField(controller: _nameController, label: 'Your Full Name / Family Name', icon: Icons.person_outline),
+                  _buildTextField(
+                    controller: _nameController,
+                    label: 'Your Full Name / Family Name',
+                    icon: Icons.person_outline,
+                  ),
                   const SizedBox(height: 12),
-                  _buildTextField(controller: _phoneController, label: 'Phone / WhatsApp Number', icon: Icons.phone_outlined, keyboardType: TextInputType.phone),
+                  _buildTextField(
+                    controller: _phoneController,
+                    label: 'Phone / WhatsApp Number',
+                    icon: Icons.phone_outlined,
+                    keyboardType: TextInputType.phone,
+                  ),
                   const SizedBox(height: 16),
 
                   const Text(
                     'Which events will you attend?',
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 13),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 13,
+                    ),
                   ),
                   const SizedBox(height: 8),
 
@@ -238,19 +269,22 @@ class _RsvpViewState extends State<RsvpView> {
                     title: 'Mehndi (Friday, 20 Nov)',
                     value: _attendingMehndi,
                     activeColor: AppTheme.mehndiYellow,
-                    onChanged: (val) => setState(() => _attendingMehndi = val ?? true),
+                    onChanged: (val) =>
+                        setState(() => _attendingMehndi = val ?? true),
                   ),
                   _buildCheckbox(
                     title: 'Barat (Saturday, 21 Nov)',
                     value: _attendingBarat,
                     activeColor: AppTheme.baratCrimson,
-                    onChanged: (val) => setState(() => _attendingBarat = val ?? true),
+                    onChanged: (val) =>
+                        setState(() => _attendingBarat = val ?? true),
                   ),
                   _buildCheckbox(
                     title: 'Walima (Sunday, 22 Nov)',
                     value: _attendingWalima,
                     activeColor: AppTheme.walimaGold,
-                    onChanged: (val) => setState(() => _attendingWalima = val ?? true),
+                    onChanged: (val) =>
+                        setState(() => _attendingWalima = val ?? true),
                   ),
                   const SizedBox(height: 14),
 
@@ -266,24 +300,42 @@ class _RsvpViewState extends State<RsvpView> {
                         decoration: BoxDecoration(
                           color: Colors.black45,
                           borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: AppTheme.gold.withOpacity(0.3)),
+                          border: Border.all(
+                            color: AppTheme.gold.withValues(alpha: 0.3),
+                          ),
                         ),
                         child: Row(
                           children: [
                             IconButton(
-                              icon: const Icon(Icons.remove, color: AppTheme.goldBright, size: 18),
+                              icon: const Icon(
+                                Icons.remove,
+                                color: AppTheme.goldBright,
+                                size: 18,
+                              ),
                               onPressed: () {
-                                if (_guestCount > 1) setState(() => _guestCount--);
+                                if (_guestCount > 1) {
+                                  setState(() => _guestCount--);
+                                }
                               },
                             ),
                             Text(
                               '$_guestCount',
-                              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
                             ),
                             IconButton(
-                              icon: const Icon(Icons.add, color: AppTheme.goldBright, size: 18),
+                              icon: const Icon(
+                                Icons.add,
+                                color: AppTheme.goldBright,
+                                size: 18,
+                              ),
                               onPressed: () {
-                                if (_guestCount < 10) setState(() => _guestCount++);
+                                if (_guestCount < 10) {
+                                  setState(() => _guestCount++);
+                                }
                               },
                             ),
                           ],
@@ -293,7 +345,12 @@ class _RsvpViewState extends State<RsvpView> {
                   ),
                   const SizedBox(height: 16),
 
-                  _buildTextField(controller: _notesController, label: 'Special notes or dietary preference', icon: Icons.notes_outlined, maxLines: 2),
+                  _buildTextField(
+                    controller: _notesController,
+                    label: 'Special notes or dietary preference',
+                    icon: Icons.notes_outlined,
+                    maxLines: 2,
+                  ),
                   const SizedBox(height: 20),
 
                   ElevatedButton.icon(
@@ -301,15 +358,30 @@ class _RsvpViewState extends State<RsvpView> {
                       backgroundColor: const Color(0xFF25D366),
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 14),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                     onPressed: _isSubmittingRsvp ? null : _handleRsvpSubmit,
                     icon: _isSubmittingRsvp
                         ? const SizedBox.shrink()
                         : const Icon(Icons.chat_outlined, color: Colors.white),
                     label: _isSubmittingRsvp
-                        ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
-                        : const Text('Confirm RSVP on WhatsApp 💬', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                        ? const SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: Colors.white,
+                            ),
+                          )
+                        : const Text(
+                            'Confirm RSVP on WhatsApp 💬',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
                   ),
                 ],
               ),
@@ -322,7 +394,7 @@ class _RsvpViewState extends State<RsvpView> {
               decoration: BoxDecoration(
                 color: AppTheme.cardDark,
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: AppTheme.gold.withOpacity(0.4)),
+                border: Border.all(color: AppTheme.gold.withValues(alpha: 0.4)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -338,11 +410,24 @@ class _RsvpViewState extends State<RsvpView> {
                   ),
                   const SizedBox(height: 14),
 
-                  _buildTextField(controller: _wisherNameController, label: 'Your Name', icon: Icons.person_outline),
+                  _buildTextField(
+                    controller: _wisherNameController,
+                    label: 'Your Name',
+                    icon: Icons.person_outline,
+                  ),
                   const SizedBox(height: 10),
-                  _buildTextField(controller: _wisherRelationController, label: 'Relation (e.g. Uncle, Cousin, Friend)', icon: Icons.family_restroom_outlined),
+                  _buildTextField(
+                    controller: _wisherRelationController,
+                    label: 'Relation (e.g. Uncle, Cousin, Friend)',
+                    icon: Icons.family_restroom_outlined,
+                  ),
                   const SizedBox(height: 10),
-                  _buildTextField(controller: _wisherMsgController, label: 'Write your Dua & congratulations...', icon: Icons.favorite_outline, maxLines: 3),
+                  _buildTextField(
+                    controller: _wisherMsgController,
+                    label: 'Write your Dua & congratulations...',
+                    icon: Icons.favorite_outline,
+                    maxLines: 3,
+                  ),
                   const SizedBox(height: 18),
 
                   ElevatedButton.icon(
@@ -350,15 +435,30 @@ class _RsvpViewState extends State<RsvpView> {
                       backgroundColor: const Color(0xFF25D366),
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 14),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                     onPressed: _isSubmittingWish ? null : _handleWishSubmit,
                     icon: _isSubmittingWish
                         ? const SizedBox.shrink()
                         : const Icon(Icons.send_rounded, color: Colors.white),
                     label: _isSubmittingWish
-                        ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
-                        : const Text('✨ Send Dua to WhatsApp', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                        ? const SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: Colors.white,
+                            ),
+                          )
+                        : const Text(
+                            '✨ Send Dua to WhatsApp',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
                   ),
                 ],
               ),
@@ -378,7 +478,9 @@ class _RsvpViewState extends State<RsvpView> {
             const SizedBox(height: 12),
 
             if (_isLoadingWishes)
-              const Center(child: CircularProgressIndicator(color: AppTheme.gold))
+              const Center(
+                child: CircularProgressIndicator(color: AppTheme.gold),
+              )
             else
               ..._wishes.map((w) {
                 return Container(
@@ -387,7 +489,9 @@ class _RsvpViewState extends State<RsvpView> {
                   decoration: BoxDecoration(
                     color: AppTheme.cardDark,
                     borderRadius: BorderRadius.circular(14),
-                    border: Border.all(color: AppTheme.gold.withOpacity(0.2)),
+                    border: Border.all(
+                      color: AppTheme.gold.withValues(alpha: 0.2),
+                    ),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -415,14 +519,17 @@ class _RsvpViewState extends State<RsvpView> {
                           ),
                           const Text(
                             '❤️ Blessings',
-                            style: TextStyle(color: Colors.white38, fontSize: 11),
+                            style: TextStyle(
+                              color: Colors.white38,
+                              fontSize: 11,
+                            ),
                           ),
                         ],
                       ),
                     ],
                   ),
                 );
-              }).toList(),
+              }),
 
             const SizedBox(height: 20),
           ],
@@ -451,7 +558,7 @@ class _RsvpViewState extends State<RsvpView> {
         fillColor: Colors.black26,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: AppTheme.gold.withOpacity(0.25)),
+          borderSide: BorderSide(color: AppTheme.gold.withValues(alpha: 0.25)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -468,7 +575,10 @@ class _RsvpViewState extends State<RsvpView> {
     required Function(bool?) onChanged,
   }) {
     return CheckboxListTile(
-      title: Text(title, style: const TextStyle(color: Colors.white70, fontSize: 13)),
+      title: Text(
+        title,
+        style: const TextStyle(color: Colors.white70, fontSize: 13),
+      ),
       value: value,
       activeColor: activeColor,
       checkColor: Colors.black,

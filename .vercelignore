@@ -1,0 +1,25 @@
+# Flutter app folder (1.6GB)
+wedding_app/
+
+# Dependencies
+node_modules/
+
+# Backend
+backend/
+
+# Video generation scripts and heavy artifacts
+video_frames/
+videos/
+theme-1-royal-mughal/
+theme-2-midnight-gold/
+theme-3-journey/
+theme-animated-reel/
+Muhammad_Ishaq_Pimra_Ahmad_Wedding_Invitation.mp4
+wedding_invitation_video.mp4
+test_chrome.png
+build_wedding_video.js
+capture_scenes.js
+
+# OS & Git
+.git/
+.DS_Store

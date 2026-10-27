@@ -16,22 +16,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
 
     let isMusicPlaying = false;
+    let autoUnlockTimer = null;
 
     // 1. WAX SEAL INTRO HANDLER
     function unlockInvitation() {
-        if (!envelopeOverlay.classList.contains('opened')) {
+        if (autoUnlockTimer) {
+            clearTimeout(autoUnlockTimer);
+            autoUnlockTimer = null;
+        }
+        if (envelopeOverlay && !envelopeOverlay.classList.contains('opened')) {
             envelopeOverlay.classList.add('opened');
             playAudioSafely();
         }
     }
 
+    // Auto move to next screen if user does not click within 2 seconds
+    autoUnlockTimer = setTimeout(() => {
+        unlockInvitation();
+    }, 2000);
+
+    // If user clicks or taps anywhere on the envelope screen, open immediately
+    if (envelopeOverlay) {
+        envelopeOverlay.addEventListener('click', () => {
+            unlockInvitation();
+        });
+    }
+
     if (openEnvelopeBtn) {
-        openEnvelopeBtn.addEventListener('click', unlockInvitation);
+        openEnvelopeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            unlockInvitation();
+        });
+    }
+
+    // Direct anchor link bypass
+    if (window.location.hash) {
+        unlockInvitation();
+        const target = document.querySelector(window.location.hash);
+        if (target && container) {
+            container.scrollTop = target.offsetTop;
+        }
     }
 
     // Scroll wheel trigger on envelope
     window.addEventListener('wheel', (e) => {
-        if (e.deltaY > 15 && !envelopeOverlay.classList.contains('opened')) {
+        if (e.deltaY > 15 && envelopeOverlay && !envelopeOverlay.classList.contains('opened')) {
             unlockInvitation();
         }
     }, { passive: true });
@@ -44,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('touchend', (e) => {
         const diff = touchStartY - e.changedTouches[0].clientY;
-        if (diff > 35 && !envelopeOverlay.classList.contains('opened')) {
+        if (diff > 30 && envelopeOverlay && !envelopeOverlay.classList.contains('opened')) {
             unlockInvitation();
         }
     }, { passive: true });
@@ -63,6 +92,17 @@ document.addEventListener('DOMContentLoaded', () => {
             musicLabel.textContent = 'Music';
         });
     }
+
+    // Ensure audio begins on first user interaction if auto-play was blocked
+    const startAudioOnInteraction = () => {
+        if (!isMusicPlaying && weddingBgAudio) {
+            playAudioSafely();
+        }
+        window.removeEventListener('click', startAudioOnInteraction);
+        window.removeEventListener('touchstart', startAudioOnInteraction);
+    };
+    window.addEventListener('click', startAudioOnInteraction, { passive: true });
+    window.addEventListener('touchstart', startAudioOnInteraction, { passive: true });
 
     if (musicToggle) {
         musicToggle.addEventListener('click', () => {
@@ -176,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (diff > 0) {
                 const days = Math.floor(diff / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const mins = Math.floor((diff % (1000 * 60)) / (1000 * 60));
+                const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const secs = Math.floor((diff % (1000 * 60)) / 1000);
 
                 widget.querySelector('.val.days').textContent = String(days).padStart(2, '0');

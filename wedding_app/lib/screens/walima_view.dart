@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../models/wedding_model.dart';
 import '../theme/app_theme.dart';
 import '../widgets/photo_lightbox.dart';
@@ -28,9 +29,12 @@ class WalimaView extends StatelessWidget {
             // Badge
             Center(
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
-                  color: AppTheme.walimaGold.withOpacity(0.2),
+                  color: AppTheme.walimaGold.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(color: AppTheme.walimaGold),
                 ),
@@ -60,10 +64,7 @@ class WalimaView extends StatelessWidget {
             Text(
               event.date,
               textAlign: TextAlign.center,
-              style: AppTheme.bodyStyle(
-                color: Colors.white70,
-                fontSize: 15,
-              ),
+              style: AppTheme.bodyStyle(color: Colors.white70, fontSize: 15),
             ),
             const SizedBox(height: 20),
 
@@ -118,14 +119,19 @@ class WalimaView extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: AppTheme.cardDark,
                   borderRadius: BorderRadius.circular(14),
-                  border: Border.all(color: AppTheme.walimaGold.withOpacity(0.3)),
+                  border: Border.all(
+                    color: AppTheme.walimaGold.withValues(alpha: 0.3),
+                  ),
                 ),
                 child: Row(
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 6,
+                      ),
                       decoration: BoxDecoration(
-                        color: AppTheme.walimaGold.withOpacity(0.2),
+                        color: AppTheme.walimaGold.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(color: AppTheme.walimaGold),
                       ),
@@ -165,7 +171,7 @@ class WalimaView extends StatelessWidget {
                   ],
                 ),
               );
-            }).toList(),
+            }),
 
             const SizedBox(height: 16),
 
@@ -176,10 +182,12 @@ class WalimaView extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: AppTheme.cardDark,
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: AppTheme.walimaGold.withOpacity(0.4)),
+                  border: Border.all(
+                    color: AppTheme.walimaGold.withValues(alpha: 0.4),
+                  ),
                   boxShadow: [
                     BoxShadow(
-                      color: AppTheme.walimaGold.withOpacity(0.15),
+                      color: AppTheme.walimaGold.withValues(alpha: 0.15),
                       blurRadius: 15,
                     ),
                   ],
@@ -205,13 +213,19 @@ class WalimaView extends StatelessWidget {
                     const SizedBox(height: 8),
                     Text(
                       event.venueName!,
-                      style: AppTheme.headingStyle(fontSize: 22, color: Colors.white),
+                      style: AppTheme.headingStyle(
+                        fontSize: 22,
+                        color: Colors.white,
+                      ),
                     ),
                     if (event.venueCity != null) ...[
                       const SizedBox(height: 4),
                       Text(
                         event.venueCity!,
-                        style: const TextStyle(color: Colors.white70, fontSize: 14),
+                        style: const TextStyle(
+                          color: Colors.white70,
+                          fontSize: 14,
+                        ),
                       ),
                     ],
                     if (event.mapUrl != null) ...[
@@ -220,12 +234,21 @@ class WalimaView extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF10B981),
                           padding: const EdgeInsets.symmetric(vertical: 14),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                         ),
-                        icon: const Icon(Icons.map_outlined, color: Colors.white),
+                        icon: const Icon(
+                          Icons.map_outlined,
+                          color: Colors.white,
+                        ),
                         label: Text(
                           'Open ${event.venueName} in Google Maps',
-                          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
                         ),
                         onPressed: () => _openGoogleMaps(event.mapUrl!),
                       ),
@@ -240,9 +263,11 @@ class WalimaView extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: AppTheme.walimaGold.withOpacity(0.12),
+                color: AppTheme.walimaGold.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: AppTheme.walimaGold.withOpacity(0.4)),
+                border: Border.all(
+                  color: AppTheme.walimaGold.withValues(alpha: 0.4),
+                ),
               ),
               child: Row(
                 children: [
@@ -264,7 +289,10 @@ class WalimaView extends StatelessWidget {
                         const SizedBox(height: 2),
                         Text(
                           event.dressCode,
-                          style: const TextStyle(color: Colors.white, fontSize: 13),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 13,
+                          ),
                         ),
                       ],
                     ),
@@ -299,10 +327,10 @@ class WalimaView extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppTheme.cardDark,
           borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: AppTheme.walimaGold.withOpacity(0.4)),
+          border: Border.all(color: AppTheme.walimaGold.withValues(alpha: 0.4)),
           boxShadow: [
             BoxShadow(
-              color: AppTheme.walimaGold.withOpacity(0.15),
+              color: AppTheme.walimaGold.withValues(alpha: 0.15),
               blurRadius: 15,
             ),
           ],
@@ -311,7 +339,9 @@ class WalimaView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ClipRRect(
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(18)),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(18),
+              ),
               child: Stack(
                 children: [
                   Image.asset(
@@ -324,9 +354,12 @@ class WalimaView extends StatelessWidget {
                     top: 12,
                     right: 12,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 4,
+                      ),
                       decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.7),
+                        color: Colors.black.withValues(alpha: 0.7),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: AppTheme.walimaGold),
                       ),
@@ -351,12 +384,19 @@ class WalimaView extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: AppTheme.headingStyle(fontSize: 18, color: Colors.white),
+                    style: AppTheme.headingStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     caption,
-                    style: const TextStyle(color: Colors.white70, fontSize: 13, height: 1.4),
+                    style: const TextStyle(
+                      color: Colors.white70,
+                      fontSize: 13,
+                      height: 1.4,
+                    ),
                   ),
                   const SizedBox(height: 6),
                   const Text(
