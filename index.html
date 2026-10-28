@@ -1,29 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Muhammad Ishaq & Pimra Ahmad | Wedding Invitation</title>
+
+    <!-- WhatsApp & Social Media Preview Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wedding-card-phi-blue.vercel.app/">
+    <meta property="og:title" content="Muhammad Ishaq & Pimra Ahmad | Royal Wedding Invitation">
+    <meta property="og:description" content="Together with their families, Muhammad Ishaq & Pimra Ahmad invite you to celebrate their Royal Wedding Celebrations. Tap to open your interactive invitation.">
+    <meta property="og:image" content="https://wedding-card-phi-blue.vercel.app/wedding_preview.jpg">
+    <meta property="og:image:secure_url" content="https://wedding-card-phi-blue.vercel.app/wedding_preview.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="1433">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Muhammad Ishaq & Pimra Ahmad | Royal Wedding Invitation">
+    <meta name="twitter:description" content="Together with their families, Muhammad Ishaq & Pimra Ahmad invite you to celebrate their Royal Wedding Celebrations. Tap to open your invitation.">
+    <meta name="twitter:image" content="https://wedding-card-phi-blue.vercel.app/wedding_preview.jpg">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Poppins:wght@300;400;500;600;700;800&family=Rozha+One&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Poppins:wght@300;400;500;600;700;800&family=Rozha+One&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=3.0">
 </head>
+
 <body data-active-theme="hero">
 
     <!-- Background Ambient Music Audio -->
     <audio id="weddingBgAudio" loop preload="auto">
+        <source src="./assets/media/music.mp3" type="audio/mpeg">
         <source src="./assets/media/wedding_music.mp4" type="audio/mp4">
     </audio>
 
-    <!-- Floating Top Minimal Audio Toggle -->
-    <button class="floating-music-btn" id="musicToggle" title="Toggle Wedding Music">
-        <div class="equalizer-bars">
-            <span></span><span></span><span></span><span></span>
-        </div>
-        <span id="musicLabel">Music</span>
-    </button>
 
     <!-- Floating Canvas Particles (Sparkles & Rose Petals) -->
     <canvas id="ambientCanvas"></canvas>
@@ -45,9 +61,10 @@
             <div class="wax-seal-wrapper" id="openEnvelopeBtn">
                 <div class="seal-disc-wrap">
                     <div class="seal-ring-orbit"></div>
-                    <img src="./assets/images/seal.jpg" alt="Muhammad & Pimra Gold Monogram Wax Seal (M & P)" class="wax-seal-img pulse-glow">
+                    <img src="./assets/images/stmp.png" alt="Pimra & Ishaq Wedding Stamp"
+                        class="wax-seal-img pulse-glow">
                 </div>
-                <span class="seal-hint">Tap Seal or Wait</span>
+                <span class="seal-hint">Tap Stamp or Wait</span>
             </div>
 
             <div class="envelope-names">
@@ -77,20 +94,14 @@
         <section class="story-slide hero-slide" id="heroSection" data-theme="hero">
             <!-- Fullscreen Edge-to-Edge Background Artwork (Ultra HD Royal Palace) -->
             <div class="slide-background-wrap">
-                <img src="./assets/images/royal_hero_palace_bg.jpg" alt="Royal Mughal Palace Dusk Courtyard" class="slide-bg-img">
+                <img src="./assets/images/royal_hero_palace_bg.jpg" alt="Royal Mughal Palace Dusk Courtyard"
+                    class="slide-bg-img">
                 <div class="slide-vignette hero-vignette"></div>
             </div>
 
             <div class="slide-overlay-content hero-overlay-content">
                 <!-- Royal Bismillah Calligraphy -->
                 <div class="bismillah-gold animated-fade-down">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-                
-                <!-- Royal Union Pill Badge -->
-                <div class="hero-header-badge animated-fade-down delay-1">
-                    <span class="badge-wing left-wing"></span>
-                    <span class="royal-pill-badge hero-pill">✦ A UNION BLESSED IN HEAVEN ✦</span>
-                    <span class="badge-wing right-wing"></span>
-                </div>
 
                 <!-- Names Block with Royal Gold Gradients & Sparkle Accent -->
                 <div class="names-block hero-names-block">
@@ -111,10 +122,10 @@
                     we cordially invite you to celebrate the blessed wedding union of
                 </p>
 
-                <!-- Complete Quran Ayat in Arabic & Translation (Royal Glassmorphism Card) -->
+                <!-- Quran Ayat in Arabic (Royal Glassmorphism Card) -->
                 <div class="quran-quote-pill royal-framed-card">
-                    <p class="quran-arabic-text">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
-                    <p class="ayah-txt">“And among His signs is that He created for you mates from among yourselves, that you may find tranquility in them; and He placed between you affection and mercy.”</p>
+                    <p class="quran-arabic-text">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا
+                        لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
                     <span class="ayah-ref">— Surah Ar-Rum (30:21)</span>
                 </div>
 
@@ -139,7 +150,8 @@
         <section class="story-slide mehndi-slide" id="mehndiSection" data-theme="mehndi">
             <!-- Fullscreen Edge-to-Edge Mehndi Background Artwork (Ultra HD 4K Stage) -->
             <div class="slide-background-wrap">
-                <img src="./assets/images/mehndi_stage_hd.jpg" alt="Royal Emerald & Gold Mehndi Stage 4K" class="slide-bg-img">
+                <img src="./assets/images/mehndi_stage_hd.jpg" alt="Royal Emerald & Gold Mehndi Stage 4K"
+                    class="slide-bg-img">
                 <div class="slide-vignette mehndi-vignette"></div>
             </div>
 
@@ -153,7 +165,7 @@
                     <span class="royal-pill-badge mehndi-pill">DAY 1 • CELEBRATION OF HINA</span>
                     <span class="badge-wing right-wing green-wing"></span>
                 </div>
-                
+
                 <!-- Glowing Golden Arabic Calligraphy with Triple Orbit Sparkles & Floral Halo -->
                 <div class="mehndi-calligraphy-container animated-zoom-in delay-1">
                     <div class="sparkle-orbit-ring ring-1"></div>
@@ -163,15 +175,21 @@
                     <div class="mehndi-arabic-title">رسمِ حنا</div>
                     <div class="mehndi-sub-english">Rasm-e-Mehndi</div>
                 </div>
-                
+
                 <div class="event-date-pill mehndi-pill-border animated-fade-up delay-2">
                     <span>🗓️ Friday, 20th November 2026 • 07:00 PM</span>
+                </div>
+
+                <!-- Venue Location Badge -->
+                <div class="event-venue-pill mehndi-venue-pill animated-fade-up delay-2">
+                    <span class="venue-main">🏡 Venue: At Home</span>
                 </div>
 
                 <!-- Center Feature: Festive Dholak & Henna Thaal Cutout & Live Countdown -->
                 <div class="mehndi-center-feature-col animated-fade-up delay-3">
                     <div class="mehndi-artwork-cutout-wrap">
-                        <img src="./assets/images/mehndi_dhol_thaal_transparent.png" alt="Mehndi Dholak & Henna Thaal" class="mehndi-cutout-img pulse-prop-anim">
+                        <img src="./assets/images/mehndi_dhol_thaal_transparent.png" alt="Mehndi Dholak & Henna Thaal"
+                            class="mehndi-cutout-img pulse-prop-anim">
                         <div class="couple-floating-hearts">
                             <span class="f-heart fh1">🌿</span>
                             <span class="f-heart fh2">✨</span>
@@ -205,8 +223,9 @@
                 </div>
 
                 <div class="slide-action-row mehndi-actions-unified-row animated-fade-up delay-5">
-                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mehndi+Celebration+-+Muhammad+Ishaq+%26+Pimra+Ahmad&dates=20261120T140000Z/20261120T180000Z&details=Mehndi+Ceremony+%26+Rasm-e-Hina+Celebration&location=Farooqabad,+Punjab" target="_blank" rel="noopener noreferrer" class="royal-btn yellow-btn">
-                        📅 Add Mehndi to Calendar
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mehndi+Celebration+-+Muhammad+Ishaq+%26+Pimra+Ahmad&dates=20261120T140000Z/20261120T180000Z&details=Mehndi+Ceremony+%26+Rasm-e-Hina+Celebration%0AVenue:+At+Home&location=At+Home"
+                        target="_blank" rel="noopener noreferrer" class="royal-btn yellow-btn">
+                        📅 Add to Calendar
                     </a>
                 </div>
 
@@ -224,7 +243,8 @@
         <section class="story-slide barat-slide" id="baratSection" data-theme="barat">
             <!-- Fullscreen Edge-to-Edge Grand Crimson & Gold Palace Ballroom (Ultra HD 4K) -->
             <div class="slide-background-wrap">
-                <img src="./assets/images/barat_stage_hd.jpg" alt="Royal Crimson Palace Barat Hall 4K" class="slide-bg-img">
+                <img src="./assets/images/barat_stage_hd.jpg" alt="Royal Crimson Palace Barat Hall 4K"
+                    class="slide-bg-img">
                 <div class="slide-vignette barat-vignette"></div>
             </div>
 
@@ -248,17 +268,25 @@
                     <div class="barat-arabic-title">بَارَات</div>
                     <div class="barat-sub-english">Barat Ceremony</div>
                 </div>
-                
+
                 <!-- Event Date Pill Matching Mehndi Page Style -->
                 <div class="event-date-pill barat-pill-border animated-fade-up delay-2">
                     <span>🗓️ Saturday, 21st November 2026 • 01:00 PM</span>
+                </div>
+
+                <!-- Venue Location Badge -->
+                <div class="event-venue-pill barat-venue-pill animated-fade-up delay-2">
+                    <span class="venue-main">📍 Koh-E-Noor Marquee</span>
+                    <span class="venue-sub">Lahore - Sargodha Rd, Farooqabad</span>
                 </div>
 
                 <!-- Center Feature: Couple Portrait & Live Countdown -->
                 <div class="barat-center-feature-col animated-fade-up delay-3">
                     <!-- Royal Couple Cutout with Transparent Background & Floating Hearts -->
                     <div class="couple-portrait-cutout-wrap">
-                        <img src="./assets/images/couple_isolated_transparent.png" alt="Muhammad Ishaq & Pimra Ahmad Wedding Portrait" class="portrait-cutout-img couple-breathing-anim">
+                        <img src="./assets/images/couple_isolated_transparent.png"
+                            alt="Muhammad Ishaq & Pimra Ahmad Wedding Portrait"
+                            class="portrait-cutout-img couple-breathing-anim">
                         <div class="couple-floating-hearts">
                             <span class="f-heart fh1">💖</span>
                             <span class="f-heart fh2">✨</span>
@@ -293,11 +321,13 @@
 
                 <!-- Unified Action Widgets Row: Location & Calendar Side-by-Side -->
                 <div class="barat-actions-unified-row animated-fade-up delay-5">
-                    <a href="https://maps.google.com/?q=Koh-e-Noor+Marquee+Farooqabad" target="_blank" rel="noopener noreferrer" class="royal-btn barat-location-btn">
-                        📍 Koh-e-Noor Hall Location
+                    <a href="https://maps.google.com/?q=Koh-E-Noor+Marquee,+Lahore+-+Sargodha+Rd,+Farooqabad"
+                        target="_blank" rel="noopener noreferrer" class="royal-btn barat-location-btn">
+                        📍 View Map
                     </a>
-                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+Barat+of+Muhammad+Ishaq+%26+Pimra+Ahmad&dates=20261121T080000Z/20261121T120000Z&details=Barat+Arrival:+1:00+PM%0ALunch:+2:30+PM%0ARukhsati:+4:30+PM%0AKoh-e-Noor+Marquee,+Farooqabad&location=Koh-e-Noor+Marquee,+Farooqabad" target="_blank" rel="noopener noreferrer" class="royal-btn barat-cal-btn">
-                        📅 Add Barat to Calendar
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+Barat+of+Muhammad+Ishaq+%26+Pimra+Ahmad&dates=20261121T080000Z/20261121T120000Z&details=Barat+Arrival:+1:00+PM%0ALunch:+2:30+PM%0ARukhsati:+4:30+PM%0AVenue:+Koh-E-Noor+Marquee,+Lahore+-+Sargodha+Rd,+Farooqabad&location=Koh-E-Noor+Marquee,+Lahore+-+Sargodha+Rd,+Farooqabad"
+                        target="_blank" rel="noopener noreferrer" class="royal-btn barat-cal-btn">
+                        📅 Add to Calendar
                     </a>
                 </div>
 
@@ -315,7 +345,8 @@
         <section class="story-slide walima-slide" id="walimaSection" data-theme="walima">
             <!-- Fullscreen Edge-to-Edge Grand Sapphire & Gold Palace Ballroom (Ultra HD 4K) -->
             <div class="slide-background-wrap">
-                <img src="./assets/images/walima_stage_hd.jpg" alt="Luxury Grand Palace Ballroom 4K" class="slide-bg-img">
+                <img src="./assets/images/walima_stage_hd.jpg" alt="Luxury Grand Palace Ballroom 4K"
+                    class="slide-bg-img">
                 <div class="slide-vignette walima-vignette"></div>
             </div>
 
@@ -340,16 +371,24 @@
                     <div class="walima-arabic-title">وَلِیمَہ</div>
                     <div class="walima-sub-english">The Walima Reception</div>
                 </div>
-                
+
                 <!-- Event Date Pill Matching Theme -->
                 <div class="event-date-pill walima-pill-border animated-fade-up delay-2">
                     <span>🗓️ Sunday, 22nd November 2026 • 12:00 PM</span>
                 </div>
 
+                <!-- Venue Location Badge -->
+                <div class="event-venue-pill walima-venue-pill animated-fade-up delay-2">
+                    <span class="venue-main">📍 Taj Mahal Marquee Banquet Hall</span>
+                    <span class="venue-sub">Kahna Nau, Lahore</span>
+                </div>
+
                 <!-- Center Feature: Couple Cutout with Transparent Background & Live Countdown -->
                 <div class="walima-center-feature-col animated-fade-up delay-3">
                     <div class="walima-couple-cutout-wrap">
-                        <img src="./assets/images/walima_couple_transparent.png" alt="Muhammad Ishaq & Pimra Ahmad Walima Couple Portrait" class="walima-couple-cutout-img couple-breathing-anim">
+                        <img src="./assets/images/walima_couple_transparent.png"
+                            alt="Muhammad Ishaq & Pimra Ahmad Walima Couple Portrait"
+                            class="walima-couple-cutout-img couple-breathing-anim">
                         <div class="couple-floating-hearts">
                             <span class="f-heart fh1">💙</span>
                             <span class="f-heart fh2">✨</span>
@@ -384,11 +423,13 @@
 
                 <!-- Unified Action Widgets Row: Location & Calendar Side-by-Side -->
                 <div class="walima-actions-unified-row animated-fade-up delay-5">
-                    <a href="https://maps.app.goo.gl/jzc4uLGz6AK82RK86" target="_blank" rel="noopener noreferrer" class="royal-btn walima-location-btn">
-                        📍 Walima Venue Location
+                    <a href="https://maps.app.goo.gl/jzc4uLGz6AK82RK86" target="_blank" rel="noopener noreferrer"
+                        class="royal-btn walima-location-btn">
+                        📍 View Map
                     </a>
-                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Walima+Reception+-+Muhammad+Ishaq+%26+Pimra+Ahmad&dates=20261122T070000Z/20261122T110000Z&details=Walima+Reception+Lunch+%26+Celebration&location=https://maps.app.goo.gl/jzc4uLGz6AK82RK86" target="_blank" rel="noopener noreferrer" class="royal-btn walima-cal-btn">
-                        📅 Add Walima to Calendar
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Walima+Reception+-+Muhammad+Ishaq+%26+Pimra+Ahmad&dates=20261122T070000Z/20261122T110000Z&details=Walima+Reception+Lunch+%26+Celebration%0AVenue:+Taj+Mahal+Marquee+Banquet+Hall+-+Kahna+Nau,+Lahore&location=Taj+Mahal+Marquee+Banquet+Hall+-+Kahna+Nau,+Lahore"
+                        target="_blank" rel="noopener noreferrer" class="royal-btn walima-cal-btn">
+                        📅 Add to Calendar
                     </a>
                 </div>
 
@@ -406,7 +447,8 @@
         <section class="story-slide dates-slide" id="calendarSection" data-theme="hero">
             <!-- Fullscreen Ultra-HD Royal Palace Celebration Background Artwork -->
             <div class="slide-background-wrap">
-                <img src="./assets/images/royal_celebration_bg.jpg" alt="Royal Celebration Palace Terrace" class="slide-bg-img">
+                <img src="./assets/images/royal_celebration_bg.jpg" alt="Royal Celebration Palace Terrace"
+                    class="slide-bg-img">
                 <div class="slide-vignette dates-vignette"></div>
             </div>
 
@@ -419,8 +461,10 @@
                 </div>
 
                 <!-- Main Celebration Title -->
-                <h2 class="slide-event-title dates-main-title shimmer-text animated-fade-down delay-1">Join Our Celebrations</h2>
-                <p class="dates-lead-subtitle animated-fade-down delay-1">Three Blessed Days of Love, Tradition & Festivity • In Sha Allah</p>
+                <h2 class="slide-event-title dates-main-title shimmer-text animated-fade-down delay-1">Join Our
+                    Celebrations</h2>
+                <p class="dates-lead-subtitle animated-fade-down delay-1">Three Blessed Days of Love, Tradition &
+                    Festivity • In Sha Allah</p>
 
                 <!-- Master Royal Calendar Card -->
                 <div class="royal-calendar-master-card">
@@ -438,7 +482,8 @@
                     <!-- 7-Column Days Grid -->
                     <div class="cal-grid-table">
                         <span class="c-head">Sun</span><span class="c-head">Mon</span><span class="c-head">Tue</span>
-                        <span class="c-head">Wed</span><span class="c-head">Thu</span><span class="c-head">Fri</span><span class="c-head">Sat</span>
+                        <span class="c-head">Wed</span><span class="c-head">Thu</span><span
+                            class="c-head">Fri</span><span class="c-head">Sat</span>
 
                         <!-- Week 1 -->
                         <span class="c-day"><span class="cell-num">1</span></span>
@@ -464,21 +509,24 @@
                         <span class="c-day"><span class="cell-num">17</span></span>
                         <span class="c-day"><span class="cell-num">18</span></span>
                         <span class="c-day"><span class="cell-num">19</span></span>
-                        
+
                         <!-- Event 1: Mehndi (Nov 20 - Friday) -->
-                        <div class="c-day event-day event-mehndi" onclick="goToSlide('#mehndiSection')" title="Rasm-e-Mehndi • Friday 20 Nov (07:00 PM)">
+                        <div class="c-day event-day event-mehndi" onclick="goToSlide('#mehndiSection')"
+                            title="Rasm-e-Mehndi • Friday 20 Nov (07:00 PM)">
                             <span class="cell-num">20</span>
                             <span class="cell-tag">🪔 Mehndi</span>
                         </div>
 
                         <!-- Event 2: Barat (Nov 21 - Saturday) -->
-                        <div class="c-day event-day event-barat" onclick="goToSlide('#baratSection')" title="Royal Barat • Saturday 21 Nov (01:00 PM)">
+                        <div class="c-day event-day event-barat" onclick="goToSlide('#baratSection')"
+                            title="Royal Barat • Saturday 21 Nov (01:00 PM)">
                             <span class="cell-num">21</span>
                             <span class="cell-tag">👑 Barat</span>
                         </div>
 
                         <!-- Week 4: Event 3: Walima (Nov 22 - Sunday) -->
-                        <div class="c-day event-day event-walima" onclick="goToSlide('#walimaSection')" title="Walima Reception • Sunday 22 Nov (12:30 PM)">
+                        <div class="c-day event-day event-walima" onclick="goToSlide('#walimaSection')"
+                            title="Walima Reception • Sunday 22 Nov (12:30 PM)">
                             <span class="cell-num">22</span>
                             <span class="cell-tag">✨ Walima</span>
                         </div>
@@ -497,29 +545,35 @@
 
                     <!-- 3 Mini Event Quick Navigator Cards -->
                     <div class="cal-events-preview-row">
-                        <div class="cal-event-mini-card mehndi-mini" onclick="goToSlide('#mehndiSection')" title="View Mehndi Scene">
+                        <div class="cal-event-mini-card mehndi-mini" onclick="goToSlide('#mehndiSection')"
+                            title="View Mehndi Scene">
                             <div class="mini-icon-circle amber">🪔</div>
                             <div class="mini-card-text">
                                 <span class="mini-event-title">Rasm-e-Mehndi</span>
                                 <span class="mini-event-sub">Fri, 20 Nov • 07:00 PM</span>
+                                <span class="mini-event-loc">🏡 At Home</span>
                             </div>
                             <span class="mini-card-arrow">→</span>
                         </div>
 
-                        <div class="cal-event-mini-card barat-mini" onclick="goToSlide('#baratSection')" title="View Barat Scene">
+                        <div class="cal-event-mini-card barat-mini" onclick="goToSlide('#baratSection')"
+                            title="View Barat Scene">
                             <div class="mini-icon-circle crimson">👑</div>
                             <div class="mini-card-text">
                                 <span class="mini-event-title">Royal Barat</span>
                                 <span class="mini-event-sub">Sat, 21 Nov • 01:00 PM</span>
+                                <span class="mini-event-loc">📍 Koh-E-Noor Marquee</span>
                             </div>
                             <span class="mini-card-arrow">→</span>
                         </div>
 
-                        <div class="cal-event-mini-card walima-mini" onclick="goToSlide('#walimaSection')" title="View Walima Scene">
+                        <div class="cal-event-mini-card walima-mini" onclick="goToSlide('#walimaSection')"
+                            title="View Walima Scene">
                             <div class="mini-icon-circle sapphire">✨</div>
                             <div class="mini-card-text">
                                 <span class="mini-event-title">Walima Reception</span>
                                 <span class="mini-event-sub">Sun, 22 Nov • 12:30 PM</span>
+                                <span class="mini-event-loc">📍 Taj Mahal Marquee</span>
                             </div>
                             <span class="mini-card-arrow">→</span>
                         </div>
@@ -527,7 +581,8 @@
 
                     <!-- Add All Events to Calendar Action Bar Inside Master Card -->
                     <div class="cal-card-bottom-actions">
-                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+Celebrations+-+Muhammad+Ishaq+%26+Pimra+Ahmad&dates=20261120T140000Z/20261122T170000Z&details=Three+Days+of+Royal+Celebrations%3A%0A%E2%80%A2+Nov+20%3A+Rasm-e-Mehndi+(07%3A00+PM)%0A%E2%80%A2+Nov+21%3A+Royal+Barat+(01%3A00+PM)%0A%E2%80%A2+Nov+22%3A+Walima+Reception+(12%3A30+PM)&location=Farooqabad%2C+Punjab" target="_blank" rel="noopener noreferrer" class="royal-btn gold-btn add-all-cal-btn">
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+Celebrations+-+Muhammad+Ishaq+%26+Pimra+Ahmad&dates=20261120T140000Z/20261122T170000Z&details=Three+Days+of+Royal+Celebrations%3A%0A%E2%80%A2+Nov+20%3A+Rasm-e-Mehndi+(07%3A00+PM)+-+At+Home%0A%E2%80%A2+Nov+21%3A+Royal+Barat+(01%3A00+PM)+-+Koh-E-Noor+Marquee%2C+Farooqabad%0A%E2%80%A2+Nov+22%3A+Walima+Reception+(12%3A30+PM)+-+Taj+Mahal+Marquee%2C+Lahore&location=Punjab%2C+Pakistan"
+                            target="_blank" rel="noopener noreferrer" class="royal-btn gold-btn add-all-cal-btn">
                             📅 Add All Celebrations to Google Calendar
                         </a>
                     </div>
@@ -551,6 +606,7 @@
     </main>
 
     <!-- App JavaScript -->
-    <script src="main.js"></script>
+    <script src="main.js?v=3.0"></script>
 </body>
+
 </html>

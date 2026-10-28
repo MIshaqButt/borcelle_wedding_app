@@ -69,7 +69,7 @@ class WeddingConfig {
       'An auspicious evening filled with fragrant henna, lively dholak rhythms, and cheerful celebrations.';
   static const String mehndiDressCode =
       'Marigold Yellow, Parrot Green & Festive Florals';
-  static const String mehndiVenueName = 'Royal Palace Hall';
+  static const String mehndiVenueName = 'At Home';
   static const String mehndiVenueCity = 'Farooqabad, Punjab';
   static const String mehndiMapUrl =
       'https://maps.app.goo.gl/Uty8hrCb7oQ5rmFr6';
@@ -114,9 +114,9 @@ class WeddingConfig {
       'Royal Sherwanis, Crimson Lehengas & Formal Attire';
 
   // Venue & Google Maps Navigation
-  static const String baratVenueName = 'Koh-e-Noor Marquee';
-  static const String baratVenueCity = 'Farooqabad, Punjab, Pakistan';
-  static const String baratMapUrl = 'https://maps.app.goo.gl/Uty8hrCb7oQ5rmFr6';
+  static const String baratVenueName = 'Koh-E-Noor Marquee';
+  static const String baratVenueCity = 'Lahore - Sargodha Rd, Farooqabad';
+  static const String baratMapUrl = 'https://maps.google.com/?q=Koh-E-Noor+Marquee,+Lahore+-+Sargodha+Rd,+Farooqabad';
 
   // Detailed Timetable
   static final List<EventScheduleItem> baratSchedule = [
@@ -185,10 +185,11 @@ class WeddingConfig {
       'Pastel Champagne, Tuxedos & Elegant Maxi Formals';
 
   // Venue & Google Maps Navigation
-  static const String walimaVenueName = 'Koh-e-Noor Marquee (Grand Ballroom)';
-  static const String walimaVenueCity = 'Farooqabad, Punjab, Pakistan';
+  static const String walimaVenueName =
+      'Taj Mahal Marquee Banquet Hall';
+  static const String walimaVenueCity = 'Kahna Nau, Lahore, Pakistan';
   static const String walimaMapUrl =
-      'https://maps.app.goo.gl/Uty8hrCb7oQ5rmFr6';
+      'https://maps.app.goo.gl/jzc4uLGz6AK82RK86';
 
   // Detailed Timetable
   static final List<EventScheduleItem> walimaSchedule = [

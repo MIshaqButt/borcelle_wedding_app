@@ -153,28 +153,31 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
-                style: TextStyle(
-                  color: AppTheme.goldLight,
-                  fontSize: 13,
-                  fontWeight: FontWeight.bold,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
+                  style: TextStyle(
+                    color: AppTheme.goldLight,
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 2),
-              const Text(
-                'COUNTDOWN TO BARAT (21 NOV 2026)',
-                style: TextStyle(
-                  color: Colors.white54,
-                  fontSize: 10,
-                  letterSpacing: 1,
+                const SizedBox(height: 2),
+                const Text(
+                  'COUNTDOWN TO BARAT (21 NOV 2026)',
+                  style: TextStyle(
+                    color: Colors.white54,
+                    fontSize: 10,
+                    letterSpacing: 1,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
+          const SizedBox(width: 8),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             decoration: BoxDecoration(

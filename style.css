@@ -243,8 +243,8 @@ body {
 
 .seal-disc-wrap {
     position: relative;
-    width: 108px;
-    height: 108px;
+    width: 116px;
+    height: 116px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -255,10 +255,10 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 124px;
-    height: 124px;
+    width: 132px;
+    height: 132px;
     border-radius: 50%;
-    border: 1px dashed rgba(255, 215, 0, 0.55);
+    border: 1.5px dashed rgba(255, 215, 0, 0.55);
     animation: orbitRotate 16s linear infinite;
     pointer-events: none;
 }
@@ -269,17 +269,18 @@ body {
 }
 
 .wax-seal-img {
-    width: 104px;
-    height: 104px;
+    width: 112px;
+    height: 112px;
     border-radius: 50%;
-    border: 2.5px solid var(--gold-bright);
+    border: 2px solid var(--gold-bright);
+    background: #ffffff;
     box-shadow: 0 14px 40px rgba(0, 0, 0, 0.9), 
-                0 0 35px rgba(212, 175, 55, 0.65), 
-                inset 0 0 16px rgba(255, 235, 150, 0.45);
+                0 0 35px rgba(212, 175, 55, 0.65);
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     z-index: 2;
     display: block;
+    object-fit: cover;
 }
 
 .wax-seal-wrapper:hover .wax-seal-img {
@@ -388,6 +389,7 @@ body {
 .fullscreen-story-container {
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
@@ -398,7 +400,11 @@ body {
 .story-slide {
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     min-height: 100vh;
+    min-height: 100dvh;
+    max-height: 100vh;
+    max-height: 100dvh;
     scroll-snap-align: start;
     scroll-snap-stop: always;
     position: relative;
@@ -406,7 +412,8 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    padding: clamp(12px, 2.5vh, 28px) clamp(16px, 3vw, 36px);
+    padding: clamp(8px, 1.8vh, 24px) clamp(12px, 2.5vw, 28px);
+    box-sizing: border-box;
 }
 
 /* BACKGROUND IMAGE LAYER THAT FILLS 100% OF THE SCREEN */
@@ -475,28 +482,33 @@ body {
     position: relative;
     z-index: 10;
     max-width: 1200px;
-    width: 94%;
+    width: 96%;
+    height: 100%;
+    max-height: 100%;
     margin: 0 auto;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: clamp(16px, 3vh, 32px) clamp(16px, 3vw, 36px);
+    justify-content: space-evenly;
+    padding: clamp(6px, 1.2vh, 18px) clamp(10px, 2.5vw, 24px);
+    box-sizing: border-box;
 }
 
 .hero-overlay-content {
     max-width: 1280px;
     width: 96%;
-    padding-top: clamp(25px, 5vh, 45px);
-    padding-bottom: clamp(20px, 4vh, 40px);
+    padding-top: clamp(14px, 2.5vh, 28px);
+    padding-bottom: clamp(12px, 2vh, 24px);
 }
 
-.mehndi-overlay-content {
+.mehndi-overlay-content,
+.barat-overlay-content,
+.walima-overlay-content {
     max-width: 1200px;
     width: 96%;
-    padding: 8px 16px;
-    justify-content: center;
+    padding: 4px 10px;
+    justify-content: space-evenly;
 }
 
 /* TEXT ANIMATIONS & ENTRANCE EFFECTS */
@@ -717,11 +729,67 @@ body {
     font-weight: 600;
     padding: 8px 26px;
     border-radius: 30px;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
     background: rgba(5, 5, 10, 0.72);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.25);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+}
+
+.event-venue-pill {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    padding: 5px 18px;
+    border-radius: 20px;
+    margin-bottom: 6px;
+    background: rgba(10, 10, 18, 0.92);
+    backdrop-filter: blur(16px);
+    max-width: 90%;
+    text-align: center;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.75);
+    transition: transform 0.3s ease;
+    box-sizing: border-box;
+}
+
+.event-venue-pill .venue-main {
+    font-size: clamp(0.78rem, 1.4vw, 0.92rem);
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: inherit;
+    line-height: 1.25;
+}
+
+.event-venue-pill .venue-sub {
+    font-size: clamp(0.68rem, 1.1vw, 0.76rem);
+    font-weight: 500;
+    opacity: 0.9;
+    color: inherit;
+    line-height: 1.2;
+}
+
+.event-venue-pill:hover {
+    transform: translateY(-2px);
+}
+
+.mehndi-venue-pill {
+    border: 1px solid rgba(251, 191, 36, 0.85);
+    color: #fef08a !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.7), 0 0 16px rgba(245, 158, 11, 0.35);
+}
+
+.barat-venue-pill {
+    border: 1px solid rgba(244, 63, 94, 0.85);
+    color: #fff1f2 !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.7), 0 0 16px rgba(225, 29, 72, 0.35);
+}
+
+.walima-venue-pill {
+    border: 1px solid rgba(56, 189, 248, 0.85);
+    color: #f0f9ff !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.7), 0 0 16px rgba(56, 189, 248, 0.35);
 }
 
 .yellow-pill-border {
@@ -960,22 +1028,22 @@ body {
     background: linear-gradient(155deg, rgba(20, 16, 32, 0.72), rgba(9, 7, 16, 0.82));
     backdrop-filter: blur(18px) saturate(180%);
     border: 1.5px solid rgba(212, 175, 55, 0.45);
-    border-radius: 22px;
-    padding: clamp(14px, 2vh, 22px) clamp(18px, 3vw, 36px);
-    max-width: 820px;
-    width: 94%;
-    margin: 8px auto 14px auto;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85),
-        0 0 30px rgba(212, 175, 55, 0.18),
+    border-radius: 20px;
+    padding: clamp(10px, 1.6vh, 16px) clamp(16px, 2.6vw, 30px);
+    max-width: 780px;
+    width: 92%;
+    margin: 4px auto 8px auto;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85),
+        0 0 25px rgba(212, 175, 55, 0.16),
         inset 0 0 15px rgba(212, 175, 55, 0.06);
 }
 
 .quran-arabic-text {
     font-family: var(--font-arabic);
-    font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+    font-size: clamp(1.25rem, 2.3vw, 1.85rem);
     color: var(--gold-light);
-    margin-bottom: 8px;
-    line-height: 1.7;
+    margin-bottom: 4px;
+    line-height: 1.6;
     direction: rtl;
     text-shadow: 0 0 18px rgba(250, 225, 156, 0.75), 0 2px 8px #000;
 }
@@ -1826,7 +1894,7 @@ body {
     margin: 4px auto 2px auto;
     width: 94%;
     max-width: 620px;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 
 .barat-location-btn {
@@ -2633,7 +2701,7 @@ body {
     margin: 4px auto 2px auto;
     width: 94%;
     max-width: 620px;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 
 .walima-location-btn {
@@ -3127,7 +3195,7 @@ body {
     border: 1.5px solid rgba(212, 175, 55, 0.55);
     border-radius: 22px;
     padding: clamp(12px, 1.8vh, 18px) clamp(14px, 2.2vw, 24px);
-    max-width: 620px;
+    max-width: 680px;
     width: 100%;
     margin: 4px auto 8px auto;
     position: relative;
@@ -3404,6 +3472,16 @@ body {
     white-space: nowrap;
 }
 
+.mini-event-loc {
+    font-size: 0.62rem;
+    color: #fef08a;
+    font-weight: 500;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-top: 1px;
+}
+
 .mini-card-arrow {
     margin-left: auto;
     font-size: 0.75rem;
@@ -3548,44 +3626,345 @@ body {
 }
 
 /* 14. RESPONSIVE FOR MOBILE VIEWPORTS */
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-height: 800px) {
+    /* Fast entrance on mobile so user never waits for delayed buttons */
+    .animated-fade-down,
+    .animated-fade-up,
+    .animated-zoom-in,
+    .delay-1, .delay-2, .delay-3, .delay-4, .delay-5 {
+        animation-delay: 0.05s !important;
+        animation-duration: 0.6s !important;
+    }
+
     .slide-event-title {
-        font-size: 2.2rem;
+        font-size: clamp(1.8rem, 4vh, 2.3rem);
     }
 
     .groom-title,
     .bride-title {
-        font-size: 2rem;
+        font-size: clamp(1.9rem, 4.5vh, 2.5rem);
     }
 
-    .event-timing-strip {
-        flex-direction: column;
-        align-items: center;
-        gap: 6px;
+    .bismillah-gold {
+        font-size: clamp(1.8rem, 4vh, 2.4rem);
+        margin-bottom: 2px;
+    }
+
+    .welcome-lead-text {
+        font-size: 0.8rem;
+        line-height: 1.45;
+        margin: 4px auto 6px auto;
+        max-width: 90%;
+    }
+
+    /* Keep Arabic Calligraphy proportioned on mobile */
+    .barat-arabic-title,
+    .mehndi-arabic-title,
+    .walima-arabic-title {
+        font-size: clamp(2rem, 4.5vh, 2.8rem);
+        margin-bottom: 0;
+    }
+
+    .barat-sub-english,
+    .mehndi-sub-english,
+    .walima-sub-english {
+        font-size: 0.78rem;
+        margin-top: 1px;
+    }
+
+    /* Compact Date & Venue Pills on Mobile */
+    .event-date-pill {
+        font-size: 0.78rem;
+        padding: 4px 14px;
+        margin-bottom: 3px;
+        border-radius: 20px;
+    }
+
+    .event-venue-pill {
+        font-size: 0.75rem;
+        padding: 4px 14px;
+        margin-bottom: 3px;
+        max-width: 95%;
+        border-radius: 20px;
+        line-height: 1.25;
+    }
+
+    /* Compact Cutout Props & Portraits so they never push content down */
+    .couple-portrait-cutout-wrap,
+    .walima-couple-cutout-wrap,
+    .mehndi-artwork-cutout-wrap {
+        max-width: clamp(85px, 12vh, 120px);
+        margin: 0 auto 2px auto;
+    }
+
+    /* Compact Countdown Box */
+    .slide-countdown-box {
+        padding: 3px 8px;
+        margin: 2px auto 3px auto;
+        max-width: 320px;
+        width: 95%;
+    }
+
+    .cd-label {
+        font-size: 0.62rem;
+        margin-bottom: 2px;
+        letter-spacing: 0.5px;
+    }
+
+    .cd-flex {
+        gap: 5px;
+    }
+
+    .cd-unit {
+        padding: 2px 5px;
+        min-width: 38px;
+        border-radius: 6px;
+    }
+
+    .cd-unit .val {
+        font-size: 0.95rem;
+    }
+
+    .cd-unit .lbl {
+        font-size: 0.55rem;
+    }
+
+    /* CRITICAL FIX: Keep timing strip items in a single horizontal row on mobile */
+    .event-timing-strip,
+    .barat-timing-strip,
+    .mehndi-timing-strip,
+    .walima-timing-strip {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center;
+        align-items: stretch;
+        gap: 8px;
+        width: 100%;
+        max-width: 360px;
+        margin: 2px auto 4px auto;
     }
 
     .time-item {
-        max-width: 260px;
+        flex: 1 1 0;
+        min-width: 0;
+        max-width: none;
+        padding: 4px 8px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .time-item .t-icon {
+        font-size: 0.95rem;
+    }
+
+    .time-item .t-hour {
+        font-size: 0.8rem;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    .time-item .t-name {
+        font-size: 0.68rem;
+        white-space: nowrap;
+    }
+
+    /* CRITICAL FIX: Unified Action Buttons Row with no horizontal clipping */
+    .barat-actions-unified-row,
+    .walima-actions-unified-row,
+    .mehndi-actions-unified-row,
+    .slide-action-row {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
         width: 100%;
-        padding: 6px 12px;
+        max-width: 360px;
+        padding: 0 4px;
+        margin: 3px auto 0 auto;
+        box-sizing: border-box;
+    }
+
+    .barat-location-btn,
+    .walima-location-btn,
+    .barat-cal-btn,
+    .walima-cal-btn,
+    .yellow-btn,
+    .royal-btn {
+        flex: 1 1 0;
+        min-width: 0;
+        padding: 7px 8px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        border-radius: 20px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        box-sizing: border-box;
+    }
+
+    /* Hanging lanterns */
+    .festive-hanging-decor {
+        font-size: 1.1rem;
+        top: 6px;
+    }
+
+    /* Scroll down hint */
+    .scroll-down-hint {
+        margin-top: 2px;
+        padding-bottom: 2px;
+    }
+
+    .hint-text {
+        font-size: 0.65rem;
+        letter-spacing: 0.5px;
+    }
+
+    .bounce-arrow {
+        font-size: 0.75rem;
+        margin-top: 1px;
     }
 
     /* Royal Calendar Mobile Optimizations */
     .royal-calendar-master-card {
-        padding: 10px 10px;
-        border-radius: 16px;
+        padding: 8px 8px;
+        border-radius: 14px;
+        max-width: 360px;
+        width: 96%;
+    }
+
+    .cal-month-title {
+        font-size: 1.1rem;
+    }
+
+    .cal-hijri-date {
+        font-size: 0.65rem;
+    }
+
+    .cal-grid-table {
+        gap: 2px;
+    }
+
+    .c-head {
+        font-size: 0.68rem;
+        padding: 2px 0;
+    }
+
+    .c-day {
+        min-height: 28px;
+        font-size: 0.78rem;
+    }
+
+    .cell-tag {
+        font-size: 0.52rem;
+        padding: 1px 3px;
     }
 
     .cal-events-preview-row {
         grid-template-columns: 1fr;
-        gap: 6px;
+        gap: 4px;
+        margin-top: 6px;
     }
 
     .cal-event-mini-card {
-        padding: 5px 8px;
+        padding: 4px 8px;
+    }
+
+    .mini-event-title {
+        font-size: 0.75rem;
+    }
+
+    .mini-event-sub {
+        font-size: 0.65rem;
+    }
+
+    .mini-event-loc {
+        font-size: 0.65rem;
+        color: #fef08a;
+        margin-top: 1px;
+    }
+
+    .add-all-cal-btn {
+        padding: 6px 12px;
+        font-size: 0.74rem;
     }
 
     .dates-lead-subtitle {
         display: none;
+    }
+
+    .story-footer {
+        padding: 12px 10px 8px 10px;
+    }
+
+    .footer-title {
+        font-size: 1.25rem;
+    }
+
+    .footer-compliments,
+    .footer-names {
+        font-size: 0.72rem;
+    }
+}
+
+/* Extra Compact Screens (e.g. iPhone SE 667px height) */
+@media (max-height: 720px) {
+    .c-day {
+        min-height: 23px;
+        font-size: 0.72rem;
+    }
+
+    .cell-tag {
+        font-size: 0.48rem;
+        padding: 0 2px;
+    }
+
+    .cal-event-mini-card {
+        padding: 3px 6px;
+    }
+
+    .mini-event-title {
+        font-size: 0.7rem;
+    }
+
+    .mini-event-sub,
+    .mini-event-loc {
+        font-size: 0.58rem;
+    }
+
+    .cal-card-bottom-actions {
+        margin-top: 4px;
+        padding-top: 4px;
+    }
+
+    .add-all-cal-btn {
+        padding: 4px 10px;
+        font-size: 0.68rem;
+    }
+
+    .story-footer {
+        padding: 6px 10px 4px 10px;
+    }
+
+    .footer-seal-art {
+        width: 36px;
+        height: 36px;
+        margin-bottom: 2px;
+    }
+
+    .footer-title {
+        font-size: 1.05rem;
+    }
+
+    .footer-compliments,
+    .footer-names {
+        font-size: 0.65rem;
     }
 }

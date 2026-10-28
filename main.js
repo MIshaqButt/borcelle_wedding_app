@@ -53,8 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.location.hash) {
         unlockInvitation();
         const target = document.querySelector(window.location.hash);
-        if (target && container) {
-            container.scrollTop = target.offsetTop;
+        if (target) {
+            setTimeout(() => {
+                target.scrollIntoView({ behavior: 'auto', block: 'start' });
+            }, 100);
         }
     }
 
@@ -84,12 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
         weddingBgAudio.volume = 0.5;
         weddingBgAudio.play().then(() => {
             isMusicPlaying = true;
-            musicToggle.classList.add('playing');
-            musicLabel.textContent = 'Playing';
+            if (musicToggle) musicToggle.classList.add('playing');
+            if (musicLabel) musicLabel.textContent = 'Playing';
         }).catch(() => {
             isMusicPlaying = false;
-            musicToggle.classList.remove('playing');
-            musicLabel.textContent = 'Music';
+            if (musicToggle) musicToggle.classList.remove('playing');
+            if (musicLabel) musicLabel.textContent = 'Music';
         });
     }
 
