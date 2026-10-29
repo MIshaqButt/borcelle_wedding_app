@@ -367,7 +367,7 @@ body {
     background: linear-gradient(90deg, #d4af37 0%, #fff0a0 50%, #ffd700 100%);
     border-radius: 6px;
     box-shadow: 0 0 12px #ffd700;
-    animation: autoAdvanceFill 2s linear forwards;
+    animation: autoAdvanceFill 10s linear forwards;
 }
 
 @keyframes autoAdvanceFill {
@@ -414,6 +414,17 @@ body {
     overflow: hidden;
     padding: clamp(8px, 1.8vh, 24px) clamp(12px, 2.5vw, 28px);
     box-sizing: border-box;
+    contain: layout paint;
+}
+
+/* Pause all infinite CSS animations on off-screen slides & closed modal to free GPU/CPU */
+.story-slide:not(.is-active) *,
+.story-slide:not(.is-active) *::before,
+.story-slide:not(.is-active) *::after,
+.royal-envelope-overlay.opened *,
+.royal-envelope-overlay.opened *::before,
+.royal-envelope-overlay.opened *::after {
+    animation-play-state: paused !important;
 }
 
 /* BACKGROUND IMAGE LAYER THAT FILLS 100% OF THE SCREEN */
@@ -433,7 +444,7 @@ body {
     object-fit: cover;
     object-position: center;
     display: block;
-    transform: scale(1.04);
+    transform: scale(1.04) translateZ(0);
     animation: gentleDrift 20s infinite alternate ease-in-out;
 }
 

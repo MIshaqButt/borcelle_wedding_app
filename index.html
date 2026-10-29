@@ -23,23 +23,40 @@
     <meta name="twitter:description" content="Together with their families, Muhammad Ishaq & Pimra Ahmad invite you to celebrate their Royal Wedding Celebrations. Tap to open your invitation.">
     <meta name="twitter:image" content="https://wedding-card-phi-blue.vercel.app/wedding_preview.jpg">
 
-    <!-- Google Fonts -->
+    <!-- Preload Critical Above-the-Fold Images -->
+    <link rel="preload" as="image" href="./assets/images/stmp.webp" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" href="./assets/images/royal_hero_palace_bg.webp" type="image/webp" fetchpriority="high">
+
+    <!-- Google Fonts (Non-Blocking Render) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Poppins:wght@300;400;500;600;700;800&family=Rozha+One&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=3.0">
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Poppins:wght@300;400;500;600;700;800&family=Rozha+One&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap"
+            rel="stylesheet">
+    </noscript>
+    <link rel="stylesheet" href="style.css?v=4.1">
 </head>
 
 <body data-active-theme="hero">
 
     <!-- Background Ambient Music Audio -->
-    <audio id="weddingBgAudio" loop preload="auto">
+    <audio id="weddingBgAudio" autoplay loop preload="auto" playsinline>
+        <source src="./assets/media/music_fast.m4a" type="audio/mp4">
         <source src="./assets/media/music.mp3" type="audio/mpeg">
         <source src="./assets/media/wedding_music.mp4" type="audio/mp4">
     </audio>
 
+    <!-- Floating Top Minimal Audio Toggle -->
+    <button class="floating-music-btn" id="musicToggle" type="button" aria-label="Toggle Wedding Music" title="Toggle Wedding Music">
+        <div class="equalizer-bars">
+            <span></span><span></span><span></span><span></span>
+        </div>
+        <span id="musicLabel">Tap for Music</span>
+    </button>
 
     <!-- Floating Canvas Particles (Sparkles & Rose Petals) -->
     <canvas id="ambientCanvas"></canvas>
@@ -61,7 +78,8 @@
             <div class="wax-seal-wrapper" id="openEnvelopeBtn">
                 <div class="seal-disc-wrap">
                     <div class="seal-ring-orbit"></div>
-                    <img src="./assets/images/stmp.png" alt="Pimra & Ishaq Wedding Stamp"
+                    <img src="./assets/images/stmp.webp" alt="Pimra & Ishaq Wedding Stamp"
+                        width="112" height="112" fetchpriority="high" decoding="async"
                         class="wax-seal-img pulse-glow">
                 </div>
                 <span class="seal-hint">Tap Stamp or Wait</span>
@@ -77,11 +95,11 @@
                 <span>✦ 20 • 21 • 22 NOVEMBER 2026 ✦</span>
             </div>
 
-            <!-- Auto-Advance 2-Second Visual Progress Indicator -->
+            <!-- Auto-Advance 10-Second Visual Progress Indicator -->
             <div class="auto-advance-bar-wrapper">
                 <div class="auto-advance-bar" id="autoAdvanceBar"></div>
             </div>
-            <p class="envelope-subtext">Opening celebration in 2s • Tap anywhere to enter</p>
+            <p class="envelope-subtext">Opening celebration in <span id="autoOpenCountdown">10</span>s • Tap anywhere to enter</p>
         </div>
     </div>
 
@@ -91,10 +109,11 @@
         <!-- ======================================================== -->
         <!-- SLIDE 1: ROYAL HERO & MEET THE COUPLE (FULL BLEED) -->
         <!-- ======================================================== -->
-        <section class="story-slide hero-slide" id="heroSection" data-theme="hero">
+        <section class="story-slide hero-slide is-active" id="heroSection" data-theme="hero">
             <!-- Fullscreen Edge-to-Edge Background Artwork (Ultra HD Royal Palace) -->
             <div class="slide-background-wrap">
-                <img src="./assets/images/royal_hero_palace_bg.jpg" alt="Royal Mughal Palace Dusk Courtyard"
+                <img src="./assets/images/royal_hero_palace_bg.webp" alt="Royal Mughal Palace Dusk Courtyard"
+                    fetchpriority="high" decoding="async"
                     class="slide-bg-img">
                 <div class="slide-vignette hero-vignette"></div>
             </div>
@@ -150,7 +169,8 @@
         <section class="story-slide mehndi-slide" id="mehndiSection" data-theme="mehndi">
             <!-- Fullscreen Edge-to-Edge Mehndi Background Artwork (Ultra HD 4K Stage) -->
             <div class="slide-background-wrap">
-                <img src="./assets/images/mehndi_stage_hd.jpg" alt="Royal Emerald & Gold Mehndi Stage 4K"
+                <img src="./assets/images/mehndi_stage_hd.webp" alt="Royal Emerald & Gold Mehndi Stage 4K"
+                    decoding="async"
                     class="slide-bg-img">
                 <div class="slide-vignette mehndi-vignette"></div>
             </div>
@@ -188,7 +208,8 @@
                 <!-- Center Feature: Festive Dholak & Henna Thaal Cutout & Live Countdown -->
                 <div class="mehndi-center-feature-col animated-fade-up delay-3">
                     <div class="mehndi-artwork-cutout-wrap">
-                        <img src="./assets/images/mehndi_dhol_thaal_transparent.png" alt="Mehndi Dholak & Henna Thaal"
+                        <img src="./assets/images/mehndi_dhol_thaal_transparent.webp" alt="Mehndi Dholak & Henna Thaal"
+                            loading="lazy" decoding="async"
                             class="mehndi-cutout-img pulse-prop-anim">
                         <div class="couple-floating-hearts">
                             <span class="f-heart fh1">🌿</span>
@@ -243,7 +264,8 @@
         <section class="story-slide barat-slide" id="baratSection" data-theme="barat">
             <!-- Fullscreen Edge-to-Edge Grand Crimson & Gold Palace Ballroom (Ultra HD 4K) -->
             <div class="slide-background-wrap">
-                <img src="./assets/images/barat_stage_hd.jpg" alt="Royal Crimson Palace Barat Hall 4K"
+                <img src="./assets/images/barat_stage_hd.webp" alt="Royal Crimson Palace Barat Hall 4K"
+                    loading="lazy" decoding="async"
                     class="slide-bg-img">
                 <div class="slide-vignette barat-vignette"></div>
             </div>
@@ -284,8 +306,9 @@
                 <div class="barat-center-feature-col animated-fade-up delay-3">
                     <!-- Royal Couple Cutout with Transparent Background & Floating Hearts -->
                     <div class="couple-portrait-cutout-wrap">
-                        <img src="./assets/images/couple_isolated_transparent.png"
+                        <img src="./assets/images/couple_isolated_transparent.webp"
                             alt="Muhammad Ishaq & Pimra Ahmad Wedding Portrait"
+                            loading="lazy" decoding="async"
                             class="portrait-cutout-img couple-breathing-anim">
                         <div class="couple-floating-hearts">
                             <span class="f-heart fh1">💖</span>
@@ -345,7 +368,8 @@
         <section class="story-slide walima-slide" id="walimaSection" data-theme="walima">
             <!-- Fullscreen Edge-to-Edge Grand Sapphire & Gold Palace Ballroom (Ultra HD 4K) -->
             <div class="slide-background-wrap">
-                <img src="./assets/images/walima_stage_hd.jpg" alt="Luxury Grand Palace Ballroom 4K"
+                <img src="./assets/images/walima_stage_hd.webp" alt="Luxury Grand Palace Ballroom 4K"
+                    loading="lazy" decoding="async"
                     class="slide-bg-img">
                 <div class="slide-vignette walima-vignette"></div>
             </div>
@@ -386,8 +410,9 @@
                 <!-- Center Feature: Couple Cutout with Transparent Background & Live Countdown -->
                 <div class="walima-center-feature-col animated-fade-up delay-3">
                     <div class="walima-couple-cutout-wrap">
-                        <img src="./assets/images/walima_couple_transparent.png"
+                        <img src="./assets/images/walima_couple_transparent.webp"
                             alt="Muhammad Ishaq & Pimra Ahmad Walima Couple Portrait"
+                            loading="lazy" decoding="async"
                             class="walima-couple-cutout-img couple-breathing-anim">
                         <div class="couple-floating-hearts">
                             <span class="f-heart fh1">💙</span>
@@ -447,7 +472,8 @@
         <section class="story-slide dates-slide" id="calendarSection" data-theme="hero">
             <!-- Fullscreen Ultra-HD Royal Palace Celebration Background Artwork -->
             <div class="slide-background-wrap">
-                <img src="./assets/images/royal_celebration_bg.jpg" alt="Royal Celebration Palace Terrace"
+                <img src="./assets/images/royal_celebration_bg.webp" alt="Royal Celebration Palace Terrace"
+                    loading="lazy" decoding="async"
                     class="slide-bg-img">
                 <div class="slide-vignette dates-vignette"></div>
             </div>
@@ -591,7 +617,7 @@
                 <!-- Footer With Closing Warm Wishes & Return To Top -->
                 <footer class="story-footer royal-dates-footer">
                     <div class="footer-seal-ring">
-                        <img src="./assets/images/seal.jpg" alt="I & P Monogram" class="footer-seal-art">
+                        <img src="./assets/images/seal.webp" alt="I & P Monogram" loading="lazy" decoding="async" class="footer-seal-art">
                     </div>
                     <h3 class="footer-title">Awaiting Your Gracious Presence</h3>
                     <p class="footer-compliments">With Best Compliments & Heartfelt Prayers from the Families</p>
@@ -606,7 +632,7 @@
     </main>
 
     <!-- App JavaScript -->
-    <script src="main.js?v=3.0"></script>
+    <script src="main.js?v=4.1" defer></script>
 </body>
 
 </html>

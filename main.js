@@ -16,30 +16,55 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
 
     let isMusicPlaying = false;
+    let userMuted = false;
     let autoUnlockTimer = null;
+    let autoCountdownInterval = null;
+    const autoOpenCountdownEl = document.getElementById('autoOpenCountdown');
 
-    // 1. WAX SEAL INTRO HANDLER
+    // 1. WAX SEAL INTRO HANDLER (10-Second Auto-Advance + Click to Open Immediately)
     function unlockInvitation() {
         if (autoUnlockTimer) {
             clearTimeout(autoUnlockTimer);
             autoUnlockTimer = null;
         }
+        if (autoCountdownInterval) {
+            clearInterval(autoCountdownInterval);
+            autoCountdownInterval = null;
+        }
         if (envelopeOverlay && !envelopeOverlay.classList.contains('opened')) {
             envelopeOverlay.classList.add('opened');
+        }
+        if (!userMuted && !isMusicPlaying) {
             playAudioSafely();
         }
     }
 
-    // Auto move to next screen if user does not click within 2 seconds
+    // Countdown display (10s -> 0s) on the envelope card
+    let remainingSeconds = 10;
+    autoCountdownInterval = setInterval(() => {
+        remainingSeconds -= 1;
+        if (autoOpenCountdownEl && remainingSeconds >= 0) {
+            autoOpenCountdownEl.textContent = String(remainingSeconds);
+        }
+        if (remainingSeconds <= 0) {
+            clearInterval(autoCountdownInterval);
+            autoCountdownInterval = null;
+        }
+    }, 1000);
+
+    // Auto move to next screen if user does not click within 10 seconds
     autoUnlockTimer = setTimeout(() => {
         unlockInvitation();
-    }, 2000);
+    }, 10000);
 
-    // If user clicks or taps anywhere on the envelope screen, open immediately
+    // If user clicks or taps anywhere on the envelope screen within 10s, open immediately
     if (envelopeOverlay) {
         envelopeOverlay.addEventListener('click', () => {
             unlockInvitation();
         });
+        envelopeOverlay.addEventListener('touchend', () => {
+            unlockInvitation();
+        }, { passive: true });
     }
 
     if (openEnvelopeBtn) {
@@ -47,6 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
             unlockInvitation();
         });
+        openEnvelopeBtn.addEventListener('touchend', (e) => {
+            e.stopPropagation();
+            unlockInvitation();
+        }, { passive: true });
     }
 
     // Direct anchor link bypass
@@ -70,55 +99,107 @@ document.addEventListener('DOMContentLoaded', () => {
     // Touch swipe trigger on envelope
     let touchStartY = 0;
     window.addEventListener('touchstart', (e) => {
-        touchStartY = e.touches[0].clientY;
+        if (e.touches && e.touches[0]) {
+            touchStartY = e.touches[0].clientY;
+        }
     }, { passive: true });
 
     window.addEventListener('touchend', (e) => {
-        const diff = touchStartY - e.changedTouches[0].clientY;
-        if (diff > 30 && envelopeOverlay && !envelopeOverlay.classList.contains('opened')) {
-            unlockInvitation();
+        if (e.changedTouches && e.changedTouches[0]) {
+            const diff = touchStartY - e.changedTouches[0].clientY;
+            if (diff > 30 && envelopeOverlay && !envelopeOverlay.classList.contains('opened')) {
+                unlockInvitation();
+            }
         }
     }, { passive: true });
 
-    // 2. AUDIO MANAGEMENT
-    function playAudioSafely() {
-        if (!weddingBgAudio) return;
-        weddingBgAudio.volume = 0.5;
-        weddingBgAudio.play().then(() => {
-            isMusicPlaying = true;
-            if (musicToggle) musicToggle.classList.add('playing');
-            if (musicLabel) musicLabel.textContent = 'Playing';
-        }).catch(() => {
-            isMusicPlaying = false;
-            if (musicToggle) musicToggle.classList.remove('playing');
-            if (musicLabel) musicLabel.textContent = 'Music';
+    // 2. AUDIO MANAGEMENT (Start immediately when user lands on card + fallback on first gesture)
+    const interactionEvents = ['click', 'touchend', 'pointerup', 'keydown', 'touchstart', 'wheel', 'scroll'];
+
+    function updateMusicUI(playing, labelText) {
+        if (musicToggle) {
+            musicToggle.classList.toggle('playing', playing);
+        }
+        if (musicLabel) {
+            musicLabel.textContent = labelText;
+        }
+    }
+
+    function removeInteractionListeners() {
+        interactionEvents.forEach(evt => {
+            document.removeEventListener(evt, startAudioOnInteraction, { capture: true });
         });
     }
 
-    // Ensure audio begins on first user interaction if auto-play was blocked
-    const startAudioOnInteraction = () => {
-        if (!isMusicPlaying && weddingBgAudio) {
-            playAudioSafely();
+    function playAudioSafely() {
+        if (!weddingBgAudio || userMuted) return;
+        if (!weddingBgAudio.paused && isMusicPlaying) return;
+
+        weddingBgAudio.muted = false;
+        weddingBgAudio.volume = 0.65;
+
+        const playPromise = weddingBgAudio.play();
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                isMusicPlaying = true;
+                updateMusicUI(true, 'Playing');
+                removeInteractionListeners();
+            }).catch(() => {
+                // Browser blocked unmuted autoplay before gesture; keep listeners active for first touch/click
+                isMusicPlaying = false;
+                updateMusicUI(false, 'Tap for Music');
+            });
         }
-        window.removeEventListener('click', startAudioOnInteraction);
-        window.removeEventListener('touchstart', startAudioOnInteraction);
-    };
-    window.addEventListener('click', startAudioOnInteraction, { passive: true });
-    window.addEventListener('touchstart', startAudioOnInteraction, { passive: true });
+    }
+
+    // Start song immediately as soon as the user arrives on the wedding card (even while on the 10s intro card)
+    playAudioSafely();
+    if (weddingBgAudio) {
+        weddingBgAudio.addEventListener('canplay', () => {
+            if (!isMusicPlaying && !userMuted) {
+                playAudioSafely();
+            }
+        }, { once: true });
+    }
+
+    // Ensure audio begins on first valid user interaction if auto-play was blocked.
+    // Listeners are only removed once play() actually resolves!
+    function startAudioOnInteraction(e) {
+        if (e && e.target && e.target.closest && e.target.closest('#musicToggle')) {
+            return;
+        }
+        if (userMuted || isMusicPlaying) {
+            removeInteractionListeners();
+            return;
+        }
+        playAudioSafely();
+    }
+
+    interactionEvents.forEach(evt => {
+        document.addEventListener(evt, startAudioOnInteraction, { passive: true, capture: true });
+    });
 
     if (musicToggle) {
-        musicToggle.addEventListener('click', () => {
+        musicToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
             if (!weddingBgAudio) return;
-            if (isMusicPlaying) {
+            if (isMusicPlaying && !weddingBgAudio.paused) {
                 weddingBgAudio.pause();
                 isMusicPlaying = false;
-                musicToggle.classList.remove('playing');
-                musicLabel.textContent = 'Muted';
+                userMuted = true;
+                updateMusicUI(false, 'Muted');
+                removeInteractionListeners();
             } else {
+                userMuted = false;
+                weddingBgAudio.muted = false;
+                weddingBgAudio.volume = 0.65;
                 weddingBgAudio.play().then(() => {
                     isMusicPlaying = true;
-                    musicToggle.classList.add('playing');
-                    musicLabel.textContent = 'Playing';
+                    updateMusicUI(true, 'Playing');
+                    removeInteractionListeners();
+                }).catch(() => {
+                    isMusicPlaying = false;
+                    updateMusicUI(false, 'Tap for Music');
                 });
             }
         });
@@ -179,9 +260,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 4500); // Transitions automatically every 4.5 seconds
     }
 
-    // 4. OBSERVE ACTIVE SLIDES FOR THEME COLOR SHIFTS & BARAT STORY SEQUENCE
+    // 4. OBSERVE ACTIVE SLIDES FOR THEME COLOR SHIFTS & GPU ANIMATION PAUSING
     const slideObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+            entry.target.classList.toggle('is-active', entry.isIntersecting);
+
             if (entry.isIntersecting) {
                 const activeTheme = entry.target.getAttribute('data-theme');
                 if (activeTheme) {
@@ -199,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, {
         root: container,
-        threshold: 0.3
+        threshold: 0.1
     });
 
     storySlides.forEach(slide => slideObserver.observe(slide));
@@ -237,52 +320,55 @@ document.addEventListener('DOMContentLoaded', () => {
     updateAllCountdowns();
     setInterval(updateAllCountdowns, 1000);
 
-    // 6. CANVAS PARTICLES (PETALS & GOLD SHIMMER)
+    // 6. LIGHTWEIGHT CANVAS PARTICLES (OPTIMIZED FOR MOBILE GPU)
     const canvas = document.getElementById('ambientCanvas');
     if (canvas) {
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d', { alpha: true });
         let w = canvas.width = window.innerWidth;
         let h = canvas.height = window.innerHeight;
 
         window.addEventListener('resize', () => {
             w = canvas.width = window.innerWidth;
             h = canvas.height = window.innerHeight;
-        });
+        }, { passive: true });
 
         const particles = [];
-        const count = 35;
+        const isMobile = window.innerWidth < 768;
+        const count = isMobile ? 14 : 26;
 
         for (let i = 0; i < count; i++) {
             particles.push({
                 x: Math.random() * w,
                 y: Math.random() * h,
-                size: Math.random() * 3 + 1,
-                speedY: Math.random() * 0.7 + 0.3,
-                speedX: (Math.random() - 0.5) * 0.5,
-                opacity: Math.random() * 0.6 + 0.2
+                size: Math.random() * 2.5 + 1,
+                speedY: Math.random() * 0.6 + 0.25,
+                speedX: (Math.random() - 0.5) * 0.4,
+                opacity: Math.random() * 0.55 + 0.2
             });
         }
 
         function renderCanvas() {
-            ctx.clearRect(0, 0, w, h);
-            const activeTheme = body.getAttribute('data-active-theme') || 'hero';
-            
-            let color = 'rgba(250, 225, 156,';
-            if (activeTheme === 'mehndi') color = 'rgba(234, 179, 8,';
-            else if (activeTheme === 'barat') color = 'rgba(225, 29, 72,';
-            else if (activeTheme === 'walima') color = 'rgba(56, 189, 248,';
+            if (!document.hidden) {
+                ctx.clearRect(0, 0, w, h);
+                const activeTheme = body.getAttribute('data-active-theme') || 'hero';
+                
+                let color = 'rgba(250, 225, 156,';
+                if (activeTheme === 'mehndi') color = 'rgba(234, 179, 8,';
+                else if (activeTheme === 'barat') color = 'rgba(225, 29, 72,';
+                else if (activeTheme === 'walima') color = 'rgba(56, 189, 248,';
 
-            particles.forEach(p => {
-                p.y += p.speedY;
-                p.x += p.speedX;
-                if (p.y > h) { p.y = -5; p.x = Math.random() * w; }
+                for (let i = 0; i < particles.length; i++) {
+                    const p = particles[i];
+                    p.y += p.speedY;
+                    p.x += p.speedX;
+                    if (p.y > h) { p.y = -5; p.x = Math.random() * w; }
 
-                ctx.fillStyle = `${color} ${p.opacity})`;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fill();
-            });
-
+                    ctx.fillStyle = `${color} ${p.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
             requestAnimationFrame(renderCanvas);
         }
 
