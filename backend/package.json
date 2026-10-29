@@ -4,7 +4,7 @@
   "description": "Backend API service for Muhammad Ishaq & Pimra Ahmad Wedding Suite",
   "main": "server.js",
   "scripts": {
-    "start": "node api.js && node server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
