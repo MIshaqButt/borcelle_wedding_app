@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Muhammad Ishaq & Pimra Ahmad | Walima Reception Invitation</title>
+
+    <!-- WhatsApp & Social Media Preview Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Muhammad Ishaq & Pimra Ahmad | Walima Reception Invitation">
+    <meta property="og:description" content="ولیمہ کی پروقار تقریب! دو دلوں کے نئے سفر کا آغاز۔ محبتوں اور دعاؤں سے سجی اس محفل میں شاہی استقبال تیار ہے، آپ کی شرکت باعثِ مسرت ہوگی! ✨">
+    <meta property="og:image" itemprop="image" content="https://wedding-card-phi-blue.vercel.app/walima_invitation_card.png">
+    <meta property="og:image:secure_url" content="https://wedding-card-phi-blue.vercel.app/walima_invitation_card.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1080">
+    <meta property="og:image:height" content="1920">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Muhammad Ishaq & Pimra Ahmad | Walima Reception Invitation">
+    <meta name="twitter:description" content="ولیمہ کی پروقار تقریب! دو دلوں کے نئے سفر کا آغاز۔ محبتوں اور دعاؤں سے سجی اس محفل میں شاہی استقبال تیار ہے! ✨">
+    <meta name="twitter:image" content="https://wedding-card-phi-blue.vercel.app/walima_invitation_card.png">
+
+    <!-- Preload Critical Images -->
+    <link rel="preload" as="image" href="./assets/images/stmp.webp" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" href="./assets/images/walima_stage_hd.webp" type="image/webp" fetchpriority="high">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Poppins:wght@300;400;500;600;700;800&family=Rozha+One&family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=4.2">
+
+    <style>
+        /* Walima Dedicated Page Overrides */
+        body[data-active-theme="walima"] {
+            background-color: #020713;
+        }
+
+        .walima-single-container {
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .walima-single-slide {
+            height: 100vh;
+            height: 100dvh;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .walima-single-content {
+            height: 100%;
+            max-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: clamp(8px, 1.4vh, 16px) clamp(12px, 2vw, 24px);
+            box-sizing: border-box;
+            z-index: 10;
+        }
+
+        .walima-couple-cutout-img {
+            max-height: clamp(140px, 22vh, 230px);
+            object-fit: contain;
+        }
+
+        .walima-card-download-btn {
+            background: linear-gradient(135deg, rgba(8, 28, 62, 0.95), rgba(3, 15, 38, 0.95));
+            border: 1.5px solid #38bdf8;
+            color: #7dd3fc;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.35);
+            transition: all 0.3s ease;
+            margin-top: 2px;
+        }
+
+        .walima-card-download-btn:hover {
+            background: #38bdf8;
+            color: #020713;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .envelope-dates-walima {
+            color: #7dd3fc !important;
+            letter-spacing: 3px !important;
+        }
+    </style>
+</head>
+
+<body data-active-theme="walima">
+
+    <!-- Background Ambient Music Audio -->
+    <audio id="weddingBgAudio" autoplay loop preload="auto" playsinline>
+        <source src="./assets/media/music_fast.m4a" type="audio/mp4">
+        <source src="./assets/media/music.mp3" type="audio/mpeg">
+        <source src="./assets/media/wedding_music.mp4" type="audio/mp4">
+    </audio>
+
+    <!-- Floating Canvas Particles (Royal Sapphire Sparkles) -->
+    <canvas id="ambientCanvas"></canvas>
+
+    <!-- ROYAL ENVELOPE WAX SEAL MODAL -->
+    <div class="royal-envelope-overlay" id="envelopeOverlay">
+        <div class="envelope-modal-card">
+            <div class="envelope-header">
+                <div class="bismillah-gold-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+                <div class="sub-royal">✦ THE WALIMA RECEPTION ✦</div>
+                <div class="envelope-divider">
+                    <span class="div-line"></span>
+                    <span class="div-gem">✦ ❖ ✦</span>
+                    <span class="div-line"></span>
+                </div>
+            </div>
+
+            <!-- Interactive Wax Seal with Orbit Ring -->
+            <div class="wax-seal-wrapper" id="openEnvelopeBtn">
+                <div class="seal-disc-wrap">
+                    <div class="seal-ring-orbit"></div>
+                    <img src="./assets/images/stmp.webp" alt="Pimra & Ishaq Wedding Stamp" width="112" height="112"
+                        fetchpriority="high" decoding="async" class="wax-seal-img pulse-glow">
+                </div>
+                <span class="seal-hint">Tap Stamp or Wait</span>
+            </div>
+
+            <div class="envelope-names">
+                <h1 class="shimmer-text">Muhammad Ishaq</h1>
+                <div class="and-script">&</div>
+                <h1 class="shimmer-text">Pimra Ahmad</h1>
+            </div>
+
+            <div class="envelope-dates envelope-dates-walima">
+                <span>✦ SUNDAY, 22 NOVEMBER 2026 ✦</span>
+            </div>
+
+            <!-- Auto-Advance 10-Second Visual Progress Indicator -->
+            <div class="auto-advance-bar-wrapper">
+                <div class="auto-advance-bar" id="autoAdvanceBar"></div>
+            </div>
+            <p class="envelope-subtext">Opening Walima Card in <span id="autoOpenCountdown">10</span>s • Tap anywhere to enter</p>
+        </div>
+    </div>
+
+    <!-- WALIMA FULLSCREEN CARD CONTAINER -->
+    <main class="fullscreen-story-container walima-single-container" id="weddingCard">
+
+        <section class="story-slide walima-slide walima-single-slide is-active" id="walimaSection" data-theme="walima">
+            <!-- Fullscreen Sapphire Palace Backdrop -->
+            <div class="slide-background-wrap">
+                <img src="./assets/images/walima_stage_hd.webp" alt="Luxury Grand Palace Ballroom 4K" loading="eager"
+                    fetchpriority="high" decoding="async" class="slide-bg-img">
+                <div class="slide-vignette walima-vignette"></div>
+            </div>
+
+            <div class="slide-overlay-content walima-overlay-content walima-single-content">
+                <!-- Floating Festive Sapphire Lanterns -->
+                <div class="festive-hanging-decor decor-left walima-decor">🏮</div>
+                <div class="festive-hanging-decor decor-right walima-decor">🏮</div>
+
+                <!-- Top Badge Row -->
+                <div class="walima-top-badge-row animated-fade-down">
+                    <span class="badge-wing left-wing blue-wing"></span>
+                    <span class="royal-pill-badge blue-pill">DAY 3 • SUNNAH BANQUET</span>
+                    <span class="badge-wing right-wing blue-wing"></span>
+                </div>
+
+                <!-- Glowing Royal Sapphire & Gold Arabic Calligraphy with Triple Orbit Sparkles & Halo -->
+                <div class="walima-calligraphy-container animated-zoom-in delay-1">
+                    <div class="sparkle-orbit-ring sapphire-ring-1"></div>
+                    <div class="sparkle-orbit-ring ring-reverse sapphire-ring-2"></div>
+                    <div class="sparkle-orbit-ring ring-pulsar sapphire-ring-3"></div>
+                    <div class="calligraphy-halo walima-calligraphy-halo"></div>
+                    <div class="walima-arabic-title">ولیمہ</div>
+                    <div class="walima-sub-english">The Walima Reception</div>
+                </div>
+
+                <!-- Event Date Pill Matching Theme -->
+                <div class="event-date-pill walima-pill-border animated-fade-up delay-2">
+                    <span>🗓️ Sunday, 22nd November 2026 • 12:00 PM</span>
+                </div>
+
+                <!-- Venue Location Badge -->
+                <div class="event-venue-pill walima-venue-pill animated-fade-up delay-2">
+                    <span class="venue-main">📍 Taj Mahal Marquee Banquet Hall</span>
+                    <span class="venue-sub">Kahna Nau, Lahore</span>
+                </div>
+
+                <!-- Center Feature: Couple Cutout with Transparent Background & Live Countdown -->
+                <div class="walima-center-feature-col animated-fade-up delay-3">
+                    <div class="walima-couple-cutout-wrap">
+                        <img src="./assets/images/walima_couple_transparent.webp"
+                            alt="Muhammad Ishaq & Pimra Ahmad Walima Couple Portrait" loading="eager" decoding="async"
+                            class="walima-couple-cutout-img couple-breathing-anim">
+                        <div class="couple-floating-hearts">
+                            <span class="f-heart fh1">💙</span>
+                            <span class="f-heart fh2">✨</span>
+                        </div>
+                    </div>
+
+                    <!-- Live Countdown Widget with Royal Sapphire & Gold Glow -->
+                    <div class="slide-countdown-box sapphire-countdown" data-event-time="2026-11-22T12:00:00">
+                        <span class="cd-label">✨ COUNTDOWN TO THE WALIMA ✨</span>
+                        <div class="cd-flex">
+                            <div class="cd-unit"><span class="val days">00</span><span class="lbl">Days</span></div>
+                            <div class="cd-unit"><span class="val hours">00</span><span class="lbl">Hours</span></div>
+                            <div class="cd-unit"><span class="val mins">00</span><span class="lbl">Mins</span></div>
+                            <div class="cd-unit"><span class="val secs">00</span><span class="lbl">Secs</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Details & Timing Strip (2-Card Row: Welcome Guest & Reception Lunch) -->
+                <div class="event-timing-strip walima-timing-strip animated-fade-up delay-4">
+                    <div class="time-item walima-time-item">
+                        <span class="t-icon">✨</span>
+                        <span class="t-hour">12:00 PM</span>
+                        <span class="t-name">Welcome Guest</span>
+                    </div>
+                    <div class="time-item walima-time-item">
+                        <span class="t-icon">🍽️</span>
+                        <span class="t-hour">01:30 PM</span>
+                        <span class="t-name">Reception Lunch</span>
+                    </div>
+                </div>
+
+                <!-- Unified Action Widgets Row: Location & Calendar Side-by-Side -->
+                <div class="walima-actions-unified-row animated-fade-up delay-5">
+                    <a href="https://maps.app.goo.gl/jzc4uLGz6AK82RK86" target="_blank" rel="noopener noreferrer"
+                        class="royal-btn walima-location-btn">
+                        📍 View Map
+                    </a>
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Walima+Reception+-+Muhammad+Ishaq+%26+Pimra+Ahmad&dates=20261122T070000Z/20261122T110000Z&details=Walima+Reception+Lunch+%26+Celebration%0AVenue:+Taj+Mahal+Marquee+Banquet+Hall+-+Kahna+Nau,+Lahore&location=Taj+Mahal+Marquee+Banquet+Hall+-+Kahna+Nau,+Lahore"
+                        target="_blank" rel="noopener noreferrer" class="royal-btn walima-cal-btn">
+                        📅 Add to Calendar
+                    </a>
+                </div>
+
+                <!-- Download Standalone Invitation Card Image Button -->
+                <a href="./walima_invitation_card.png" download="Walima_Invitation_Card_Muhammad_Ishaq_Pimra_Ahmad.png"
+                    class="walima-card-download-btn">
+                    📥 Download Invitation Card
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- App JavaScript -->
+    <script src="main.js?v=4.2" defer></script>
+</body>
+
+</html>

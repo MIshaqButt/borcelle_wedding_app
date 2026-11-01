@@ -3,6 +3,14 @@
     {
       "source": "/invite",
       "destination": "/index.html"
+    },
+    {
+      "source": "/walima",
+      "destination": "/walima.html"
+    },
+    {
+      "source": "/valima",
+      "destination": "/walima.html"
     }
   ],
   "headers": [
@@ -17,6 +25,33 @@
     },
     {
       "source": "/invite",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/walima",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/valima",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/walima.html",
       "headers": [
         {
           "key": "Cache-Control",
