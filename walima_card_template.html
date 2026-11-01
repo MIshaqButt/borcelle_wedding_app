@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, initial-scale=1.0">
+    <title>Walima Reception Invitation Card | Muhammad Ishaq & Pimra Ahmad</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600&family=Poppins:wght@300;400;500;600;700;800&family=Rozha+One&family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --font-arabic: 'Amiri', 'Noto Nastaliq Urdu', serif;
+            --font-english: 'Playfair Display', serif;
+            --font-royal: 'Cinzel Decorative', serif;
+            --font-cursive: 'Great Vibes', 'Alex Brush', cursive;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1080px;
+            height: 1920px;
+            background: #020713;
+            color: #ffffff;
+            font-family: var(--font-body);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Background Palace Visual */
+        .card-bg-wrap {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .card-bg-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.65) contrast(1.18) saturate(1.2);
+            transform: scale(1.02);
+        }
+
+        /* Royal Vignette & Shading Matching Original Website */
+        .card-vignette {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 50% 48%, rgba(2, 8, 22, 0.45) 0%, rgba(2, 7, 20, 0.88) 75%, #01050e 100%),
+                linear-gradient(180deg, rgba(2, 7, 20, 0.96) 0%, rgba(3, 14, 38, 0.35) 20%, rgba(2, 8, 22, 0.3) 65%, rgba(1, 4, 12, 0.98) 95%);
+        }
+
+        /* Grand Luxury Double Border */
+        .royal-outer-border {
+            position: absolute;
+            inset: 34px;
+            border: 2px solid rgba(212, 175, 55, 0.65);
+            z-index: 5;
+            pointer-events: none;
+            box-shadow: 
+                inset 0 0 45px rgba(0, 0, 0, 0.85),
+                0 0 35px rgba(56, 189, 248, 0.3);
+        }
+
+        .royal-inner-border {
+            position: absolute;
+            inset: 46px;
+            border: 1px solid rgba(56, 189, 248, 0.65);
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        /* Corner Filigree */
+        .corner-decor {
+            position: absolute;
+            width: 65px;
+            height: 65px;
+            z-index: 6;
+            pointer-events: none;
+        }
+        .top-left {
+            top: 38px;
+            left: 38px;
+            border-top: 3.5px solid #f9d479;
+            border-left: 3.5px solid #f9d479;
+        }
+        .top-right {
+            top: 38px;
+            right: 38px;
+            border-top: 3.5px solid #f9d479;
+            border-right: 3.5px solid #f9d479;
+        }
+        .bottom-left {
+            bottom: 38px;
+            left: 38px;
+            border-bottom: 3.5px solid #f9d479;
+            border-left: 3.5px solid #f9d479;
+        }
+        .bottom-right {
+            bottom: 38px;
+            right: 38px;
+            border-bottom: 3.5px solid #f9d479;
+            border-right: 3.5px solid #f9d479;
+        }
+
+        .corner-star {
+            position: absolute;
+            color: #f9d479;
+            font-size: 26px;
+            text-shadow: 0 0 12px rgba(249, 212, 121, 0.95);
+        }
+        .top-left .corner-star { top: 7px; left: 7px; }
+        .top-right .corner-star { top: 7px; right: 7px; }
+        .bottom-left .corner-star { bottom: 7px; left: 7px; }
+        .bottom-right .corner-star { bottom: 7px; right: 7px; }
+
+        /* Festive Hanging Lanterns */
+        .decor-lantern {
+            position: absolute;
+            font-size: 48px;
+            z-index: 8;
+            filter: drop-shadow(0 0 22px rgba(56, 189, 248, 0.95));
+        }
+        .lantern-l { top: 68px; left: 75px; }
+        .lantern-r { top: 68px; right: 75px; }
+
+        /* Main Content Layout */
+        .card-content {
+            position: relative;
+            z-index: 10;
+            width: 960px;
+            height: 1810px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 35px 20px 42px 20px;
+            text-align: center;
+        }
+
+        /* 1. Bismillah */
+        .bismillah-gold {
+            font-family: var(--font-arabic);
+            font-size: 44px;
+            color: #ffd700;
+            background: linear-gradient(135deg, #fff7cd 0%, #ffd700 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 18px rgba(212, 175, 55, 0.6);
+            letter-spacing: 2px;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+
+        /* 2. Top Badge */
+        .walima-top-badge-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 4px;
+        }
+
+        .blue-wing {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.9), transparent);
+        }
+
+        .royal-pill-badge {
+            background: rgba(8, 25, 55, 0.9);
+            border: 1.5px solid rgba(56, 189, 248, 0.75);
+            color: #7dd3fc;
+            padding: 7px 32px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+        }
+
+        /* 3. Walima Calligraphy & Orbit Halo */
+        .walima-calligraphy-container {
+            position: relative;
+            width: 520px;
+            height: 165px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 4px 0 2px 0;
+        }
+
+        .walima-calligraphy-halo {
+            position: absolute;
+            width: 440px;
+            height: 140px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.45) 0%, rgba(251, 191, 36, 0.25) 50%, transparent 75%);
+            filter: blur(14px);
+            pointer-events: none;
+        }
+
+        .sparkle-orbit-ring {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .sapphire-ring-1 {
+            width: 460px;
+            height: 135px;
+            border: 2px dashed rgba(56, 189, 248, 0.85);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.5), inset 0 0 15px rgba(251, 191, 36, 0.3);
+        }
+
+        .sapphire-ring-2 {
+            width: 490px;
+            height: 148px;
+            border: 1.5px dotted rgba(251, 191, 36, 0.9);
+        }
+
+        .walima-arabic-title {
+            font-family: var(--font-arabic);
+            font-size: 78px;
+            line-height: 1.1;
+            direction: rtl;
+            white-space: nowrap;
+            padding: 0 20px;
+            color: #ffd700;
+            text-shadow:
+                0 0 2px #000,
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000,
+                0 4px 15px rgba(0, 0, 0, 0.95),
+                0 0 25px rgba(56, 189, 248, 0.9),
+                0 0 45px rgba(251, 191, 36, 0.7);
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.9));
+            z-index: 5;
+            position: relative;
+        }
+
+        .walima-sub-english {
+            font-family: var(--font-english);
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 7px;
+            text-transform: uppercase;
+            color: #d4af37;
+            background: linear-gradient(135deg, #fff3b0 0%, #d4af37 50%, #fef08a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 4px;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
+            z-index: 5;
+        }
+
+        /* 4. Invitation Line */
+        .invitation-intro {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-style: italic;
+            color: #f1f5f9;
+            letter-spacing: 1px;
+            margin-top: 4px;
+            max-width: 820px;
+            line-height: 1.4;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+        }
+
+        /* 5. Couple Names */
+        .couple-names-wrap {
+            margin: 6px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .groom-name, .bride-name {
+            font-family: var(--font-english);
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            background: linear-gradient(135deg, #ffffff 0%, #fff2b2 35%, #d4af37 75%, #aa820a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 4px 15px rgba(212, 175, 55, 0.6));
+        }
+
+        .weds-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 2px 0;
+        }
+
+        .weds-line {
+            width: 130px;
+            height: 1.5px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+
+        .weds-crest {
+            color: #f9d479;
+            font-size: 16px;
+        }
+
+        .weds-txt {
+            font-family: var(--font-cursive);
+            font-size: 40px;
+            color: #38bdf8;
+            text-shadow: 0 0 14px rgba(56, 189, 248, 0.95);
+            padding: 0 8px;
+        }
+
+        /* 6. Center Feature: Couple Cutout Showcase */
+        .couple-cutout-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 4px 0;
+        }
+
+        .couple-halo-bg {
+            position: absolute;
+            width: 470px;
+            height: 470px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(14, 116, 144, 0.14) 55%, transparent 75%);
+            filter: blur(22px);
+        }
+
+        .couple-cutout-img {
+            max-height: 490px;
+            max-width: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 25px rgba(56, 189, 248, 0.45));
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 7. Date & Venue Badges */
+        .info-pill-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            max-width: 780px;
+            margin: 4px 0;
+        }
+
+        .event-date-pill {
+            background: linear-gradient(135deg, rgba(8, 28, 62, 0.96) 0%, rgba(3, 15, 38, 0.96) 100%);
+            border: 2px solid #38bdf8;
+            box-shadow: 0 0 32px rgba(56, 189, 248, 0.45), inset 0 0 15px rgba(56, 189, 248, 0.2);
+            padding: 16px 52px;
+            border-radius: 60px;
+            font-size: 25px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .event-date-pill .gold-highlight {
+            color: #f9d479;
+        }
+
+        .event-venue-pill {
+            background: linear-gradient(135deg, rgba(10, 30, 65, 0.94) 0%, rgba(4, 18, 44, 0.94) 100%);
+            border: 1.5px solid rgba(212, 175, 55, 0.75);
+            box-shadow: 0 0 28px rgba(212, 175, 55, 0.35);
+            padding: 15px 48px;
+            border-radius: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .venue-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #f9d479;
+            letter-spacing: 1.5px;
+            font-family: var(--font-english);
+        }
+
+        .venue-city {
+            font-size: 18px;
+            font-weight: 500;
+            color: #bae6fd;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* 8. Timing Program Cards */
+        .timing-program-strip {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            width: 100%;
+            max-width: 700px;
+            margin: 6px 0;
+        }
+
+        .program-card {
+            flex: 1;
+            background: linear-gradient(145deg, rgba(12, 34, 72, 0.9), rgba(4, 16, 40, 0.94));
+            border: 1.5px solid rgba(56, 189, 248, 0.55);
+            border-radius: 20px;
+            padding: 18px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 16px rgba(56, 189, 248, 0.25);
+        }
+
+        .card-icon {
+            font-size: 32px;
+            margin-bottom: 6px;
+            filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.8));
+        }
+
+        .card-time {
+            font-size: 27px;
+            font-weight: 800;
+            color: #38bdf8;
+            letter-spacing: 1.5px;
+            font-family: var(--font-english);
+        }
+
+        .card-desc {
+            font-size: 16px;
+            color: #e2e8f0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* 9. Bottom Compliments & RSVP Footer */
+        .card-footer {
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .compliments-txt {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            font-style: italic;
+            color: #f9d479;
+            letter-spacing: 2px;
+        }
+
+        .family-name {
+            font-family: var(--font-english);
+            font-size: 23px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+        }
+
+        .dua-blessing {
+            font-family: var(--font-arabic);
+            font-size: 24px;
+            color: #7dd3fc;
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Palace Scene -->
+    <div class="card-bg-wrap">
+        <img src="./assets/images/walima_stage_hd.webp" alt="Walima Grand Palace Stage" class="card-bg-img">
+        <div class="card-vignette"></div>
+    </div>
+
+    <!-- Ornate Double Borders -->
+    <div class="royal-outer-border"></div>
+    <div class="royal-inner-border"></div>
+
+    <!-- Corners -->
+    <div class="corner-decor top-left"><span class="corner-star">✦</span></div>
+    <div class="corner-decor top-right"><span class="corner-star">✦</span></div>
+    <div class="corner-decor bottom-left"><span class="corner-star">✦</span></div>
+    <div class="corner-decor bottom-right"><span class="corner-star">✦</span></div>
+
+    <!-- Hanging Lanterns -->
+    <div class="decor-lantern lantern-l">🏮</div>
+    <div class="decor-lantern lantern-r">🏮</div>
+
+    <!-- Card Content -->
+    <div class="card-content">
+        <!-- 1. Bismillah -->
+        <div class="bismillah-gold">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+
+        <!-- 2. Top Ribbon Badge -->
+        <div class="walima-top-badge-row">
+            <span class="blue-wing"></span>
+            <span class="royal-pill-badge">DAY 3 • SUNNAH BANQUET</span>
+            <span class="blue-wing"></span>
+        </div>
+
+        <!-- 3. Walima Calligraphy with Triple Orbit Halo -->
+        <div class="walima-calligraphy-container">
+            <div class="sparkle-orbit-ring sapphire-ring-1"></div>
+            <div class="sparkle-orbit-ring sapphire-ring-2"></div>
+            <div class="walima-calligraphy-halo"></div>
+            <div class="walima-arabic-title">ولیمہ</div>
+            <div class="walima-sub-english">The Walima Reception</div>
+        </div>
+
+        <!-- 4. Invitation Intro -->
+        <p class="invitation-intro">
+            With the grace of Almighty Allah & the cherished blessings of our elders,<br>
+            we cordially invite you to celebrate the blessed Walima Ceremony of
+        </p>
+
+        <!-- 5. Couple Names -->
+        <div class="couple-names-wrap">
+            <h1 class="groom-name">Muhammad Ishaq</h1>
+            <div class="weds-row">
+                <span class="weds-line"></span>
+                <span class="weds-crest">✦</span>
+                <span class="weds-txt">weds</span>
+                <span class="weds-crest">✦</span>
+                <span class="weds-line"></span>
+            </div>
+            <h1 class="bride-name">Pimra Ahmad</h1>
+        </div>
+
+        <!-- 6. Couple Cutout Feature -->
+        <div class="couple-cutout-container">
+            <div class="couple-halo-bg"></div>
+            <img src="./assets/images/walima_couple_transparent.webp" alt="Muhammad Ishaq & Pimra Ahmad" class="couple-cutout-img">
+        </div>
+
+        <!-- 7. Date & Venue Badges -->
+        <div class="info-pill-container">
+            <div class="event-date-pill">
+                <span>🗓️</span>
+                <span>Sunday, 22nd November 2026 • <span class="gold-highlight">12:00 PM</span></span>
+            </div>
+
+            <div class="event-venue-pill">
+                <span class="venue-title">📍 Taj Mahal Marquee Banquet Hall</span>
+                <span class="venue-city">Kahna Nau, Lahore</span>
+            </div>
+        </div>
+
+        <!-- 8. Timing Program Cards Strip -->
+        <div class="timing-program-strip">
+            <div class="program-card">
+                <span class="card-icon">✨</span>
+                <span class="card-time">12:00 PM</span>
+                <span class="card-desc">Welcome Guest</span>
+            </div>
+            <div class="program-card">
+                <span class="card-icon">🍽️</span>
+                <span class="card-time">01:30 PM</span>
+                <span class="card-desc">Reception Lunch</span>
+            </div>
+        </div>
+
+        <!-- 9. Footer & Compliments -->
+        <div class="card-footer">
+            <div class="compliments-txt">Looking forward to welcoming you with warm hearts and prayers</div>
+            <div class="family-name">Rana & Ahmad Family</div>
+            <div class="dua-blessing">جزاكم الله خيراً</div>
+        </div>
+    </div>
+</body>
+
+</html>
